@@ -1,4 +1,6 @@
-﻿using ECommerce.Domain.Entities;
+﻿using ECommerce.Application.Models.VMs.OrderVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -18,8 +20,8 @@ namespace ECommerce.Application.Models.DTOs.ProductOrderDTOs
         [Required(ErrorMessage = "Sipariş Seçilmek zorundadır.")]
         public int OrderId { get; set; }
 
-        public List<Product>? Products { get; set; }
-        public List<Order>? Orders { get; set; }
+        public List<ProductVm>? Products { get; set; }
+        public List<OrderVm>? Orders { get; set; }
 
 
         public DateTime CreateDate => DateTime.Now;

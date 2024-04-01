@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.DTOs.ProductOrderDTOs;
+using ECommerce.Application.Models.VMs.OrderVMs;
 using ECommerce.Application.Models.VMs.ProductOrderVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,32 +66,110 @@ namespace ECommerce.Application.Services.ProductOrderService
         {
             CreateProductOrderDto model = new CreateProductOrderDto()
             {
-                //  Orders = await _orderRepo.GetFilteredList(
-                //select: new OrderV
-                //      )
+                Orders = await _orderRepo.GetFilteredList(
+                select: x => new OrderVm
+                {
+                    ID = x.Id,
+                    UserFirstName = x.User.FirstName,
+                    UserLastName = x.User.LastName
+                },
+                where: x => x.Status != Status.Passive
+                ),
+                Products = await _productRepo.GetFilteredList(
+                    select: x => new ProductVm
+                    {
+                        CategoryId = x.CategoryId,
+                        CategoryName = x.Name
+                    },
+                    where: x => x.Status != Status.Passive)
+                      
             };
 
             return model;
         }
 
-        public Task<UpdateProductOrderDto> GetById(int id)
+        public async Task<UpdateProductOrderDto> GetById(int id)
         {
-            throw new NotImplementedException();
+            var productOrder = await _productOrderRepo.GetFilteredList(select: x => new ProductOrderVm
+            {
+                Id = x.Id,
+                OrderId = x.OrderId,
+                ProductId = x.ProductId,
+                Quantity = x.Quantity,
+            }, where: x => x.Id == id);
+
+            var model = _mapper.Map<UpdateProductOrderDto>(productOrder);
+
+            model.Products = await _productRepo.GetFilteredList(select: x => new ProductVm
+            {
+                Id = x.Id,
+                Name = x.Name,
+            }, where: x => x.Status != Status.Passive,
+            orderby: x => x.OrderBy(x => x.Name));
+
+            model.Orders = await _orderRepo.GetFilteredList(select: x => new OrderVm
+            {
+                ID = x.Id,
+                UserFirstName = x.User.FirstName,
+                UserLastName = x.User.LastName
+            }, where: x => x.Status != Status.Passive,
+            orderby: x => x.OrderBy(x => x.User.FirstName));
+
+            return model;
         }
 
-        public Task<ProductOrderDetailsVm> GetDetails(int id)
+        public async Task<ProductOrderDetailsVm> GetDetails(int id)
         {
-            throw new NotImplementedException();
+            var productOrder = await _productOrderRepo.GetFilteredFirstOrDefault(select: x => new ProductOrderDetailsVm
+            {
+                Id = x.Id,
+                OrderId = x.OrderId,
+                ProductId = x.ProductId,
+                Quantity = x.Quantity,
+                CreateDate = x.CreateDate,
+                UpdateDate = x.UpdateDate,
+                Status = x.Status,
+
+            }, where: x => x.Id == id,
+            orderby: x => x.OrderBy(x => x.OrderId),
+            include: x => x.Include(x => x.Order).Include(x => x.Product));
+
+            return productOrder;
         }
 
-        public Task<List<ProductOrderVm>> GetProductOrderForUsers()
+        public async Task<List<ProductOrderVm>> GetProductOrderForUsers()
         {
-            throw new NotImplementedException();
+            var productOrder = await _productOrderRepo.GetFilteredList(select: x => new ProductOrderVm
+            {
+                Id = x.Id,
+                OrderId = x.OrderId,
+                ProductId = x.ProductId,
+                Quantity = x.Quantity,
+
+
+
+            }, where: x => x.Status != Status.Passive,
+            orderby: x => x.OrderBy(x => x.Id),
+            include: x => x.Include(x => x.Order).Include(x => x.Product));
+
+            return productOrder;
         }
 
-        public Task<List<ProductOrderVm>> GetProductOrders()
+        public async Task<List<ProductOrderVm>> GetProductOrders()
         {
-            throw new NotImplementedException();
+            var productOrder = await _productOrderRepo.GetFilteredList(select: x => new ProductOrderVm
+            {
+                Id = x.Id,
+                OrderId = x.OrderId,
+                ProductId = x.ProductId,
+                Quantity = x.Quantity,
+
+
+            }, where: x => x.Status != Status.Passive,
+            orderby: x => x.OrderBy(x => x.Id),
+            include: x => x.Include(x => x.Order).Include(x => x.Product));
+
+            return productOrder;
         }
 
 
