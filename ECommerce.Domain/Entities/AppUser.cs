@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Entities
 {
-    public class User
+    public class AppUser : IdentityUser, IBaseEntity
     {
     }
 }
