@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +16,12 @@ namespace ECommerce.Domain.Entities
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
-        public string ImageUrl { get; set; }
+        public string? ImagePath { get; set; }
+        [NotMapped]
+        public IFormFile? UploadPath { get; set; }
 
         //Nav prop
-        public Category Category { get; set; }
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
