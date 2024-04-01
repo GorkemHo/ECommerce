@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.DTOs.CategortyDto;
+
 using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
@@ -7,12 +8,6 @@ using ECommerce.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.Services.CategoryService
 {
@@ -59,18 +54,18 @@ namespace ECommerce.Application.Services.CategoryService
             }
         }
 
-        public async Task<List<CategoryVM>> GetCategories()
+        public async Task<List<CategoryVm>> GetCategories()
         {
-            var categories = await _categoryRepo.GetFilteredList(select: x => _mapper.Map<CategoryVM>(x),
+            var categories = await _categoryRepo.GetFilteredList(select: x => _mapper.Map<CategoryVm>(x),
                 where: x => !x.Status.Equals(Status.Passive),
                 orderby: x => x.OrderBy(x => x.Name));
             return categories;
         }
 
-        public async Task<List<CategoryVM>> GetCategoriesWithProducts()
+        public async Task<List<CategoryVm>> GetCategoriesWithProducts()
         {
             var categories = await _categoryRepo.GetFilteredList(
-                select: x => new CategoryVM
+                select: x => new CategoryVm
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -79,6 +74,12 @@ namespace ECommerce.Application.Services.CategoryService
                 where: x => x.Status != Status.Passive, 
                 include : x => x.Include(x => x.Products)
                 );
+
+            //foreach (var category in categories)
+            //{
+            //    category.Products = 
+            //}
+
             return categories;
         }
 
@@ -102,5 +103,7 @@ namespace ECommerce.Application.Services.CategoryService
                 await _categoryRepo.UpdateAsync(category);
             }
         }
+
+        
     }
 }

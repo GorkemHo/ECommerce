@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Models.VMs.CategoryVMs
 {
-    public class CategoryVM
+    public class CategoryVm
     {
         public int Id { get; set; }
         public string Name { get; set; }

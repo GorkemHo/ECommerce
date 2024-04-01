@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
-using ECommerce.Application.Models.DTOs;
-using ECommerce.Application.Models.VMs;
+using ECommerce.Application.Models.DTOs.OrderDTOs;
+using ECommerce.Application.Models.VMs.OrderVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.Services.OrderService
 {
@@ -32,17 +27,17 @@ namespace ECommerce.Application.Services.OrderService
             await _orderRepo.CreateAsync(order);
         }
 
-        public async Task<CreateOrdertDto> CreateOrder()
+        public async Task<CreateOrdertDto> FİllOrder()
         {
             CreateOrdertDto models = new CreateOrdertDto()
             {
-                User = await _appUserRepo.GetFilteredList(
-                    select: x => new AppUserVM
-                    {
-                        Id= x.Id,
-                        FirstName = x.FirstName,
-                        LastName = x.LastName,
-                    })
+                //User = await _appUserRepo.GetFilteredList(
+                //    select: x => new AppUserVm
+                //    {
+                //        Id= x.Id,
+                //        FirstName = x.FirstName,
+                //        LastName = x.LastName,
+                //    })
 
 
             };
@@ -61,12 +56,10 @@ namespace ECommerce.Application.Services.OrderService
             }
         }
 
-        public async Task<OrderDetailVM> GetByDetails(int Id)
+        public async Task<OrderDetailVm> GetByDetails(int Id)
         {
-            var order = await _orderRepo.GetFilteredFirstOrDefault(select: x => new OrderDetailVM
-            {
-
-            });
+            var order = new OrderDetailVm();
+           
             return order;
         }
 
@@ -75,9 +68,9 @@ namespace ECommerce.Application.Services.OrderService
             throw new NotImplementedException();
         }
 
-        public async Task<List<OrderVM>> GetOrder()
+        public async Task<List<OrderVm>> GetOrder()
         {
-            var order = await _orderRepo.GetFilteredList(select: X => new OrderVM
+            var order = await _orderRepo.GetFilteredList(select: X => new OrderVm
             {
                 ID = X.Id,
                 UserFirstName = X.User.FirstName,
@@ -87,6 +80,10 @@ namespace ECommerce.Application.Services.OrderService
             },where: x=> x.Status != Status.Passive,
             orderby: x => x.OrderBy(x=> x.Id),
             include: x => x.Include(x => x.User));
+
+            //SONU YOK
+
+            return order;
         }
 
         public async Task Update(UpdateOrdertDto model)

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Application.Services.AppUserService.ProductOrderService
+namespace ECommerce.Application.Services.ProductOrderService
 {
     public class ProductOrderService : IProductOrderService
     {
@@ -41,7 +41,7 @@ namespace ECommerce.Application.Services.AppUserService.ProductOrderService
         {
             var productOrder = _mapper.Map<ProductOrder>(model);
 
-            if(productOrder != null)
+            if (productOrder != null)
             {
                 await _productOrderRepo.UpdateAsync(productOrder);
             }
@@ -49,9 +49,9 @@ namespace ECommerce.Application.Services.AppUserService.ProductOrderService
 
         public async Task Delete(int id)
         {
-            var model = await _productOrderRepo.GetDefault(x=> x.Id.Equals(id));
+            var model = await _productOrderRepo.GetDefault(x => x.Id.Equals(id));
 
-            if(model != null)
+            if (model != null)
             {
                 model.DeleteDate = DateTime.Now;
                 model.Status = Status.Passive;
@@ -63,9 +63,9 @@ namespace ECommerce.Application.Services.AppUserService.ProductOrderService
         {
             CreateProductOrderDto model = new CreateProductOrderDto()
             {
-              //  Orders = await _orderRepo.GetFilteredList(
-              //select: new OrderV
-              //      )
+                //  Orders = await _orderRepo.GetFilteredList(
+                //select: new OrderV
+                //      )
             };
 
             return model;

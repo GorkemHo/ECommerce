@@ -5,12 +5,6 @@ using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Application.Models.DTOs.ProductDTOs;
 using ECommerce.Application.Models.VMs.ProductVMs;
-using ECommerce.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.AutoMapper
 {
@@ -24,7 +18,7 @@ namespace ECommerce.Application.AutoMapper
 
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
-            CreateMap<Category, CategoryVM>().ReverseMap();
+            CreateMap<Category, CategoryVm>().ReverseMap();
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();

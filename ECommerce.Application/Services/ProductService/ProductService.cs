@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.DTOs.ProductDTOs;
+using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.Services.ProductService
 {
@@ -70,13 +66,14 @@ namespace ECommerce.Application.Services.ProductService
         {
             CreateProductDto model = new CreateProductDto()
             {
-                Category = await _categoryRepo.GetFilteredList(
-                   select: x => new CategoryVm
+                Categories = await _categoryRepo.GetFilteredList(
+                   select: x => new Category
                    {
                        Id = x.Id,
                        Name = x.Name
                    },
                    where: x => x.Status != Status.Passive),
+                
 
             };
 

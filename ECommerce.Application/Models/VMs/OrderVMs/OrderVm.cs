@@ -1,14 +1,9 @@
 ﻿using ECommerce.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ECommerce.Application.Models.VMs
+namespace ECommerce.Application.Models.VMs.OrderVMs
 {
-    public class OrderVM
-    {      
+    public class OrderVm
+    {
         public int ID { get; set; }
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }

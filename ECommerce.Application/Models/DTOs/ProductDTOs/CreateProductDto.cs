@@ -2,12 +2,7 @@
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.Models.DTOs.ProductDTOs
 {
@@ -40,13 +35,14 @@ namespace ECommerce.Application.Models.DTOs.ProductDTOs
         public string? ImagePath { get; set; }
         public IFormFile? UploadPath { get; set; }
         public DateTime CreateDate => DateTime.Now;
-
         public Status Status => Status.Active;
+
+
 
         [Required(ErrorMessage = "Ürüne ait kategori seçilmelidir!")]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public List<Category>? Categories { get; set; }
 
 
     }

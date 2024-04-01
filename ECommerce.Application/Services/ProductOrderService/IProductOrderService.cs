@@ -1,12 +1,7 @@
 ﻿using ECommerce.Application.Models.DTOs.ProductOrderDTOs;
 using ECommerce.Application.Models.VMs.ProductOrderVMs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ECommerce.Application.Services.AppUserService.ProductOrderService
+namespace ECommerce.Application.Services.ProductOrderService
 {
     public interface IProductOrderService
     {

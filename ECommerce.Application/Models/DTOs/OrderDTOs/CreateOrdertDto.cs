@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Application.Models.DTOs
+namespace ECommerce.Application.Models.DTOs.OrderDTOs
 {
     public class CreateOrdertDto
     {

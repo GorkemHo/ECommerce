@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Application.Models.VMs
+namespace ECommerce.Application.Models.VMs.OrderVMs
 {
-    public class OrderDetailVM
+    public class OrderDetailVm
     {
         public DateTime CreateDate { get; set; }
 

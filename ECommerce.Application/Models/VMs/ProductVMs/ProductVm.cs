@@ -1,14 +1,4 @@
-﻿using ECommerce.Domain.Entities;
-using ECommerce.Domain.Enums;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ECommerce.Application.Models.VMs.ProductVMs
+﻿namespace ECommerce.Application.Models.VMs.ProductVMs
 {
     public class ProductVm
     {

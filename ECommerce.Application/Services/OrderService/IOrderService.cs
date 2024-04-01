@@ -1,11 +1,5 @@
-﻿using ECommerce.Application.Models.DTOs;
-using ECommerce.Application.Models.VMs;
-using ECommerce.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ECommerce.Application.Models.DTOs.OrderDTOs;
+using ECommerce.Application.Models.VMs.OrderVMs;
 
 namespace ECommerce.Application.Services.OrderService
 {
@@ -17,13 +11,13 @@ namespace ECommerce.Application.Services.OrderService
 
         Task Delete(int Id);
 
-        Task<List<OrderVM>> GetOrder();
+        Task<List<OrderVm>> GetOrder();
 
-        Task<OrderDetailVM> GetByDetails(int Id);
+        Task<OrderDetailVm> GetByDetails(int Id);
 
         Task<UpdateOrdertDto> GetById(int Id);        
 
-        Task<CreateOrdertDto> CreateOrder();               
+        Task<CreateOrdertDto> FİllOrder();               
                
     }
 }
