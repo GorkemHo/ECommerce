@@ -25,6 +25,8 @@ namespace ECommerce.Domain.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        public List<ProductOrder> ProductOrders { get; set; }
+
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
