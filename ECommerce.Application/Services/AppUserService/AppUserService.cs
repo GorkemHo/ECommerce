@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ECommerce.Application.Models.DTOs;
+using ECommerce.Application.Models.DTOs.UserDto;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
@@ -57,7 +57,7 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            await userManager.AddToRoleAsync(user, "Admin");
+            await userManager.AddToRoleAsync(user, "Admin"); //rolleme kontrol edilecek.
 
             if (result.Succeeded)
             {
@@ -116,7 +116,7 @@ namespace ECommerce.Application.Services.AppUserService
             }
         }
 
-        public async Task<bool> UserInRole(string userName, string role)
+        public async Task<bool> UserInRole(string userName, string role) //kontrol
         {
             var user = await userManager.FindByNameAsync(userName);
             bool isInRole = await userManager.IsInRoleAsync(user, role);
