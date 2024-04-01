@@ -3,6 +3,9 @@ using ECommerce.Application.Models.DTOs.CategortyDto;
 using ECommerce.Application.Models.DTOs.UserDto;
 using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
+using ECommerce.Application.Models.DTOs.ProductDTOs;
+using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +26,10 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
             CreateMap<Category, CategoryVM>().ReverseMap();
 
+            CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, UpdateProductDto>().ReverseMap();
+            CreateMap<Product, ProductVm>().ReverseMap();
         }
+       
     }
 }

@@ -16,13 +16,14 @@ namespace ECommerce.Domain.Entities
         [NotMapped]
         public IFormFile? UploadPath { get; set; }
 
-        //Nav prop
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
 
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
         public Status Status { get; set; }
+
+        //Nav prop
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
