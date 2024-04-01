@@ -17,6 +17,8 @@ namespace ECommerce.Domain.Entities
         public IFormFile? UploadPath { get; set; }
 
 
+        public List<ProductOrder> ProductOrders { get; set; }
+
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
