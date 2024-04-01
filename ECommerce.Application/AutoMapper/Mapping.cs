@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ECommerce.Application.Models.DTOs;
+using ECommerce.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,11 @@ namespace ECommerce.Application.AutoMapper
 {
     public class Mapping:Profile
     {
-        public Mapping() { }
+        public Mapping() 
+        {
+            CreateMap<AppUser, RegisterDto>().ReverseMap();
+            CreateMap<AppUser, LoginDto>().ReverseMap();
+            CreateMap<AppUser, UpdateProfileDto>().ReverseMap();
+        }
     }
 }
