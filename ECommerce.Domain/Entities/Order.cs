@@ -12,6 +12,6 @@ namespace ECommerce.Domain.Entities
         public DateTime OrderDate { get; set; }
         public List<ProductOrder> ProductOrders { get; set; }
         public string UserId { get; set; }
-        //public AppUser User { get; set; }
+        public AppUser User { get; set; }
     }
 }
