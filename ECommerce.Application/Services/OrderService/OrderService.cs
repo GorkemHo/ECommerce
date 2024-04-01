@@ -27,7 +27,7 @@ namespace ECommerce.Application.Services.OrderService
             await _orderRepo.CreateAsync(order);
         }
 
-        public async Task<CreateOrdertDto> FİllOrder()
+        public async Task<CreateOrdertDto> FillOrder()
         {
             CreateOrdertDto models = new CreateOrdertDto()
             {

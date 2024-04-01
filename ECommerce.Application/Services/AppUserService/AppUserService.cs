@@ -57,7 +57,7 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            await userManager.AddToRoleAsync(user, "Admin"); //rolleme kontrol edilecek.
+            await userManager.AddToRoleAsync(user, "Member"); //rolleme kontrol edilecek.
 
             if (result.Succeeded)
             {
