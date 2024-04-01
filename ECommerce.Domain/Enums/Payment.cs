@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Domain.Repositories
+namespace ECommerce.Domain.Enums
 {
-    public interface IPaymanteRepo
+    public enum Payment
     {
+        CreditCard,
+        Cash,
+        PayPal
     }
 }
