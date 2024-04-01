@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Application.Models.DTOs
+namespace ECommerce.Application.Services.OrderService
 {
-    public class RegisterDtos
+    public interface IOrderService
     {
     }
 }
