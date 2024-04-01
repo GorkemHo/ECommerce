@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Context
 {
-    public class AppDBContext:IdentityDbContext<AppUser>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public AppDBContext() { }
+        public AppDbContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -14,7 +14,7 @@ namespace ECommerce.Infrastructure.Context
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
+
             base.OnModelCreating(builder);
         }
     }
