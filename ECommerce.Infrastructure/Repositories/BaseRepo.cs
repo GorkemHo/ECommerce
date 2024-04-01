@@ -43,12 +43,12 @@ namespace ECommerce.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<T> GetDeault(Expression<Func<T, bool>> expression)
+        public async Task<T> GetDefault(Expression<Func<T, bool>> expression)
         {
             return await _table.FirstOrDefaultAsync(expression);
         }
 
-        public async Task<List<T>> GetDeaults(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetDefaults(Expression<Func<T, bool>> expression)
         {
             return await _table.Where(expression).ToListAsync();
         }
@@ -91,5 +91,6 @@ namespace ECommerce.Infrastructure.Repositories
                 return await query.Select(select).ToListAsync();
         }
 
+        
     }
 }
