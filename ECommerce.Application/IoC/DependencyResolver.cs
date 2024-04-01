@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Domain.Entities
+namespace ECommerce.Application.IoC
 {
-    public class Product
+    internal class DependencyResolver:Module
     {
     }
 }

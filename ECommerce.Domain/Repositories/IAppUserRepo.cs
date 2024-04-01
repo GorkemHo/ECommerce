@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Domain.Entities
+namespace ECommerce.Domain.Repositories
 {
-    public class Product
+    public interface IAppUserRepo
     {
     }
 }
