@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Repositories
 {
-    public interface IUserRepo
+    public interface IAppUserRepo
     {
     }
 }
