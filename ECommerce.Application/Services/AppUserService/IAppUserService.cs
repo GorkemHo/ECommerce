@@ -1,4 +1,4 @@
-﻿using ECommerce.Application.Models.DTOs;
+﻿using ECommerce.Application.Models.DTOs.UserDto;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

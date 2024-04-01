@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using ECommerce.Application.Models.DTOs;
+using ECommerce.Application.Models.DTOs.CategortyDto;
+using ECommerce.Application.Models.DTOs.UserDto;
+using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,11 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<AppUser, RegisterDto>().ReverseMap();
             CreateMap<AppUser, LoginDto>().ReverseMap();
             CreateMap<AppUser, UpdateProfileDto>().ReverseMap();
+
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryVM>().ReverseMap();
+
         }
     }
 }

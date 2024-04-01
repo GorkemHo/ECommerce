@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.Extensions;
+using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerce.Application.Models.DTOs
+namespace ECommerce.Application.Models.DTOs.CategortyDto
 {
     public class CreateCategoryDto
     {
@@ -16,6 +17,7 @@ namespace ECommerce.Application.Models.DTOs
         [PictureFileExtension]
         public IFormFile UploadPath { get; set; }
         public string? ImagePath { get; set; }
+        public List<Product>? Products { get; set; }
         public DateTime CreateDate => DateTime.Now;
         public Status Status => Status.Active;
     }
