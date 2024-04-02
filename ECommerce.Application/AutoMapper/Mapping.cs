@@ -39,7 +39,9 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<ProductOrder, UpdateProductOrderDto>().ReverseMap();
             CreateMap<ProductOrder, ProductOrderVm>().ReverseMap();
             CreateMap<ProductOrder, ProductOrderDetailsVm>().ReverseMap();
+
+
+            CreateMap<Cart, CartVM>().ReverseMap();
         }
-       
     }
 }
