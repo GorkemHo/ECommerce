@@ -10,11 +10,9 @@ namespace ECommerce.Application.Models.VMs.OrderVMs
     public class OrderDetailVm
     {
         public DateTime CreateDate { get; set; }
-
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
         public string UserImagePath { get; set; }
-
         public List<ProductOrder> ProductOrders { get; set; }
     }
 }
