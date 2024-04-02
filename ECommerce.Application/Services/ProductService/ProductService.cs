@@ -111,5 +111,7 @@ namespace ECommerce.Application.Services.ProductService
                 await _productRepo.UpdateAsync(product);
             }
         }
+
+       
     }
 }

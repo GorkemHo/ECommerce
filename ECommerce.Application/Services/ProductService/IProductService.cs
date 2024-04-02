@@ -14,7 +14,7 @@ namespace ECommerce.Application.Services.ProductService
         Task Update(UpdateProductDto model);
         Task Delete(int id);
         Task<List<ProductVm>> GetProducts();
-        Task<UpdateProductDto> GetById(int id);
+        Task<ProductVm> GetById(int id);
         Task<CreateProductDto> FillProduct();
 
 

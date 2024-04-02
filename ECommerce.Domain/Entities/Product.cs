@@ -17,7 +17,7 @@ namespace ECommerce.Domain.Entities
         public IFormFile? UploadPath { get; set; }
 
 
-        public List<ProductOrder> ProductOrders { get; set; }
+        public List<ProductOrder>? ProductOrders { get; set; }
 
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
@@ -25,7 +25,7 @@ namespace ECommerce.Domain.Entities
         public Status Status { get; set; }
 
         //Nav prop
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }
