@@ -13,7 +13,7 @@ namespace ECommerce.Application.Models.DTOs.OrderDTOs
         public DateTime CreateDate => DateTime.Now;
 
         public Status Status => Status.Active;
-
+        
         public string UserId { get; set; }
         public AppUser User { get; set; }
 
