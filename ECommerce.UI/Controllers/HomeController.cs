@@ -1,4 +1,7 @@
-﻿using ECommerce.UI.Models;
+﻿using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Application.Services.CategoryService;
+using ECommerce.Application.Services.ProductService;
+using ECommerce.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +10,14 @@ namespace ECommerce.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, ICategoryService categoryService)
         {
             _logger = logger;
+            _productService = productService;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -21,17 +28,24 @@ namespace ECommerce.UI.Controllers
         {
             return View();
         }
-        public IActionResult ProductDetail()
+        public IActionResult ProductDetail(int Id)
         {
-            return View();
+            var product =_productService.GetById(Id);
+            return View(product);
         }
-        public IActionResult LighterForGeneralPurpose()
+        public async Task<IActionResult> LighterForGeneralPurpose()
         {
-            return View();
+            var category = await _categoryService.GetCategories();
+            category.Select(x => "category ismi");            
+            
+            return View(category);
         }
-        public IActionResult LighterForCandle()
+        public async Task<IActionResult> LighterForCandle()
         {
-            return View();
+            var category = await _categoryService.GetCategories();
+            category.Select(x => "category ismi");
+
+            return View(category);
         }
         public IActionResult Accessorize()
         {
@@ -41,8 +55,10 @@ namespace ECommerce.UI.Controllers
         {
             return View();
         }
-
-
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

@@ -80,9 +80,9 @@ namespace ECommerce.Application.Services.ProductService
             return model;
         }
 
-        public async Task<UpdateProductDto> GetById(int id)
+        public async Task<ProductVm> GetById(int id)
         {
-            var product = await _productRepo.GetFilteredFirstOrDefault(select: x => _mapper.Map<UpdateProductDto>(x),
+            var product = await _productRepo.GetFilteredFirstOrDefault(select: x => _mapper.Map<ProductVm>(x),
                                                               where: x => x.Id == id && x.Status.Equals(Status.Active));
             return product;
         }

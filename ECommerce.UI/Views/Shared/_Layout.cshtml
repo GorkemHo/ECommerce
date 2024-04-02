@@ -1,55 +1,4 @@
-﻿@* <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ECommerce.UI</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ECommerce.UI.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ECommerce.UI</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - ECommerce.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html> *@
-
-
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,8 +33,8 @@
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-11 text-lg-right">
                 <div class="d-flex justify-content-sm-end ">
-                    <a class="text-dark mr-3" asp-area="" asp-controller="Account" asp-action="Login" >Giriş Yap</a>
-                    <a class="text-dark"  asp-area="" asp-controller="Account" asp-action="Register" >Kayıt Ol</a>
+                    <a class="text-dark mr-3" asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                    <a class="text-dark" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
                 </div>
             </div>
         </div>
@@ -107,13 +56,14 @@
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
+
                             </span>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
+                <a asp-area="" asp-controller="Home" asp-action="Cart" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
@@ -144,19 +94,19 @@
                                 <div class="navbar-nav mr-auto py-0 ">
                                     <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Anasayfa</a>
 
-                                    <a sp-area="" asp-controller="Home" asp-action="ProductDetails" class="nav-item nav-link">Ürün Detayı</a>
-                                    <a sp-area="" asp-controller="Home" asp-action="Cart" class="nav-item nav-link">Sepet</a>
+                                    <a asp-area="" asp-controller="Home" asp-action="ProductDetail" class="nav-item nav-link">Ürün Detayı</a>
 
-                                    
+
+
                                     <div class="nav-item dropdown">
                                         <a href="#"
                                            class="nav-link dropdown-toggle"
                                            data-toggle="dropdown">Kategoriler</a>
                                         <div class="dropdown-menu rounded-0 m-0">
-                                            <a href="#" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
-                                            <a href="#" class="dropdown-item">Mum için Çakmaklar</a>
-                                            <a href="#" class="dropdown-item">Aksesuarlar</a>
-                                            <a href="shop.html" class="dropdown-item">Tüm Ürünler</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="LighterForGeneralPurpose" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="LighterForCandle" class="dropdown-item">Mum için Çakmaklar</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Accessorize" class="dropdown-item">Aksesuarlar</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="dropdown-item">Tüm Ürünler</a>
 
                                         </div>
                                     </div>
@@ -171,7 +121,6 @@
 
             </div>
             <!-- Navbar End -->
-
             @RenderBody()
 
             <!-- Footer Start -->
@@ -203,12 +152,14 @@
                             <div class="col-md-4 mb-5 offset-8">
                                 <h5 class="font-weight-bold text-dark mb-4">Hızlı Linkler</h5>
                                 <div class="d-flex flex-column justify-content-start">
-                                    <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Anasayfa</a>
-                                    <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Mağaza</a>
-                                    <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Alışveriş Detayları</a>
-                                    <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Sepet</a>
-                                    <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Alışveriş Özeti</a>
-                                    <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>İletişim</a>
+                                    <div class="navbar-nav">
+
+                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-angle-right mr-2"></i>Anasayfa</a>
+                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="AllProducts"><i class="fa fa-angle-right mr-2"></i>Tüm Ürünler</a>
+                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Cart"><i class="fa fa-angle-right mr-2"></i>Sepet</a>
+                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-angle-right mr-2"></i>İletişim</a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

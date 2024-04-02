@@ -1,6 +1,9 @@
 ﻿using ECommerce.Domain.Entities;
+using ECommerce.Infrastructure.SeedData;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace ECommerce.Infrastructure.Context
 {
@@ -8,8 +11,14 @@ namespace ECommerce.Infrastructure.Context
     {
         public AppDbContext() { }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) : base(options)
         {
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +37,14 @@ namespace ECommerce.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.SeedCategories();
+            builder.SeedProducts();
+
+
+            if (_userManager != null && _roleManager != null)
+            {
+                AppUserSeedData.SeedUsers(_userManager, _roleManager);
+            }
 
             base.OnModelCreating(builder);
         }

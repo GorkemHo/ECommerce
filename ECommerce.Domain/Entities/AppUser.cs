@@ -21,7 +21,6 @@ namespace ECommerce.Domain.Entities
         [NotMapped] 
         public IFormFile? UploadPath { get; set; }
 
-
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
