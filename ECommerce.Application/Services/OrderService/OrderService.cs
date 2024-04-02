@@ -22,15 +22,15 @@ namespace ECommerce.Application.Services.OrderService
             _appUserRepo = appUserRepo;
         }
 
-        public async Task Create(CreateOrdertDto model)
+        public async Task Create(CreateOrderDto model)
         {
             var order = _mapper.Map<Order>(model);
             await _orderRepo.CreateAsync(order);
         }
 
-        public async Task<CreateOrdertDto> FillOrder(AppUser appUser)
+        public async Task<CreateOrderDto> FillOrder(AppUser appUser)
         {
-            CreateOrdertDto models = new CreateOrdertDto()
+            CreateOrderDto models = new CreateOrderDto()
             {
                 User = appUser,                
             };
@@ -58,7 +58,7 @@ namespace ECommerce.Application.Services.OrderService
                 UserLastName = X.User.LastName,
                 UserImagePath = X.User.ImagePath
 
-            }, where: x == x.Id,
+            }, where: x => x.Id == Id,
             orderby: x => x.OrderBy(x => x.User.FirstName),
             include: x => x.Include(x => x.User));
 
@@ -66,28 +66,29 @@ namespace ECommerce.Application.Services.OrderService
             return order;
         }
 
-        public async Task<UpdateOrdertDto> GetById(int Id)
+        public async Task<UpdateOrderDto> GetById(int Id)
         {
             var order = await _orderRepo.GetFilteredList(select: x => new OrderVm
             {
                 ID = x.Id,
                 UserFirstName = x.User.FirstName,
                 UserLastName = x.User.LastName,
-                UserId = Convert.ToInt32(x.UserId),
-                UserFullName = x.User.FullName,
+                UserId = Convert.ToInt32(x.UserId),                
                 UserImagePath =x.User.ImagePath,
                 ProductOrders = x.ProductOrders,
 
-            });
+            },where: x => x.Id ==Id);
            
-            var model = _mapper.Map<UpdateOrdertDto>(order);
+            var model = _mapper.Map<UpdateOrderDto>(order);
 
-            model. = await _appUserRepo.GetFilteredList(
-                select: x => new AppUserVm
+            model.User = await _appUserRepo.GetFilteredFirstOrDefault(
+                select: x => new AppUser
                 {
                     Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
+                    UserName = x.UserName,
+                    ImagePath = x.ImagePath,
                 }, where: x => x.Status != Status.Passive,
             orderby: x => x.OrderBy(x => x.FirstName));
 
@@ -110,7 +111,7 @@ namespace ECommerce.Application.Services.OrderService
             return order;
         }
 
-        public async Task Update(UpdateOrdertDto model)
+        public async Task Update(UpdateOrderDto model)
         {
             var order = _mapper.Map<Order>(model);
             await _orderRepo.UpdateAsync(order);

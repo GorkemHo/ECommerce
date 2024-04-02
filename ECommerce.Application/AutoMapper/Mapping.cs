@@ -5,6 +5,9 @@ using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Application.Models.DTOs.ProductDTOs;
 using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Application.Models.VMs.OrderVMs;
+using ECommerce.Application.Models.DTOs.OrderDTOs;
+using ECommerce.Application.Models.VMs.UserVMs;
 
 namespace ECommerce.Application.AutoMapper
 {
@@ -15,6 +18,7 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<AppUser, RegisterDto>().ReverseMap();
             CreateMap<AppUser, LoginDto>().ReverseMap();
             CreateMap<AppUser, UpdateProfileDto>().ReverseMap();
+            CreateMap<AppUser, AppUserVm>().ReverseMap();
 
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
@@ -23,6 +27,11 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
             CreateMap<Product, ProductVm>().ReverseMap();
+
+            CreateMap<Order, CreateOrderDto>().ReverseMap();
+            CreateMap<Order, UpdateOrderDto>().ReverseMap();
+            CreateMap<Order, OrderVm>().ReverseMap();
+            CreateMap<Order, OrderDetailVm>().ReverseMap();
         }
        
     }

@@ -6,9 +6,9 @@ namespace ECommerce.Application.Services.OrderService
 {
     public interface IOrderService
     {
-        Task Create(CreateOrdertDto model);
+        Task Create(CreateOrderDto model);
 
-        Task Update(UpdateOrdertDto model);
+        Task Update(UpdateOrderDto model);
 
         Task Delete(int Id);
 
@@ -16,9 +16,9 @@ namespace ECommerce.Application.Services.OrderService
 
         Task<OrderDetailVm> GetByDetails(int Id);
 
-        Task<UpdateOrdertDto> GetById(int Id);        
+        Task<UpdateOrderDto> GetById(int Id);        
 
-        Task<CreateOrdertDto> FillOrder(AppUser appUser);               
+        Task<CreateOrderDto> FillOrder(AppUser appUser);               
                
     }
 }

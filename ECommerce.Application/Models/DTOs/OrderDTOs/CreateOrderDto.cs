@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Models.DTOs.OrderDTOs
 {
-    public class CreateOrdertDto
+    public class CreateOrderDto
     {
         public DateTime CreateDate => DateTime.Now;
 
