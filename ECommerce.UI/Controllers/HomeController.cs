@@ -17,6 +17,32 @@ namespace ECommerce.UI.Controllers
         {
             return View();
         }
+        public IActionResult Cart()
+        {
+            return View();
+        }
+        public IActionResult ProductDetail()
+        {
+            return View();
+        }
+        public IActionResult LighterForGeneralPurpose()
+        {
+            return View();
+        }
+        public IActionResult LighterForCandle()
+        {
+            return View();
+        }
+        public IActionResult Accessorize()
+        {
+            return View();
+        }
+        public IActionResult AllProducts()
+        {
+            return View();
+        }
+
+
 
         public IActionResult Privacy()
         {
