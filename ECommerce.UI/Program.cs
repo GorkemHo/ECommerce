@@ -1,3 +1,6 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using ECommerce.Application.IoC;
 using ECommerce.Domain.Entities;
 using ECommerce.Infrastructure.Context;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +14,7 @@ namespace ECommerce.UI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             builder.Services.AddDbContext<AppDbContext>();
 
@@ -29,6 +32,13 @@ namespace ECommerce.UI
                 opt.Password.RequireNonAlphanumeric = false;
             }).AddEntityFrameworkStores<AppDbContext>()
               .AddDefaultTokenProviders();
+
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+            builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+            {
+                builder.RegisterModule(new DependencyResolver());
+            });
 
             var app = builder.Build();
 
