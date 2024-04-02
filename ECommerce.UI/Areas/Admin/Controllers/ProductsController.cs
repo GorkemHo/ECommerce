@@ -1,84 +1,105 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ECommerce.Application.Models.DTOs.ProductDTOs;
+using ECommerce.Application.Services.ProductService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductsController : Controller
     {
-        // GET: ProductsController
-        public ActionResult Index()
-        {
+        private readonly IProductService _productService;
 
-            return View();
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
         }
 
-        
-        public ActionResult Details(int id)
+        // GET: Products/Index
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _productService.GetProducts();
+            return View(products);
         }
 
-        // GET: ProductsController/Create
-        public ActionResult Create()
+        // GET: Products/Details/5
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var product = await _productService.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
         }
 
-        // POST: ProductsController/Create
+        // GET: Products/Create
+        public async Task<IActionResult> Create()
+        {
+            var model = await _productService.FillProduct();
+            return View(model);
+        }
+
+        // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(CreateProductDto model)
         {
-            try
+            if (ModelState.IsValid)
             {
+                await _productService.Create(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
-        // GET: ProductsController/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Products/Edit/5
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var product = await _productService.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
         }
 
-        // POST: ProductsController/Edit/5
+        // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, UpdateProductDto model)
         {
-            try
+            if (id != model.Id)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                await _productService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
-        // GET: ProductsController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Products/Delete/5
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var product = await _productService.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
         }
 
-        // POST: ProductsController/Delete/5
-        [HttpPost]
+        // POST: Products/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _productService.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

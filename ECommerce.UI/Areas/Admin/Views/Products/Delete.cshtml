@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model ProductVm
+
+<h2>Delete Product</h2>
+
+<div>
+    <h4>Name: @Model.Name</h4>
+    <h4>Price: @Model.Price</h4>
+    <h4>Quantity: @Model.Quantity</h4>
+    <h4>Description: @Model.Description</h4>
+</div>
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

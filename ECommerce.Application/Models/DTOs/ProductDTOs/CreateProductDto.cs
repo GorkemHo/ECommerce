@@ -32,7 +32,6 @@ namespace ECommerce.Application.Models.DTOs.ProductDTOs
 
 
         [PictureFileExtension]
-        public string? ImagePath { get; set; }
         public IFormFile? UploadPath { get; set; }
         public DateTime CreateDate => DateTime.Now;
         public Status Status => Status.Active;
