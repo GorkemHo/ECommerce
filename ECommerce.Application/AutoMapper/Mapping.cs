@@ -8,6 +8,7 @@ using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Application.Models.VMs.OrderVMs;
 using ECommerce.Application.Models.DTOs.OrderDTOs;
 using ECommerce.Application.Models.VMs.UserVMs;
+using ECommerce.Application.Models.VMs.CartVMs;
 
 namespace ECommerce.Application.AutoMapper
 {
@@ -32,7 +33,9 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<Order, UpdateOrderDto>().ReverseMap();
             CreateMap<Order, OrderVm>().ReverseMap();
             CreateMap<Order, OrderDetailVm>().ReverseMap();
+
+
+            CreateMap<Cart, CartVM>().ReverseMap();
         }
-       
     }
 }
