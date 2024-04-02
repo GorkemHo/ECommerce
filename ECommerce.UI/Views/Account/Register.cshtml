@@ -44,78 +44,113 @@
                 <div class="col-lg-7 mb-5 offset-3">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        @*<form asp-controller="Account" asp-action="Register" method="post">
+            <div class="control-group">
+                <input asp-=""
+                       type="text"
+                       class="form-control"
+                       id="firstName"
+                       placeholder="Adı"
+                       required="required"
+                       data-validation-required-message="Please enter your name" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="text"
+                       class="form-control"
+                       id="lastName"
+                       placeholder="Soyadı"
+                       required="required"
+                       data-validation-required-message="Please enter your name" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="text"
+                       class="form-control"
+                       id="userName"
+                       placeholder="Kullanıcı Adı"
+                       required="required"
+                       data-validation-required-message="Please enter your name" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       placeholder="E-Posta Adresi"
+                       required="required"
+                       data-validation-required-message="Please enter your name" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       placeholder="Şifre"
+                       required="required"
+                       data-validation-required-message="Please enter your name" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="password"
+                       class="form-control"
+                       id="confirmPassword"
+                       placeholder="Şifre Tekrar"
+                       required="required"
+                       data-validation-required-message="Please enter your name" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <textarea class="form-control"
+                          rows="6"
+                          id="address"
+                          placeholder="Adres"
+                          required="required"
+                          data-validation-required-message="Please enter your message"></textarea>
+                <p class="help-block text-danger"></p>
+            </div>
+            <div>
+                <button class="btn btn-primary py-2 px-4"
+                        type="submit"
+                        id="register">
+                    Kayıt Ol
+                </button>
+            </div>
+        </form>*@
+                        <form asp-controller="Account" asp-action="Register" method="post">
                             <div class="control-group">
-                                <input type="text"
-                                       class="form-control"
-                                       id="firstName"
-                                       placeholder="Adı"
-                                       required="required"
-                                       data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
+                                <input asp-for="FirstName" class="form-control" placeholder="Adı" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                             <div class="control-group">
-                                <input type="text"
-                                       class="form-control"
-                                       id="lastName"
-                                       placeholder="Soyadı"
-                                       required="required"
-                                       data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
+                                <input asp-for="LastName" class="form-control" placeholder="Soyadı" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                             <div class="control-group">
-                                <input type="text"
-                                       class="form-control"
-                                       id="userName"
-                                       placeholder="Kullanıcı Adı"
-                                       required="required"
-                                       data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
+                                <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
                             </div>
                             <div class="control-group">
-                                <input type="email"
-                                       class="form-control"
-                                       id="email"
-                                       placeholder="E-Posta Adresi"
-                                       required="required"
-                                       data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
+                                <input asp-for="Email" class="form-control" placeholder="E-Posta Adresi" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="control-group">
-                                <input type="password"
-                                       class="form-control"
-                                       id="password"
-                                       placeholder="Şifre"
-                                       required="required"
-                                       data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Şifre" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="control-group">
-                                <input type="password"
-                                       class="form-control"
-                                       id="confirmPassword"
-                                       placeholder="Şifre Tekrar"
-                                       required="required"
-                                       data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Şifre Tekrar" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
                             <div class="control-group">
-                                <textarea class="form-control"
-                                          rows="6"
-                                          id="address"
-                                          placeholder="Adres"
-                                          required="required"
-                                          data-validation-required-message="Please enter your message"></textarea>
-                                <p class="help-block text-danger"></p>
+                                <textarea asp-for="Address" class="form-control" rows="6" placeholder="Adres"></textarea>
+                                <span asp-validation-for="Address" class="text-danger"></span>
                             </div>
                             <div>
-                                <button class="btn btn-primary py-2 px-4"
-                                        type="submit"
-                                        id="register">
-                                    Kayıt Ol
-                                </button>
+                                <button class="btn btn-primary py-2 px-4" type="submit">Kayıt Ol</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

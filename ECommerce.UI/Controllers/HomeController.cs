@@ -36,16 +36,18 @@ namespace ECommerce.UI.Controllers
         public async Task<IActionResult> LighterForGeneralPurpose()
         {
             var category = await _categoryService.GetCategories();
-            category.Select(x => "category ismi");            
             
-            return View(category);
+            var model = category.FirstOrDefault(x => x.Name == "Çok Amaçlı");            
+            
+
+            return View(model);
         }
         public async Task<IActionResult> LighterForCandle()
         {
             var category = await _categoryService.GetCategories();
-            category.Select(x => "category ismi");
+            var model = category.FirstOrDefault(x => x.Name == "Mumlar İçin");
 
-            return View(category);
+            return View(model);
         }
         public IActionResult Accessorize()
         {
