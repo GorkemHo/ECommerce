@@ -62,7 +62,8 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _productService.GetById(id);
+            var product = await _productService.GetUpdateProductDto(id);
+            product.Categories = await _categoryService.GetCategories();
             if (product == null)
             {
                 return NotFound();
@@ -85,6 +86,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                 await _productService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
+            model.Categories = await _categoryService.GetCategories();
             return View(model);
         }
 
@@ -100,7 +102,8 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         }
 
         // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

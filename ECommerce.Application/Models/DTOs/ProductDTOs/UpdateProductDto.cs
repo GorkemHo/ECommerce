@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.Extensions;
+using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Http;
@@ -39,7 +40,6 @@ namespace ECommerce.Application.Models.DTOs.ProductDTOs
 
 
         [PictureFileExtension]
-        public string? ImagePath { get; set; }
         public IFormFile? UploadPath { get; set; }
         public DateTime UpdateDate => DateTime.Now;
 
@@ -48,8 +48,8 @@ namespace ECommerce.Application.Models.DTOs.ProductDTOs
         [Required(ErrorMessage = "Ürüne ait kategori seçilmelidir!")]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
 
-
+        public List<CategoryVm>? Categories { get; set; }
     }
 }
