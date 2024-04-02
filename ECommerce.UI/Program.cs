@@ -1,6 +1,10 @@
+using ECommerce.Application.Services.AppUserService;
 using ECommerce.Domain.Entities;
+using ECommerce.Domain.Repositories;
 using ECommerce.Infrastructure.Context;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.UI
 {
@@ -13,6 +17,7 @@ namespace ECommerce.UI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+          
             builder.Services.AddDbContext<AppDbContext>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
