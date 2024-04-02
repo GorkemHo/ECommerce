@@ -3,6 +3,8 @@ using ECommerce.Infrastructure.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection.Emit;
 
 namespace ECommerce.Infrastructure.Context
@@ -40,5 +42,6 @@ namespace ECommerce.Infrastructure.Context
 
             base.OnModelCreating(builder);
         }
+
     }
 }

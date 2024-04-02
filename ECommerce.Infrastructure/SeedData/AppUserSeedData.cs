@@ -1,66 +1,65 @@
-﻿using ECommerce.Domain.Entities;
-using ECommerce.Domain.Enums;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using ecommerce.domain.entities;
+//using ecommerce.domain.enums;
+//using microsoft.aspnetcore.ıdentity;
+//using system;
+//using system.collections.generic;
+//using system.linq;
+//using system.text;
+//using system.threading.tasks;
 
-namespace ECommerce.Infrastructure.SeedData
-{
-    public static class AppUserSeedData
-    {
-        public static void SeedUsers(this UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
-        {
-            if (!roleManager.Roles.Any())
-            {
-                var roles = new List<IdentityRole>
-                {
-                    new IdentityRole { Name = "Admin" },
-                    new IdentityRole { Name = "User" }
-                };
+//namespace ecommerce.ınfrastructure.seeddata
+//{
+//    public static class appuserseeddata
+//    {        
+//        public static void seedusers(this usermanager<appuser> _usermanager, rolemanager<ıdentityrole> _rolemanager)
+//        {            
+            
+//                var roles = new list<ıdentityrole>
+//                {
+//                    new ıdentityrole { name = "admin" },
+//                    new ıdentityrole { name = "user" }
+//                };
 
-                foreach (var role in roles)
-                {
-                    roleManager.CreateAsync(role).GetAwaiter().GetResult();
-                }
-            }
+//                foreach (var role in roles)
+//                {
+//                    _rolemanager.createasync(role).getawaiter().getresult();
+//                }
+            
 
-            if (userManager.FindByEmailAsync("admin@example.com").GetAwaiter().GetResult() == null)
-            {
-                var adminUser = new AppUser
-                {
-                    FirstName = "Admin",
-                    LastName = "User",
-                    UserName = "admin@example.com",
-                    Email = "admin@example.com",
-                    Address = "Admin Address",
-                    CreateDate = DateTime.Now,
-                    Status = Status.Active
-                };
+//            if (_usermanager.findbyemailasync("admin@example.com").getawaiter().getresult() == null)
+//            {
+//                var adminuser = new appuser
+//                {
+//                    firstname = "admin",
+//                    lastname = "user",
+//                    username = "admin@example.com",
+//                    email = "admin@example.com",
+//                    address = "admin address",
+//                    createdate = datetime.now,
+//                    status = status.active
+//                };
 
-                userManager.CreateAsync(adminUser, "Admin123").GetAwaiter().GetResult();
-                userManager.AddToRoleAsync(adminUser, "Admin").GetAwaiter().GetResult();
-            }
+//                _usermanager.createasync(adminuser, "admin123").getawaiter().getresult();
+//                _usermanager.addtoroleasync(adminuser, "admin").getawaiter().getresult();
+//            }
 
-            if (userManager.FindByEmailAsync("user@example.com").GetAwaiter().GetResult() == null)
-            {
-                var regularUser = new AppUser
-                {
-                    FirstName = "Regular",
-                    LastName = "User",
-                    UserName = "user@example.com",
-                    Email = "user@example.com",
-                    Address = "User Address",
-                    CreateDate = DateTime.Now,
-                    Status = Status.Active
-                };
+//            if (_usermanager.findbyemailasync("user@example.com").getawaiter().getresult() == null)
+//            {
+//                var regularuser = new appuser
+//                {
+//                    firstname = "regular",
+//                    lastname = "user",
+//                    username = "user@example.com",
+//                    email = "user@example.com",
+//                    address = "user address",
+//                    createdate = datetime.now,
+//                    status = status.active
+//                };
 
-                userManager.CreateAsync(regularUser, "User123").GetAwaiter().GetResult();
-                userManager.AddToRoleAsync(regularUser, "User").GetAwaiter().GetResult();
-            }
+//                _usermanager.createasync(regularuser, "user123").getawaiter().getresult();
+//                _usermanager.addtoroleasync(regularuser, "user").getawaiter().getresult();
+//            }
 
-        }
-    }
-}
+//        }
+//    }
+//}

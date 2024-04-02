@@ -16,9 +16,5 @@ namespace ECommerce.Application.Services.ProductService
         Task<List<ProductVm>> GetProducts();
         Task<ProductVm> GetById(int id);
         Task<CreateProductDto> FillProduct();
-
-
-
-
     }
 }
