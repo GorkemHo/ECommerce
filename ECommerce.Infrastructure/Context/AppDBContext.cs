@@ -3,6 +3,8 @@ using ECommerce.Infrastructure.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection.Emit;
 
 namespace ECommerce.Infrastructure.Context
@@ -11,21 +13,16 @@ namespace ECommerce.Infrastructure.Context
     {
         public AppDbContext() { }
 
-        private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-
-
-        public AppDbContext(DbContextOptions<AppDbContext> options, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-16FKK09; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-VU62QDF\SQLSERVERMS; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
-            //optionsBuilder.UseSqlServer("Server=JUBATUSX; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
-            optionsBuilder.UseSqlServer("Server=G™RKEMH; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-16FKK09; Database=ECommerce; Uid=sa; Pwd=123;");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-VU62QDF\SQLSERVERMS; Database=ECommerce; Uid=sa; Pwd=123;");
+            //optionsBuilder.UseSqlServer("Server=JUBATUSX; Database=ECommerce; Uid=sa; Pwd=123;");
+            //optionsBuilder.UseSqlServer("Server=G™RKEMH; Database=ECommerce; Uid=sa; Pwd=123;");
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Cart> Carts { get; set; }
@@ -40,13 +37,10 @@ namespace ECommerce.Infrastructure.Context
             builder.SeedCategories();
             builder.SeedProducts();
 
-
-            if (_userManager != null && _roleManager != null)
-            {
-                AppUserSeedData.SeedUsers(_userManager, _roleManager);
-            }
+            //AppUserSeedData.SeedUsers(_userManager,_roleManager);            
 
             base.OnModelCreating(builder);
         }
+
     }
 }
