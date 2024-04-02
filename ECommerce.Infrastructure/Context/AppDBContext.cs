@@ -13,10 +13,10 @@ namespace ECommerce.Infrastructure.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-16FKK09; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-16FKK09; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-VU62QDF\SQLSERVERMS; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
             //optionsBuilder.UseSqlServer("Server=JUBATUSX; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
-            //optionsBuilder.UseSqlServer("Server=G*RKEM; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
+            optionsBuilder.UseSqlServer("Server=G™RKEMH; Database=ONLY7BlogProjectDB; Uid=sa; Pwd=123;");
         }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Cart> Carts { get; set; }
