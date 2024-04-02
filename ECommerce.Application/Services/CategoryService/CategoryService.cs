@@ -5,6 +5,7 @@ using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
+using ECommerce.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
@@ -81,6 +82,13 @@ namespace ECommerce.Application.Services.CategoryService
             //}
 
             return categories;
+        }
+
+        public async Task<UpdateCategoryDto> GetCategoryById(int id)
+        {
+            var category = await _categoryRepo.GetFilteredFirstOrDefault(select: x => _mapper.Map<UpdateCategoryDto>(x),
+                                                              where: x => x.Id == id );
+            return category;
         }
 
         public async Task Update(UpdateCategoryDto model)
