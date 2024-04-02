@@ -22,6 +22,11 @@ namespace ECommerce.Application.Models.DTOs.UserDto
         [Display(Name = "Kullanıcı Adı")]
         public string UserName { get; set; }
 
+        [Required(ErrorMessage = "Email adresi girişi zorunludur.")]
+        [Display(Name = "E-Posta")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-Posta bilgilerinizi kontrol ediniz. Geçerli bir e-posta adresi giriniz.")]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Şifre girişi zorunludur.")]
         [Display(Name = "Kullanıcı Şifresi")]
         [DataType(DataType.Password, ErrorMessage = "Şireniz gerekli kriterleri sağlamıyor.")]
@@ -32,12 +37,6 @@ namespace ECommerce.Application.Models.DTOs.UserDto
         [DataType(DataType.Password)]
         [Compare(nameof(Password), ErrorMessage = "Şifreler birbirlerine eşit olmalıdır.")]
         public string ConfirmPassword { get; set; }
-
-        [Required(ErrorMessage = "Email adresi girişi zorunludur.")]
-        [Display(Name = "E-Posta")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "E-Posta bilgilerinizi kontrol ediniz. Geçerli bir e-posta adresi giriniz.")]
-        public string Email { get; set; }
-
         [Display(Name = "Adres")]
         public string Address { get; set; }
 
