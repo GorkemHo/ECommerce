@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace ECommerce.Domain.Repositories
 {
     public interface ICartRepo : IBaseRepo<Cart>
-    {
-
+    { 
     }
 }

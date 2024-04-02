@@ -10,6 +10,7 @@ using ECommerce.Application.Models.DTOs.OrderDTOs;
 using ECommerce.Application.Models.VMs.UserVMs;
 using ECommerce.Application.Models.DTOs.ProductOrderDTOs;
 using ECommerce.Application.Models.VMs.ProductOrderVMs;
+using ECommerce.Application.Models.VMs.CartVMs;
 
 namespace ECommerce.Application.AutoMapper
 {
