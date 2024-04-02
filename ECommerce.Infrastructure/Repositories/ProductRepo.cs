@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Infrastructure.Repositories
 {
-    internal class ProductRepo : BaseRepo<Product>, IProductRepo
+    public class ProductRepo : BaseRepo<Product>, IProductRepo
     {
         public ProductRepo(AppDbContext context) : base(context)
         {
