@@ -20,6 +20,6 @@ namespace ECommerce.Application.Services.ProductService
         Task<UpdateProductDto> GetUpdateProductDto(int id);
         Task<CreateProductDto> FillProduct();
 
-        Task<List<ProductVm>> SearchProducts(string searchTerm = null, string color = null, decimal? minPrice = null, decimal? maxPrice = null, string CategoryName = null);
+        Task<List<ProductVm>> SearchProducts(string searchTerm = null, string color = null, decimal? minPrice = null, decimal? maxPrice = null, string categoryName = null);
     }
 }

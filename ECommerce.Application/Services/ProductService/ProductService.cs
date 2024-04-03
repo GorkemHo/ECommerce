@@ -8,6 +8,7 @@ using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using System.Drawing;
 
 namespace ECommerce.Application.Services.ProductService
 {
@@ -36,7 +37,7 @@ namespace ECommerce.Application.Services.ProductService
             if (product.UploadPath != null)
             {
                 using var image = Image.Load(model.UploadPath.OpenReadStream());
-                image.Mutate(x => x.Resize(600, 560)); 
+                image.Mutate(x => x.Resize(600, 560));
                 Guid guid = Guid.NewGuid();
                 image.Save($"wwwroot/images/{guid}.jpg");
                 product.ImagePath = $"/images/{guid}.jpg";
@@ -141,10 +142,7 @@ namespace ECommerce.Application.Services.ProductService
                 {
                     return new List<ProductVm>(); // Kategoriye ait ürün bulunamadı
                 }
-                
-                
             }
-
         }
 
         public async Task Update(UpdateProductDto model)
@@ -164,6 +162,6 @@ namespace ECommerce.Application.Services.ProductService
             }
         }
 
-       
+
     }
 }

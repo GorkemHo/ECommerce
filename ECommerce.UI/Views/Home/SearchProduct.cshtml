@@ -38,82 +38,53 @@
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-12">
-                <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Fiyata Göre Filtrele</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">All Price</label>
-                            <span class="badge border font-weight-normal">1000</span>
+                    <h5 class="font-weight-semi-bold mb-4">Filtrele</h5>
+                    <form asp-controller="Home" asp-action="SearchProduct" method="get">
+                        <!-- Search Term -->
+                        <div class="form-group">
+                            <label for="searchTerm">Ürün Adı veya Açıklama</label>
+                            <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Ürün adı veya açıklama">
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">$0 - $100</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2">$100 - $200</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-3">
-                            <label class="custom-control-label" for="price-3">$200 - $300</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-4">
-                            <label class="custom-control-label" for="price-4">$300 - $400</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="price-5">
-                            <label class="custom-control-label" for="price-5">$400 - $500</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Price End -->
-                <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Rengine Göre Filtrele</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">All Color</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">White</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Color End -->
 
+                        <!-- Min Price -->
+                        <div class="form-group">
+                            <label for="minPrice">Minimum Fiyat</label>
+                            <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Minimum fiyat">
+                        </div>
 
+                        <!-- Max Price -->
+                        <div class="form-group">
+                            <label for="maxPrice">Maksimum Fiyat</label>
+                            <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Maksimum fiyat">
+                        </div>
+
+                        <!-- Color (Multiple) -->
+                        <div class="form-group">
+                            <label for="color">Renkler</label>
+                            <select class="form-control" id="color" name="color" multiple>
+                                <option value="Siyah">Siyah</option>
+                                <option value="Beyaz">Beyaz</option>
+                                <option value="Kırmızı">Kırmızı</option>
+                                <option value="Mavi">Mavi</option>
+                                <option value="Yeşil">Yeşil</option>
+                            </select>
+                        </div>
+
+                        <!-- Category (Multiple) -->
+                        <div class="form-group">
+                            <label for="categoryName">Kategoriler</label>
+                            <select class="form-control" id="categoryName" name="categoryName" multiple>
+                                <option value="Çok Amaçlı">Çok Amaçlı</option>
+                                <option value="Mumlar İçin">Mumlar İçin</option>
+                                <option value="Aksesuar">Aksesuar</option>
+                            </select>
+                        </div>
+
+                        <!-- Filtrele Butonu -->
+                        <button type="submit" class="btn btn-primary">Filtrele</button>
+                    </form>
+                </div>            
             </div>
             <!-- Shop Sidebar End -->
             <!-- Shop Product Start -->
@@ -172,6 +143,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/easing/easing.min.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script>
+        // Form submit edildiğinde kontrol işlemleri yapılır
+        document.querySelector('form').addEventListener('submit', function (e) {
+            var minPriceInput = document.getElementById('minPrice');
+            var maxPriceInput = document.getElementById('maxPrice');
+            var minPrice = minPriceInput.value;
+            var maxPrice = maxPriceInput.value;
+
+            // Min ve Max fiyatları kontrol et
+            if ((minPrice !== '' && parseFloat(minPrice) < 0) || (maxPrice !== '' && parseFloat(maxPrice) < 0)) {
+                alert('Fiyatlar 0\'dan küçük olamaz!');
+                e.preventDefault(); // Form submitini engelle
+            }
+
+            // Eğer min fiyat varsa ve max fiyat varsa kontrolü yap
+            if (minPrice !== '' && maxPrice !== '') {
+                if (parseFloat(minPrice) > parseFloat(maxPrice)) {
+                    alert('Minimum fiyat, maksimum fiyattan büyük olamaz!');
+                    e.preventDefault(); // Form submitini engelle
+                }
+            }
+        });
+    </script>
 
 
 
