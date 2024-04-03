@@ -1,43 +1,44 @@
 ﻿
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 
 }
 
+
+
 @model UpdateCategoryDto
 
-<h2>Kategori Detayları</h2>
 
+
+<h3>Bu kategoriyi silmek istediğinize emin misiniz?</h3>
 <div>
-    
+   
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayName("Kategori Adı")
+
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
             @Html.DisplayName("Kategori Açıklaması")
-
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt>
             @Html.DisplayName("Kategori Görseli")
-
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ImagePath)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-    <a asp-action="Index">Kategori Listesine Dön</a>
-</div>
 
-
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Kategoriler Listesine Geri Dön</a>
+    </form>
+</div>
