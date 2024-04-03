@@ -148,9 +148,9 @@
 
 <script>
     $(document).ready(function () {
-        $('#addToCartButton').click(function () {
-            var productId = $('#productId').val();
-            var quantity = $('#quantity').val();
+        $('.btn-add-to-cart').click(function () {
+            var productId = $(this).closest('.card-footer').find('.product-id').val();
+            var quantity = $(this).closest('.card-footer').find('.quantity').val();
 
             $.ajax({
                 type: "POST",
