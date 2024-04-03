@@ -14,5 +14,7 @@ namespace ECommerce.Application.Services.CartService
         Task<List<CartVM>> GetCartByUserId(string userId);
         Task AddToCart(string userId, int productId, int quantity);
         Task DeleteFromCart(string userId, int productId);
+        Task DeleteProductFromCart(string userId, int productId);
+        Task AddProductFromCart(string userId, int productId);
     }
 }
