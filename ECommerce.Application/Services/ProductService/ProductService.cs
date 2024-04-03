@@ -133,7 +133,8 @@ namespace ECommerce.Application.Services.ProductService
                             Color = p.Color,
                             Price = p.Price,
                             Quantity = p.Quantity,
-                            Description = p.Description
+                            Description = p.Description,
+                            ImagePath = p.ImagePath,                            
                         }).ToList();
 
                     return products;
