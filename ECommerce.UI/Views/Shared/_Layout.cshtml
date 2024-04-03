@@ -77,12 +77,33 @@
                     </div>
                 </form>
             </div>
-            <div class="col-lg-3 col-6 text-right">
-                <a asp-area="" asp-controller="Home" asp-action="Cart" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
+            @* <div class="col-lg-3 col-6 text-right">
+                <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-            </div>
+            </div> *@
+
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <div class="col-lg-3 col-6 text-right">
+                        <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
+                            <i class="fas fa-shopping-cart text-primary"></i>
+                            <span class="badge">@ViewBag.CartItemCount</span>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-3 col-6 text-right">
+                        <a asp-controller="Account" asp-action="Login" class="nav-item nav-link fas fa-sign-in-alt text-primary btn border">
+                            <i class="fas fa-sign-in-alt text-primary"></i>
+                            <span>Giriş Yap</span>
+                        </a>
+                    </div>
+                }
+            }
 
         </div>
         <!-- Topbar End -->
@@ -170,7 +191,7 @@
 
                                         <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-angle-right mr-2"></i>Anasayfa</a>
                                         <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="AllProducts"><i class="fa fa-angle-right mr-2"></i>Tüm Ürünler</a>
-                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Cart"><i class="fa fa-angle-right mr-2"></i>Sepet</a>
+                                        <a class="text-dark mb-2 nav-item " asp-area="Member" asp-controller="Cart" asp-action="Index"><i class="fa fa-angle-right mr-2"></i>Sepet</a>
                                         <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-angle-right mr-2"></i>İletişim</a>
                                     </div>
 

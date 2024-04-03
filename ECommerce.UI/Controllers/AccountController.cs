@@ -1,7 +1,11 @@
 ﻿using ECommerce.Application.Models.DTOs.UserDto;
 using ECommerce.Application.Services.AppUserService;
+using ECommerce.Application.Services.CartService;
+using ECommerce.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Security.Policy;
 
 namespace ECommerce.UI.Controllers
@@ -11,10 +15,14 @@ namespace ECommerce.UI.Controllers
     public class AccountController : Controller
     {
         private readonly IAppUserService _userService;
+        private readonly ICartService _cartService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AccountController(IAppUserService userService)
+        public AccountController(IAppUserService userService, ICartService cartService, UserManager<AppUser> userManager)
         {
             _userService = userService;
+            _cartService = cartService;
+            _userManager = userManager;
         }
         [AllowAnonymous]
         public IActionResult Register()
@@ -35,6 +43,13 @@ namespace ECommerce.UI.Controllers
             }
 
             var result = await _userService.Register(registerDto);
+
+            if (result.Succeeded)
+            {
+                var user = await _userManager.FindByEmailAsync(registerDto.Email);
+                _cartService.CreateCart(user.Id);
+            }
+
             return RedirectToAction("Index", "Home");
         }
         [AllowAnonymous]

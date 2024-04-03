@@ -24,6 +24,15 @@ namespace ECommerce.Application.Services.CartService
             _userManager = userManager;
         }
 
+        public async Task AddProductFromCart(string userId, int productId)
+        {
+            var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
+            var cartItem = cart.CartItems.FirstOrDefault(item => item.ProductId == productId);
+            cart.CartItems.Add(cartItem);
+
+            await _cartRepo.UpdateAsync(cart);
+        }
+
         public async Task AddToCart(string userId, int productId, int quantity)
         {
             var cartVmList = await GetCartByUserId(userId);
@@ -67,13 +76,26 @@ namespace ECommerce.Application.Services.CartService
         {
             var existingCart = _cartRepo.GetDefault(u => u.UserId == userId);
 
-            if (existingCart == null)
+            if (existingCart != null)
             {
                 await _cartRepo.CreateAsync(new Cart() { UserId = userId });
             }
         }
 
         public async Task DeleteFromCart(string userId, int productId)
+        {
+            var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
+
+            var cartItem = cart.CartItems.Where(item => item.ProductId == productId).ToList();
+
+            foreach (var item in cartItem)
+            {
+                cart.CartItems.Remove(item);
+            }
+            await _cartRepo.UpdateAsync(cart);
+        }
+
+        public async Task DeleteProductFromCart(string userId, int productId)
         {
             var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
             var cartItem = cart.CartItems.FirstOrDefault(item => item.ProductId == productId);

@@ -12,6 +12,10 @@ namespace ECommerce.Domain.Entities
         public int Id { get; set; }
         public string UserId { get; set; }
         public List<CartItem>? CartItems { get; set; }
+        public Cart()
+        {
+            CartItems = new List<CartItem>();
+        }
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public DateTime? DeleteDate { get; set; }

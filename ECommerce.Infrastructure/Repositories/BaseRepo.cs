@@ -91,6 +91,9 @@ namespace ECommerce.Infrastructure.Repositories
                 return await query.Select(select).ToListAsync();
         }
 
-        
+        public async Task<T> Value(Expression<Func<T, bool>> expression)
+        {
+            return await _table.SingleOrDefaultAsync(expression);
+        }
     }
 }
