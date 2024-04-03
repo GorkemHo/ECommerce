@@ -20,12 +20,13 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cart = await _cartService.GetCartByUserId(userId);
+            var cartList = await _cartService.GetCartByUserId(userId);
+            var cart = cartList.FirstOrDefault();
             return View(cart);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToCart(int productId, int quantity)
+        public async Task<IActionResult> AddToProduct(int productId, int quantity)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             await _cartService.AddToCart(userId, productId, quantity);
