@@ -38,7 +38,7 @@ namespace ECommerce.Application.Services.CartService
         }
 
 
-        public async Task AddToCart(string userId, List<CartItem> cartItems)
+        public async Task AddToCart(string userId, List<CartItemVm> cartItems)
         {
             var cart = await GetCart(userId);
 
