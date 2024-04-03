@@ -119,7 +119,7 @@ namespace ECommerce.Application.Services.AppUserService
         {
             if (model.Email is not null)
             {
-                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email.ToUpper()); // EMAİL GÜNCELLENMİYOR
+                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email); // EMAİL GÜNCELLENMİYOR
 
                 if (isUserEmailExist is not null)
                 {
