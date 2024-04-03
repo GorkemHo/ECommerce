@@ -116,6 +116,14 @@ namespace ECommerce.Application.Services.CategoryService
             }
         }
 
+        public async Task<CreateCategoryDto> FillCategories()
+        {
+            CreateCategoryDto model = new CreateCategoryDto()
+            {
+               
+            };
+            return model;
+        }
 
     }
 }
