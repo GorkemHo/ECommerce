@@ -256,6 +256,7 @@ namespace ECommerce.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     CartId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -309,30 +310,30 @@ namespace ECommerce.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4178), null, "Çakmak", null, "Çok Amaçlı", 1, null });
+                values: new object[] { 1, new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8106), null, "Çakmak", null, "Çok Amaçlı", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4192), null, "Çakmak", null, "Mumlar İçin", 1, null });
+                values: new object[] { 2, new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8119), null, "Çakmak", null, "Mumlar İçin", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 3, new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4193), null, "Aksesuar", null, "Aksesuar", 1, null });
+                values: new object[] { 3, new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8120), null, "Aksesuar", null, "Aksesuar", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "Color", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Quantity", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4290), null, "Bu ürünün açıklaması 1", "images/cakmak1.jpg", "çakmak 1", 100m, 10, 1, null },
-                    { 2, 2, "Mavi", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4292), null, "Bu ürünün açıklaması 2", "images/cakmak2.jpg", "çakmak 2", 150m, 5, 1, null },
-                    { 3, 1, "Yeşil", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4294), null, "Bu ürünün açıklaması 3", "images/cakmak3.jpg", "çakmak 3", 200m, 8, 1, null },
-                    { 4, 2, "Sarı", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4295), null, "Bu ürünün açıklaması 4", "images/cakmak4.jpg", "çakmak 4", 120m, 12, 1, null },
-                    { 5, 1, "Mor", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4296), null, "Bu ürünün açıklaması 5", "images/cakmak5.jpg", "çakmak 5", 180m, 6, 1, null },
-                    { 6, 3, "Mavi", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4297), null, "Bu ürünün açıklaması 2", "images/Aksesuar1.jpg", "Aksesuar 1", 150m, 5, 1, null },
-                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4299), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Aksesuar 2", 150m, 5, 1, null }
+                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8194), null, "Bu ürünün açıklaması 1", "images/cakmak1.jpg", "çakmak 1", 100m, 10, 1, null },
+                    { 2, 2, "Mavi", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8197), null, "Bu ürünün açıklaması 2", "images/cakmak2.jpg", "çakmak 2", 150m, 5, 1, null },
+                    { 3, 1, "Yeşil", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8199), null, "Bu ürünün açıklaması 3", "images/cakmak3.jpg", "çakmak 3", 200m, 8, 1, null },
+                    { 4, 2, "Sarı", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8200), null, "Bu ürünün açıklaması 4", "images/cakmak4.jpg", "çakmak 4", 120m, 12, 1, null },
+                    { 5, 1, "Mor", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8201), null, "Bu ürünün açıklaması 5", "images/cakmak5.jpg", "çakmak 5", 180m, 6, 1, null },
+                    { 6, 3, "Mavi", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8202), null, "Bu ürünün açıklaması 2", "images/Aksesuar1.jpg", "Aksesuar 1", 150m, 5, 1, null },
+                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8203), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Aksesuar 2", 150m, 5, 1, null }
                 });
 
             migrationBuilder.CreateIndex(

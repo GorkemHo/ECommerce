@@ -3,6 +3,7 @@ using ECommerce.Application.Models.DTOs.UserDto;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
+using ECommerce.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
@@ -57,7 +58,7 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            /*await userManager.AddToRoleAsync(user, "Member");*/ //rolleme kontrol edilecek.
+            //await userManager.AddToRoleAsync(user, "Member");
 
             if (result.Succeeded)
             {
@@ -69,6 +70,17 @@ namespace ECommerce.Application.Services.AppUserService
         public async Task UpdateUser(UpdateProfileDto model)
         {
             var user = await repo.GetDefault(x => x.Id.Equals(model.Id));
+
+            await userManager.RemovePasswordAsync(user);
+            var task = await userManager.AddPasswordAsync(user, model.Password);
+
+            await userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+
+            await userManager.SetUserNameAsync(user, model.UserName);
+
+            user.Address = model.Address;
+
+            user.UpdateDate = DateTime.Now;
 
             await ImageUpload(model, user);
             await EmailUpdate(model, user);
@@ -107,7 +119,7 @@ namespace ECommerce.Application.Services.AppUserService
         {
             if (model.Email is not null)
             {
-                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email.ToUpper());
+                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email.ToUpper()); // EMAİL GÜNCELLENMİYOR
 
                 if (isUserEmailExist is not null)
                 {
@@ -121,6 +133,36 @@ namespace ECommerce.Application.Services.AppUserService
             var user = await userManager.FindByNameAsync(userName);
             bool isInRole = await userManager.IsInRoleAsync(user, role);
             return isInRole;
+        }
+
+        public async Task<List<UpdateProfileDto>> GetAllUsers()
+        {
+            var users = await repo.GetFilteredList(
+                select: x => mapper.Map<UpdateProfileDto>(x),
+                where: null 
+            );
+
+            return users;
+        }
+
+        public async Task<UpdateProfileDto> GetUserById(string id)
+        {
+            var user = await repo.GetFilteredFirstOrDefault(select: x => mapper.Map<UpdateProfileDto>(x),
+                                                             where: x => x.Id == id);
+            return user;
+        }
+
+        public async Task Delete(string id)
+        {
+
+            var user = await repo.GetDefault(c => c.Id.Equals(id));
+
+            if (user is not null)
+            {
+                user.DeleteDate = DateTime.Now;
+                user.Status = Status.Passive;
+                await repo.DeleteAsync(user);
+            }
         }
     }
 }
