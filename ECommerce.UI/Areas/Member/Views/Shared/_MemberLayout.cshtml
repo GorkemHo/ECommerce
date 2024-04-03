@@ -53,6 +53,7 @@
             </div>
         }
 
+
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a sp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none">
@@ -62,25 +63,25 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form method="get" asp-action="SearchProduct" asp-controller="Home">
+                <form action="">
                     <div class="input-group">
                         <input type="text"
                                class="form-control"
-                               name="searchTerm" 
                                placeholder="Ürün ara..." />
                         <div class="input-group-append">
-                            <button type="submit" class="input-group-text bg-transparent text-primary" style="border: none;">
+                            <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </button>
+
+                            </span>
                         </div>
                     </div>
                 </form>
             </div>
             @* <div class="col-lg-3 col-6 text-right">
-            <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
-            <i class="fas fa-shopping-cart text-primary"></i>
-            <span class="badge">0</span>
-            </a>
+                <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
+                    <i class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
             </div> *@
 
             @{
@@ -144,8 +145,12 @@
                                             <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="dropdown-item">Tüm Ürünler</a>
                                         </div>
                                     </div>
+
+
                                 </div>
                         </nav>
+
+
                     </div>
                 </div>
 
