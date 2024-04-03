@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace ECommerce.UI.Areas.Member.Controllers
 {
+    [Area("Member")]
     public class CartController : Controller
     {
         private readonly ICartService _cartService;

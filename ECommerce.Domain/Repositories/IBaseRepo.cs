@@ -20,8 +20,5 @@ namespace ECommerce.Domain.Repositories
                                                          Expression<Func<T, bool>> where,
                                                          Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null,
                                                          Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-
-        Task<T> Value(Expression<Func<T, bool>> expression);
-
     }
 }
