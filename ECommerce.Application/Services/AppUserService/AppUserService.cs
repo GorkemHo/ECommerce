@@ -3,6 +3,7 @@ using ECommerce.Application.Models.DTOs.UserDto;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
+using ECommerce.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
@@ -57,7 +58,7 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            /*await userManager.AddToRoleAsync(user, "Member");*/ //rolleme kontrol edilecek.
+            await userManager.AddToRoleAsync(user, "Member");
 
             if (result.Succeeded)
             {
@@ -130,6 +131,36 @@ namespace ECommerce.Application.Services.AppUserService
             var user = await userManager.FindByNameAsync(userName);
             bool isInRole = await userManager.IsInRoleAsync(user, role);
             return isInRole;
+        }
+
+        public async Task<List<UpdateProfileDto>> GetAllUsers()
+        {
+            var users = await repo.GetFilteredList(
+                select: x => mapper.Map<UpdateProfileDto>(x),
+                where: null 
+            );
+
+            return users;
+        }
+
+        public async Task<UpdateProfileDto> GetUserById(string id)
+        {
+            var user = await repo.GetFilteredFirstOrDefault(select: x => mapper.Map<UpdateProfileDto>(x),
+                                                             where: x => x.Id == id);
+            return user;
+        }
+
+        public async Task Delete(string id)
+        {
+
+            var user = await repo.GetDefault(c => c.Id.Equals(id));
+
+            if (user is not null)
+            {
+                user.DeleteDate = DateTime.Now;
+                user.Status = Status.Passive;
+                await repo.DeleteAsync(user);
+            }
         }
     }
 }

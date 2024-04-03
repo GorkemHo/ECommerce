@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model List<UpdateProfileDto>
+
+<h2>Kullanıcılar</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark">Yeni Kullanıcı Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Kullanıcı Adı
+            </th>
+            <th>
+                E-posta
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@user.Id">Detay</a> |
+                    <a asp-action="Delete" asp-route-id="@user.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
