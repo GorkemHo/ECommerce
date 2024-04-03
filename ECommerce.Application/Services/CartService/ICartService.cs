@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.Models.VMs.CartVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace ECommerce.Application.Services.CartService
 {
     public interface ICartService
     {
-        Task CreateCart(string userId);
-        Task<List<CartVM>> GetCartByUserId(string userId);
-        Task AddToCart(string userId, int productId, int quantity);
-        Task DeleteFromCart(string userId, int productId);
-        Task DeleteProductFromCart(string userId, int productId);
-        Task AddProductFromCart(string userId, int productId);
+        Task<Cart> GetCart(string userId);
+        Task AddToCart(string userId, List<CartItem> cartItems);
+        Task ClearToCart(string userId);
+        Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity);
+        Task DeleteFromCart(string userId, CartItemVm cartItem);
+        Task<List<CartItemVm>> GetCartItemsByUserId(string userId);
     }
 }
