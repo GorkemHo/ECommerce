@@ -23,9 +23,12 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var model = await _categoryService.FillCategories();
+            //model.Ca = await _categoryService.GetCategories();
+
+            return View(model);
         }
 
         [HttpPost]
