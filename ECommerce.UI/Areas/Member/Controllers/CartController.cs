@@ -30,6 +30,13 @@ namespace ECommerce.UI.Areas.Member.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             await _cartService.AddToCart(userId, productId, quantity);
+
+            var cartItem = new CartItem
+            {
+                ProductId = productId,
+                Quantity = quantity            
+            };
+
             return RedirectToAction(nameof(Index));
         }
 

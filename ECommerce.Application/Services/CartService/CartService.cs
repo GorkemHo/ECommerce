@@ -49,6 +49,7 @@ namespace ECommerce.Application.Services.CartService
                         Id = ci.Id,
                         ProductId = ci.ProductId,
                         Quantity = ci.Quantity,
+                        Price = ci.Price,
                         CartId = ci.CartId
                     }).ToList()
                 };
