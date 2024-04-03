@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Entities;
+using ECommerce.Infrastructure.EntityTypeConfig;
 using ECommerce.Infrastructure.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -39,6 +40,14 @@ namespace ECommerce.Infrastructure.Context
         {
             builder.SeedCategories();
             builder.SeedProducts();
+
+            builder.ApplyConfiguration(new AppUserConfig());            
+            builder.ApplyConfiguration(new CartConfig());
+            builder.ApplyConfiguration(new CartItemConfig());
+            builder.ApplyConfiguration(new CategoryConfig());
+            builder.ApplyConfiguration(new OrderConfig());
+            builder.ApplyConfiguration(new ProductConfig());
+            builder.ApplyConfiguration(new ProductOrderConfig());
 
             base.OnModelCreating(builder);
         }

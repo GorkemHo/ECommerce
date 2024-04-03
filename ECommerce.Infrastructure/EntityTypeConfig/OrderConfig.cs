@@ -16,7 +16,7 @@ namespace ECommerce.Infrastructure.EntityTypeConfig
             builder.HasKey(x => x.Id);
             builder.HasOne(x => x.User)
                 .WithMany(x => x.Orders)
-                .HasForeignKey(x => x.Id)
+                .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.Configure(builder);

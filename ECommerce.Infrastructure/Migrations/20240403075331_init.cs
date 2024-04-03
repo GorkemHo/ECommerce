@@ -28,15 +28,15 @@ namespace ECommerce.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -218,7 +218,7 @@ namespace ECommerce.Infrastructure.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -246,15 +246,15 @@ namespace ECommerce.Infrastructure.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CartItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     CartId = table.Column<int>(type: "int", nullable: false)
@@ -263,11 +263,11 @@ namespace ECommerce.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_CartItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItems_Carts_CartId",
-                        column: x => x.CartId,
+                        name: "FK_CartItems_Carts_Id",
+                        column: x => x.Id,
                         principalTable: "Carts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CartItems_Products_ProductId",
                         column: x => x.ProductId,
@@ -280,8 +280,7 @@ namespace ECommerce.Infrastructure.Migrations
                 name: "ProductOrders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
@@ -294,39 +293,46 @@ namespace ECommerce.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_ProductOrders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductOrders_Orders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_ProductOrders_Orders_Id",
+                        column: x => x.Id,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProductOrders_Products_ProductId",
-                        column: x => x.ProductId,
+                        name: "FK_ProductOrders_Products_Id",
+                        column: x => x.Id,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6581), null, "Çakmak", null, "Çok Amaçlı", 1, null });
+                values: new object[] { 1, new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4178), null, "Çakmak", null, "Çok Amaçlı", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6592), null, "Çakmak", null, "Mumlar İçin", 1, null });
+                values: new object[] { 2, new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4192), null, "Çakmak", null, "Mumlar İçin", 1, null });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
+                values: new object[] { 3, new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4193), null, "Aksesuar", null, "Aksesuar", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "Color", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Quantity", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6734), null, "Bu ürünün açıklaması 1", "images/cakmak1.jpg", "çakmak 1", 100m, 10, 1, null },
-                    { 2, 2, "Mavi", new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6739), null, "Bu ürünün açıklaması 2", "images/cakmak2.jpg", "çakmak 2", 150m, 5, 1, null },
-                    { 3, 1, "Yeşil", new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6741), null, "Bu ürünün açıklaması 3", "images/cakmak3.jpg", "çakmak 3", 200m, 8, 1, null },
-                    { 4, 2, "Sarı", new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6743), null, "Bu ürünün açıklaması 4", "images/cakmak4.jpg", "çakmak 4", 120m, 12, 1, null },
-                    { 5, 1, "Mor", new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6745), null, "Bu ürünün açıklaması 5", "images/cakmak5.jpg", "çakmak 5", 180m, 6, 1, null }
+                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4290), null, "Bu ürünün açıklaması 1", "images/cakmak1.jpg", "çakmak 1", 100m, 10, 1, null },
+                    { 2, 2, "Mavi", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4292), null, "Bu ürünün açıklaması 2", "images/cakmak2.jpg", "çakmak 2", 150m, 5, 1, null },
+                    { 3, 1, "Yeşil", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4294), null, "Bu ürünün açıklaması 3", "images/cakmak3.jpg", "çakmak 3", 200m, 8, 1, null },
+                    { 4, 2, "Sarı", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4295), null, "Bu ürünün açıklaması 4", "images/cakmak4.jpg", "çakmak 4", 120m, 12, 1, null },
+                    { 5, 1, "Mor", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4296), null, "Bu ürünün açıklaması 5", "images/cakmak5.jpg", "çakmak 5", 180m, 6, 1, null },
+                    { 6, 3, "Mavi", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4297), null, "Bu ürünün açıklaması 2", "images/Aksesuar1.jpg", "Aksesuar 1", 150m, 5, 1, null },
+                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4299), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Aksesuar 2", 150m, 5, 1, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -369,11 +375,6 @@ namespace ECommerce.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_CartId",
-                table: "CartItems",
-                column: "CartId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ProductId",
                 table: "CartItems",
                 column: "ProductId");
@@ -382,16 +383,6 @@ namespace ECommerce.Infrastructure.Migrations
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductOrders_OrderId",
-                table: "ProductOrders",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductOrders_ProductId",
-                table: "ProductOrders",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",

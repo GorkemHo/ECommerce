@@ -2,6 +2,7 @@
 using ECommerce.Application.Models.DTOs.CategortyDto;
 
 using ECommerce.Application.Models.VMs.CategoryVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
@@ -66,20 +67,23 @@ namespace ECommerce.Application.Services.CategoryService
         public async Task<List<CategoryVm>> GetCategoriesWithProducts()
         {
             var categories = await _categoryRepo.GetFilteredList(
-                select: x => new CategoryVm
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Description = x.Description
-                },
-                where: x => x.Status != Status.Passive, 
-                include : x => x.Include(x => x.Products)
-                );
-
-            //foreach (var category in categories)
-            //{
-            //    category.Products = 
-            //}
+       select: x => new CategoryVm
+       {
+           Id = x.Id,
+           Name = x.Name,
+           Description = x.Description,
+           Products = x.Products.Select(p => new Product
+           {
+               Id = p.Id,
+               Name = p.Name,
+               Color = p.Color,
+               Price = p.Price,
+               Quantity = p.Quantity,
+               Description = p.Description
+           }).ToList(),
+       },
+       where: x => x.Status != Status.Passive,
+       include: x => x.Include(x => x.Products));
 
             return categories;
         }
@@ -87,7 +91,7 @@ namespace ECommerce.Application.Services.CategoryService
         public async Task<UpdateCategoryDto> GetCategoryById(int id)
         {
             var category = await _categoryRepo.GetFilteredFirstOrDefault(select: x => _mapper.Map<UpdateCategoryDto>(x),
-                                                              where: x => x.Id == id );
+                                                              where: x => x.Id == id);
             return category;
         }
 
@@ -112,6 +116,6 @@ namespace ECommerce.Application.Services.CategoryService
             }
         }
 
-        
+
     }
 }

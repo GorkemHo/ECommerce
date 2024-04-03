@@ -78,6 +78,32 @@ namespace ECommerce.Infrastructure.SeedData
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 1
+                },
+                new Product
+                {
+                    Id = 6,
+                    Name = "Aksesuar 1",
+                    Color = "Mavi",
+                    Price = 150,
+                    Quantity = 5,
+                    Description = "Bu ürünün açıklaması 2",
+                    ImagePath = "images/Aksesuar1.jpg",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                    CategoryId = 3
+                },
+                new Product
+                {
+                    Id = 7,
+                    Name = "Aksesuar 2",
+                    Color = "Kırmızı",
+                    Price = 150,
+                    Quantity = 5,
+                    Description = "Bu ürünün açıklaması 2",
+                    ImagePath = "images/Aksesuar2.jpg",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                    CategoryId = 3
                 }
             );
         }
