@@ -67,7 +67,7 @@ namespace ECommerce.Application.Services.ProductService
             CreateProductDto model = new CreateProductDto()
             {
                 Categories = await _categoryRepo.GetFilteredList(
-                   select: x => new Category
+                   select: x => new CategoryVm
                    {
                        Id = x.Id,
                        Name = x.Name
@@ -111,5 +111,7 @@ namespace ECommerce.Application.Services.ProductService
                 await _productRepo.UpdateAsync(product);
             }
         }
+
+       
     }
 }

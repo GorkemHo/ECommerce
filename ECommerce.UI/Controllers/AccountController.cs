@@ -49,7 +49,7 @@ namespace ECommerce.UI.Controllers
         }
 
         [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> Login(LoginDto loginDto, string returnUrl = "/")
+        public async Task<IActionResult> Login(LoginDto loginDto, string? returnUrl = "/")
         {
             if (ModelState.IsValid)
             {

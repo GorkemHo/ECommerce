@@ -1,5 +1,7 @@
 ﻿using ECommerce.Application.Models.DTOs.ProductDTOs;
+using ECommerce.Application.Services.CategoryService;
 using ECommerce.Application.Services.ProductService;
+using ECommerce.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +11,12 @@ namespace ECommerce.UI.Areas.Admin.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, ICategoryService categoryService)
         {
             _productService = productService;
+            _categoryService = categoryService;
         }
 
         // GET: Products/Index
@@ -37,6 +41,8 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             var model = await _productService.FillProduct();
+            model.Categories = await _categoryService.GetCategories();
+
             return View(model);
         }
 

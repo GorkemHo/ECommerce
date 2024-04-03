@@ -26,6 +26,16 @@
         <input asp-for="Quantity" class="form-control" />
     </div>
     <div class="form-group">
+    <label>Category:</label>
+    <select asp-for="CategoryId" class="form-control">
+        @foreach (var item in Model.Categories)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+
+    </select>
+</div>
+    <div class="form-group">
         <label>Description:</label>
         <input asp-for="Description" class="form-control" />
     </div>

@@ -20,10 +20,10 @@ namespace ECommerce.Infrastructure.EntityTypeConfig
             builder.Property(x => x.Quantity).IsRequired(true);
             builder.Property(x => x.Description).IsRequired(true);
             builder.Property(x => x.ImagePath).IsRequired(false);
-            builder.HasOne(x => x.Category)
-                .WithMany(x => x.Products)
-                .HasForeignKey(x => x.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(x => x.Category)
+            //    .WithMany(x => x.Products)
+            //    .HasForeignKey(x => x.Id)
+            //    .OnDelete(DeleteBehavior.Restrict);
             
 
             base.Configure(builder);
