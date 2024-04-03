@@ -1,12 +1,7 @@
 ﻿using ECommerce.Application.Extensions;
 using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.Models.DTOs.UserDto
 {
@@ -37,12 +32,21 @@ namespace ECommerce.Application.Models.DTOs.UserDto
         [Display(Name = "Adres")]
         public string Address { get; set; }
 
-        [Display(Name = "Resim Dosyası")]
+        
         public string? ImagePath { get; set; }
 
         [PictureFileExtension]
         public IFormFile UploadPath { get; set; }
         public DateTime UpdateDate => DateTime.Now;
         public Status Status => Status.Modified;
+
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Eski Şifrenizi giriniz.")]
+        [Display(Name = "Eski Kullanıcı Şifresi")]
+        [DataType(DataType.Password)]
+        public string OldPassword { get; set; }
     }
 }

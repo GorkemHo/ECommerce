@@ -70,6 +70,15 @@ namespace ECommerce.Application.Services.AppUserService
         {
             var user = await repo.GetDefault(x => x.Id.Equals(model.Id));
 
+            await userManager.RemovePasswordAsync(user);
+            var task = await userManager.AddPasswordAsync(user, model.Password);
+
+            await userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+
+            await userManager.SetUserNameAsync(user, model.UserName);
+
+            user.Address = model.Address;
+
             await ImageUpload(model, user);
             await EmailUpdate(model, user);
             await UserNameUpdate(model, user);

@@ -9,12 +9,6 @@ using ECommerce.Application.Services.ProductOrderService;
 using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Repositories;
 using ECommerce.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerce.Application.IoC
 {
