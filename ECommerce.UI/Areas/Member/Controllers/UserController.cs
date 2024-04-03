@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.UI.Areas.Member.Controllers
 {
-    [Authorize] 
+    [Authorize]
+    [Area("Member")]
     public class UserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
