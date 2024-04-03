@@ -49,12 +49,19 @@ namespace ECommerce.UI.Controllers
         {
             var category = await _categoryService.GetCategoriesWithProducts();
             var model = category.FirstOrDefault(x => x.Name == "Aksesuar");
-            return View();
+            return View(model);
         }
         public IActionResult AllProducts()
         {
             return View();
         }
+
+        public async Task<IActionResult> SearchProduct(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        {
+            var product = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
+            return View(product);
+        }
+
         public IActionResult Contact()
         {
             return View();
