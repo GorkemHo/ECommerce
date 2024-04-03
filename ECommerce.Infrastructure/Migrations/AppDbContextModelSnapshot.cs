@@ -208,7 +208,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5585),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6581),
                             Description = "Çakmak",
                             Name = "Çok Amaçlı",
                             Status = 1
@@ -216,7 +216,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5598),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6592),
                             Description = "Çakmak",
                             Name = "Mumlar İçin",
                             Status = 1
@@ -310,7 +310,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5728),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6734),
                             Description = "Bu ürünün açıklaması 1",
                             ImagePath = "images/cakmak1.jpg",
                             Name = "çakmak 1",
@@ -323,7 +323,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 2,
                             Color = "Mavi",
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5731),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6739),
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "images/cakmak2.jpg",
                             Name = "çakmak 2",
@@ -336,7 +336,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 3,
                             CategoryId = 1,
                             Color = "Yeşil",
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5733),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6741),
                             Description = "Bu ürünün açıklaması 3",
                             ImagePath = "images/cakmak3.jpg",
                             Name = "çakmak 3",
@@ -349,7 +349,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Color = "Sarı",
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5734),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6743),
                             Description = "Bu ürünün açıklaması 4",
                             ImagePath = "images/cakmak4.jpg",
                             Name = "çakmak 4",
@@ -362,7 +362,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 5,
                             CategoryId = 1,
                             Color = "Mor",
-                            CreateDate = new DateTime(2024, 4, 3, 2, 0, 2, 334, DateTimeKind.Local).AddTicks(5736),
+                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6745),
                             Description = "Bu ürünün açıklaması 5",
                             ImagePath = "images/cakmak5.jpg",
                             Name = "çakmak 5",

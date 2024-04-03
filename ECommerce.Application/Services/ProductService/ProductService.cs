@@ -83,17 +83,24 @@ namespace ECommerce.Application.Services.ProductService
         public async Task<ProductVm> GetById(int id)
         {
             var product = await _productRepo.GetFilteredFirstOrDefault(select: x => _mapper.Map<ProductVm>(x),
-                                                              where: x => x.Id == id && x.Status.Equals(Status.Active));
+                                                              where: x => x.Id == id && !x.Status.Equals(Status.Passive));
             return product;
         }
 
         public async Task<List<ProductVm>> GetProducts()
         {
             var products = await _productRepo.GetFilteredList(select: x => _mapper.Map<ProductVm>(x),
-                                                     where: x => x.Status.Equals(Status.Active));
+                                                     where: x => !x.Status.Equals(Status.Passive));
                                                      
 
             return products;
+        }
+
+        public async Task<UpdateProductDto> GetUpdateProductDto(int id)
+        {
+            var product = await _productRepo.GetFilteredFirstOrDefault(select: x => _mapper.Map<UpdateProductDto>(x),
+                                                              where: x => x.Id == id && !x.Status.Equals(Status.Passive));
+            return product;
         }
 
         public async Task Update(UpdateProductDto model)
