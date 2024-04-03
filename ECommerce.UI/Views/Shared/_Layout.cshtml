@@ -224,5 +224,28 @@
 
             <!-- Template Javascript -->
             <script src="~/js/main.js"></script>
+            <script>
+                // Form submit edildiğinde kontrol işlemleri yapılır
+                document.querySelector('form').addEventListener('submit', function (e) {
+                    var minPriceInput = document.getElementById('minPrice');
+                    var maxPriceInput = document.getElementById('maxPrice');
+                    var minPrice = minPriceInput.value;
+                    var maxPrice = maxPriceInput.value;
+
+                    // Min ve Max fiyatları kontrol et
+                    if ((minPrice !== '' && parseFloat(minPrice) < 0) || (maxPrice !== '' && parseFloat(maxPrice) < 0)) {
+                        alert('Fiyatlar 0\'dan küçük olamaz!');
+                        e.preventDefault(); // Form submitini engelle
+                    }
+
+                    // Eğer min fiyat varsa ve max fiyat varsa kontrolü yap
+                    if (minPrice !== '' && maxPrice !== '') {
+                        if (parseFloat(minPrice) > parseFloat(maxPrice)) {
+                            alert('Minimum fiyat, maksimum fiyattan büyük olamaz!');
+                            e.preventDefault(); // Form submitini engelle
+                        }
+                    }
+                });
+            </script>
 </body>
 </html>
