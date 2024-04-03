@@ -12,6 +12,6 @@ namespace ECommerce.Application.Services.CategoryService
         Task<List<CategoryVm>> GetCategories();
         Task<UpdateCategoryDto> GetCategoryById(int id);
 
-        Task<List<CategoryVm>> GetCategoriesWithProducts(); //???
+        Task<List<CategoryVm>> GetCategoriesWithProducts(); 
     }
 }

@@ -2,11 +2,13 @@
 using ECommerce.Application.Models.DTOs.ProductDTOs;
 using ECommerce.Application.Models.VMs.CategoryVMs;
 using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Application.Services.CategoryService;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using System.Drawing;
 
 namespace ECommerce.Application.Services.ProductService
 {
@@ -14,18 +16,20 @@ namespace ECommerce.Application.Services.ProductService
     {
         private readonly IProductRepo _productRepo;
         private readonly ICategoryRepo _categoryRepo;
+        private readonly ICategoryService _categoryService;
         private readonly IOrderRepo _orderRepo;
         private readonly IMapper _mapper;
 
-        public ProductService(IProductRepo productRepo, ICategoryRepo categoryRepo, IOrderRepo orderRepo, IMapper mapper)
+
+        public ProductService(IProductRepo productRepo, ICategoryRepo categoryRepo, IOrderRepo orderRepo, IMapper mapper, ICategoryService categoryService)
         {
             _productRepo = productRepo;
             _categoryRepo = categoryRepo;
             _orderRepo = orderRepo;
             _mapper = mapper;
+            _categoryService = categoryService;
         }
 
-      
         public async Task Create(CreateProductDto model)
         {
             var product = _mapper.Map<Product>(model);
@@ -33,7 +37,7 @@ namespace ECommerce.Application.Services.ProductService
             if (product.UploadPath != null)
             {
                 using var image = Image.Load(model.UploadPath.OpenReadStream());
-                image.Mutate(x => x.Resize(600, 560)); 
+                image.Mutate(x => x.Resize(600, 560));
                 Guid guid = Guid.NewGuid();
                 image.Save($"wwwroot/images/{guid}.jpg");
                 product.ImagePath = $"/images/{guid}.jpg";
@@ -47,8 +51,6 @@ namespace ECommerce.Application.Services.ProductService
                 await _productRepo.CreateAsync(product);
             }
         }
-
-        
 
         public async Task Delete(int id)
         {
@@ -73,10 +75,7 @@ namespace ECommerce.Application.Services.ProductService
                        Name = x.Name
                    },
                    where: x => x.Status != Status.Passive),
-                
-
             };
-
             return model;
         }
 
@@ -91,8 +90,6 @@ namespace ECommerce.Application.Services.ProductService
         {
             var products = await _productRepo.GetFilteredList(select: x => _mapper.Map<ProductVm>(x),
                                                      where: x => !x.Status.Equals(Status.Passive));
-                                                     
-
             return products;
         }
 
@@ -103,8 +100,54 @@ namespace ECommerce.Application.Services.ProductService
             return product;
         }
 
+        public async Task<List<ProductVm>> SearchProducts(string searchTerm = null, string color = null, decimal? minPrice = null, decimal? maxPrice = null, string CategoryName = null)
+        {
+            if (string.IsNullOrEmpty(CategoryName))
+            {
+                // Kategori adı belirtilmediyse, ürünleri filtrele
+                var products = await _productRepo.GetFilteredList(select: x => _mapper.Map<ProductVm>(x),
+                    where: x => (!x.Status.Equals(Status.Passive)) &&
+                        (string.IsNullOrEmpty(searchTerm) || x.Name.Contains(searchTerm) || x.Description.Contains(searchTerm)) &&
+                        (string.IsNullOrEmpty(color) || x.Color.Equals(color)) &&
+                        (!minPrice.HasValue || x.Price >= minPrice) &&
+                        (!maxPrice.HasValue || x.Price <= maxPrice));
+                return products;
+            }
+            else
+            {
+                // Kategori adı belirtildiyse, kategoriye ait ürünleri filtrele
+                var category = await _categoryService.GetCategoriesWithProducts();
+                var model = category.FirstOrDefault(x => x.Name == CategoryName);
+
+                if (model != null && model.Products.Count > 0)
+                {
+                    var products = model.Products.Where(p =>
+                        (string.IsNullOrEmpty(searchTerm) || p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm)) &&
+                        (string.IsNullOrEmpty(color) || p.Color.Equals(color)) &&
+                        (!minPrice.HasValue || p.Price >= minPrice) &&
+                        (!maxPrice.HasValue || p.Price <= maxPrice))
+                        .Select(p => new ProductVm
+                        {
+                            Id = p.Id,
+                            Name = p.Name,
+                            Color = p.Color,
+                            Price = p.Price,
+                            Quantity = p.Quantity,
+                            Description = p.Description
+                        }).ToList();
+
+                    return products;
+                }
+                else
+                {
+                    return new List<ProductVm>(); // Kategoriye ait ürün bulunamadı
+                }
+            }
+        }
+
         public async Task Update(UpdateProductDto model)
         {
+
             var product = _mapper.Map<Product>(model);
 
             if (product.UploadPath != null)
@@ -119,6 +162,6 @@ namespace ECommerce.Application.Services.ProductService
             }
         }
 
-       
+
     }
 }

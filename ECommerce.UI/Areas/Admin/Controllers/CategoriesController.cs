@@ -87,7 +87,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             if (category == null)
             {
                 return NotFound();
-            }
+            }//GÖRSEL EKLE
             return View(category);
         }
     }

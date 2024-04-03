@@ -47,7 +47,7 @@ namespace ECommerce.UI.Controllers
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByEmailAsync(registerDto.Email);
-                _cartService.CreateCart(user.Id);
+                _cartService.GetCart(user.Id);
             }
 
             return RedirectToAction("Index", "Home");

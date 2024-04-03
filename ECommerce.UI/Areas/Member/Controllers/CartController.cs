@@ -20,8 +20,8 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cartList = await _cartService.GetCartByUserId(userId);
-            var cart = cartList.FirstOrDefault();
+            var cart = await _cartService.GetCart(userId);
+            
             return View(cart);
         }
 
@@ -29,7 +29,16 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> AddToProduct(int productId, int quantity)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            await _cartService.AddToCart(userId, productId, quantity);
+            
+
+            var cartItem = new CartItem
+            {
+                ProductId = productId,
+                Quantity = quantity            
+            };
+
+            await _cartService.AddToCart(userId,cartItem); //???
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -37,7 +46,14 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> DeleteFromCart(int productId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            await _cartService.DeleteFromCart(userId, productId);
+
+            var cartItem = new CartItemVm
+            {
+                ProductId = productId,
+                
+            };
+
+            await _cartService.DeleteFromCart(userId, cartItem);
             return RedirectToAction(nameof(Index));
         }
 
@@ -45,7 +61,9 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> DeleteAllFromCart(int productId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            await _cartService.DeleteFromCart(userId, productId);
+            
+            await _cartService.ClearToCart(userId);
+
             return RedirectToAction(nameof(Index));
         }
     }
