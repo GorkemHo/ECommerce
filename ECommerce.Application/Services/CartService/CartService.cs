@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.VMs.CartVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -23,99 +24,103 @@ namespace ECommerce.Application.Services.CartService
             _signInManager = signInManager;
             _userManager = userManager;
         }
-
-        public async Task AddProductFromCart(string userId, int productId)
+       
+        public async Task<Cart> GetCart(string userId)
         {
-            var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
-            var cartItem = cart.CartItems.FirstOrDefault(item => item.ProductId == productId);
-            cart.CartItems.Add(cartItem);
+            var existingCart = await _cartRepo.GetDefault(u => u.UserId == userId);
 
-            await _cartRepo.UpdateAsync(cart);
+            if (existingCart == null)
+            {
+                existingCart = new Cart { UserId = userId };
+                await _cartRepo.CreateAsync(existingCart);
+            }
+            return existingCart;
         }
 
-        public async Task AddToCart(string userId, int productId, int quantity)
+
+        public async Task AddToCart(string userId, List<CartItem> cartItems)
         {
-            var cartVmList = await GetCartByUserId(userId);
+            var cart = await GetCart(userId);
 
-            if (cartVmList != null && cartVmList.Count > 0)
+            if (cartItems != null && cartItems.Count > 0)
             {
-                var cartVm = cartVmList[0];
-                var cart = new Cart
+                foreach (var cartItem in cartItems)
                 {
-                    Id = cartVm.Id,
-                    UserId = cartVm.UserId,
-                    CartItems = cartVm.CartItems.Select(ci => new CartItem
-                    {
-                        Id = ci.Id,
-                        ProductId = ci.ProductId,
-                        Quantity = ci.Quantity,
-                        Price = ci.Price,
-                        CartId = ci.CartId
-                    }).ToList()
-                };
+                    // Kontrol edilecek ürünün daha önce sepete eklenip eklenmediğini bul
+                    var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
 
-                var index = cart.CartItems.FindIndex(i => i.ProductId == productId);
-                if (index < 0)
-                {
-                    cart.CartItems.Add(new CartItem()
+                    if (existingCartItem != null)
                     {
-                        ProductId = productId,
-                        Quantity = quantity,
-                        CartId = cart.Id
-                    });
-                }
-                else
-                {
-                    cart.CartItems[index].Quantity += quantity;
+                        // Eğer aynı ürün daha önce eklenmişse quantity'yi artır
+                        existingCartItem.Quantity += cartItem.Quantity;
+                    }
+                    else
+                    {
+                        // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
+                        cart.CartItems.Add(cartItem);
+                    }
                 }
 
                 await _cartRepo.UpdateAsync(cart);
+
             }
+        }        
+
+        public async Task DeleteFromCart(string userId, CartItemVm cartItem)
+        {
+            var cart = await GetCart(userId);
+
+            var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.Id == cartItem.Id);
+
+            if (existingCartItem != null)
+            {
+                cart.CartItems.Remove(existingCartItem);
+                await _cartRepo.UpdateAsync(cart);
+            }
+            else
+            {
+                // Hata durumu: Sepette böyle bir ürün bulunamadı
+                throw new Exception("Bu ürün sepetinizde bulunamadı.");
+            }
+
         }
 
-        public async Task CreateCart(string userId)
+        public async Task ClearToCart(string userId)
         {
-            var existingCart = _cartRepo.GetDefault(u => u.UserId == userId);
-
-            if (existingCart != null)
-            {
-                await _cartRepo.CreateAsync(new Cart() { UserId = userId });
-            }
-        }
-
-        public async Task DeleteFromCart(string userId, int productId)
-        {
-            var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
-
-            var cartItem = cart.CartItems.Where(item => item.ProductId == productId).ToList();
-
-            foreach (var item in cartItem)
-            {
-                cart.CartItems.Remove(item);
-            }
+            var cart = await GetCart(userId);
+            cart.CartItems.Clear();
             await _cartRepo.UpdateAsync(cart);
         }
 
-        public async Task DeleteProductFromCart(string userId, int productId)
+        public async Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity)
         {
-            var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
-            var cartItem = cart.CartItems.FirstOrDefault(item => item.ProductId == productId);
-            cart.CartItems.Remove(cartItem);
-
-            await _cartRepo.UpdateAsync(cart);
-        }
-
-        public async Task<List<CartVM>> GetCartByUserId(string userId)
-        {
-            var cart = await _cartRepo.GetDefault(c => c.UserId == userId);
-
-            return new List<CartVM>
+            var cartItemVM = new CartItemVm
             {
-                new CartVM
-                {   
-                    CartItems = cart.CartItems
-                }
+                ProductId = productVm.Id,
+                Quantity = Quantity,
+                Price = productVm.Price,
+                ProductName = productVm.Name,
+                Product = productVm
             };
+            return cartItemVM;
         }
+
+        public async Task<List<CartItemVm>> GetCartItemsByUserId(string userId)
+        {
+            var cart = await GetCart(userId);
+
+            var cartItemsVm = cart.CartItems.Select(ci => new CartItemVm
+            {
+                Id = ci.Id,
+                ProductId = ci.ProductId,
+                Quantity = ci.Quantity,
+                Price = ci.Price,
+                ProductName = ci.Product?.Name, // Varsayılan olarak ProductName'i kullanılabilir.
+                                                // İsterseniz ProductVm kullanarak diğer özellikleri de alabilirsiniz.
+            }).ToList();
+
+            return cartItemsVm;
+        }
+
     }
 }
