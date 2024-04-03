@@ -38,14 +38,13 @@ namespace ECommerce.Application.Services.CartService
         }
 
 
-        public async Task AddToCart(string userId, List<CartItem> cartItems)
+        public async Task AddToCart(string userId, CartItem cartItem)
         {
             var cart = await GetCart(userId);
 
-            if (cartItems != null && cartItems.Count > 0)
+            if (cartItem != null)
             {
-                foreach (var cartItem in cartItems)
-                {
+               
                     // Kontrol edilecek ürünün daha önce sepete eklenip eklenmediğini bul
                     var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
 
@@ -59,7 +58,7 @@ namespace ECommerce.Application.Services.CartService
                         // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
                         cart.CartItems.Add(cartItem);
                     }
-                }
+              
 
                 await _cartRepo.UpdateAsync(cart);
 

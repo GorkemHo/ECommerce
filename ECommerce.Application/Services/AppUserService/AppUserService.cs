@@ -58,7 +58,7 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            await userManager.AddToRoleAsync(user, "Member");
+            //await userManager.AddToRoleAsync(user, "Member");
 
             if (result.Succeeded)
             {
@@ -79,6 +79,8 @@ namespace ECommerce.Application.Services.AppUserService
             await userManager.SetUserNameAsync(user, model.UserName);
 
             user.Address = model.Address;
+
+            user.UpdateDate = DateTime.Now;
 
             await ImageUpload(model, user);
             await EmailUpdate(model, user);
@@ -117,7 +119,7 @@ namespace ECommerce.Application.Services.AppUserService
         {
             if (model.Email is not null)
             {
-                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email.ToUpper());
+                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email.ToUpper()); // EMAİL GÜNCELLENMİYOR
 
                 if (isUserEmailExist is not null)
                 {
