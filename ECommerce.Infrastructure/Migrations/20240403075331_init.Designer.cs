@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240403053615_init")]
+    [Migration("20240403075331_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,7 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -53,12 +54,14 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -97,6 +100,7 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -145,10 +149,7 @@ namespace ECommerce.Infrastructure.Migrations
             modelBuilder.Entity("ECommerce.Domain.Entities.CartItem", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CartId")
                         .HasColumnType("int");
@@ -160,8 +161,6 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
 
@@ -207,7 +206,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6581),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4178),
                             Description = "Çakmak",
                             Name = "Çok Amaçlı",
                             Status = 1
@@ -215,9 +214,17 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6592),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4192),
                             Description = "Çakmak",
                             Name = "Mumlar İçin",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4193),
+                            Description = "Aksesuar",
+                            Name = "Aksesuar",
                             Status = 1
                         });
                 });
@@ -309,7 +316,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6734),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4290),
                             Description = "Bu ürünün açıklaması 1",
                             ImagePath = "images/cakmak1.jpg",
                             Name = "çakmak 1",
@@ -322,7 +329,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 2,
                             Color = "Mavi",
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6739),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4292),
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "images/cakmak2.jpg",
                             Name = "çakmak 2",
@@ -335,7 +342,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 3,
                             CategoryId = 1,
                             Color = "Yeşil",
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6741),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4294),
                             Description = "Bu ürünün açıklaması 3",
                             ImagePath = "images/cakmak3.jpg",
                             Name = "çakmak 3",
@@ -348,7 +355,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Color = "Sarı",
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6743),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4295),
                             Description = "Bu ürünün açıklaması 4",
                             ImagePath = "images/cakmak4.jpg",
                             Name = "çakmak 4",
@@ -361,12 +368,38 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 5,
                             CategoryId = 1,
                             Color = "Mor",
-                            CreateDate = new DateTime(2024, 4, 3, 8, 36, 15, 452, DateTimeKind.Local).AddTicks(6745),
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4296),
                             Description = "Bu ürünün açıklaması 5",
                             ImagePath = "images/cakmak5.jpg",
                             Name = "çakmak 5",
                             Price = 180m,
                             Quantity = 6,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            Color = "Mavi",
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4297),
+                            Description = "Bu ürünün açıklaması 2",
+                            ImagePath = "images/Aksesuar1.jpg",
+                            Name = "Aksesuar 1",
+                            Price = 150m,
+                            Quantity = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 3,
+                            Color = "Kırmızı",
+                            CreateDate = new DateTime(2024, 4, 3, 10, 53, 31, 270, DateTimeKind.Local).AddTicks(4299),
+                            Description = "Bu ürünün açıklaması 2",
+                            ImagePath = "images/Aksesuar2.jpg",
+                            Name = "Aksesuar 2",
+                            Price = 150m,
+                            Quantity = 5,
                             Status = 1
                         });
                 });
@@ -374,10 +407,7 @@ namespace ECommerce.Infrastructure.Migrations
             modelBuilder.Entity("ECommerce.Domain.Entities.ProductOrder", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -401,10 +431,6 @@ namespace ECommerce.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("ProductOrders");
                 });
@@ -546,8 +572,8 @@ namespace ECommerce.Infrastructure.Migrations
                 {
                     b.HasOne("ECommerce.Domain.Entities.Cart", "Cart")
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ECommerce.Domain.Entities.Product", "Product")
@@ -566,7 +592,7 @@ namespace ECommerce.Infrastructure.Migrations
                     b.HasOne("ECommerce.Domain.Entities.AppUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -576,7 +602,8 @@ namespace ECommerce.Infrastructure.Migrations
                 {
                     b.HasOne("ECommerce.Domain.Entities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Category");
                 });
@@ -585,14 +612,14 @@ namespace ECommerce.Infrastructure.Migrations
                 {
                     b.HasOne("ECommerce.Domain.Entities.Order", "Order")
                         .WithMany("ProductOrders")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ECommerce.Domain.Entities.Product", "Product")
                         .WithMany("ProductOrders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");

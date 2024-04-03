@@ -20,7 +20,7 @@ namespace ECommerce.Infrastructure.SeedData
                     Name = "Çok Amaçlı",
                     Description = "Çakmak",
                     CreateDate = DateTime.Now,
-                    Status = Status.Active
+                    Status = Status.Active,                    
                 },
                 new Category
                 {
@@ -28,8 +28,16 @@ namespace ECommerce.Infrastructure.SeedData
                     Name = "Mumlar İçin",
                     Description = "Çakmak",
                     CreateDate = DateTime.Now,
-                    Status = Status.Active
-                }               
+                    Status = Status.Active,                   
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "Aksesuar",
+                    Description = "Aksesuar",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,                   
+                }
             );
         }
     }

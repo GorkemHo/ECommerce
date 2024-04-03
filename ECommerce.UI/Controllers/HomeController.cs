@@ -35,22 +35,20 @@ namespace ECommerce.UI.Controllers
         }
         public async Task<IActionResult> LighterForGeneralPurpose()
         {
-            var category = await _categoryService.GetCategories();
-            
-            var model = category.FirstOrDefault(x => x.Name == "Çok Amaçlı");            
-            
-
+            var category = await _categoryService.GetCategoriesWithProducts();            
+            var model = category.FirstOrDefault(x => x.Name == "Çok Amaçlı");          
             return View(model);
         }
         public async Task<IActionResult> LighterForCandle()
         {
-            var category = await _categoryService.GetCategories();
+            var category = await _categoryService.GetCategoriesWithProducts();
             var model = category.FirstOrDefault(x => x.Name == "Mumlar İçin");
-
             return View(model);
         }
-        public IActionResult Accessorize()
+        public async Task<IActionResult> Accessorize()
         {
+            var category = await _categoryService.GetCategoriesWithProducts();
+            var model = category.FirstOrDefault(x => x.Name == "Aksesuar");
             return View();
         }
         public IActionResult AllProducts()
