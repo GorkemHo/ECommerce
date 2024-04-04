@@ -6,7 +6,6 @@
 @model List<ProductVm>;
 
 
-
 <!-- Shop Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -80,7 +79,7 @@
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a asp-controller="Home" asp-action="ProductDetail" asp-route-Id="@product.Id" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Detay</a>
                                 <form id="addToCartForm">
-                                    <button type="button" id="addToCartButton" class="btn btn-primary">Sepete Ekle</button>
+                                    <button type="button" onclick="add(@product.Id)" class="btn btn-primary">Add to cart</button>  @*???*@
                                 </form>
                             </div>
                         </div>
@@ -115,23 +114,28 @@
 <!-- Shop End -->
 
 <script>
-    $(document).ready(function () {
-        $('#addToCartButton').click(function () {
-            var productId = $('#productId').val();
-            var quantity = $('#quantity').val();
-
-            $.ajax({
-                type: "POST",
-                url: "/Areas/Member/Cart/AddToCart",
-                data: { productId: productId, quantity: quantity },
-                success: function (response) {
-                    alert("Ürün sepete eklendi!");
-                },
-                error: function (xhr, status, error) {
-                    alert("Ürün sepete eklenirken bir hata oluştu!");
-                }
-            });
-        });
-    });
+    async function add(productId) {
+        var usernameEl = document.getElementById("username");
+        //if (usernameEl == null) {
+        //    window.location.href = "/Identity/Account/Login";
+        //    //var username=usernameEl.innerText;
+        //    //  if(username.length<1){
+        //    //      window.location.href="/Identity/Account/Login";
+        //    //  }
+        //}
+        try {
+            var response = await fetch(`/Member/Cart/AddItem?bookId=${productId}`);
+            if (response.status == 200) {
+                var result = await response.json();
+                var cartCountEl = document.getElementById("cartCount");
+                cartCountEl.innerHTML = result;  //???
+                window.location.href = "#cartCount";    //???
+                
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 </script>
 
