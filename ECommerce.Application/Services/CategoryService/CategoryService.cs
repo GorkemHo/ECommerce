@@ -79,7 +79,8 @@ namespace ECommerce.Application.Services.CategoryService
                     Color = p.Color,
                     Price = p.Price,
                     Quantity = p.Quantity,
-                    Description = p.Description
+                    Description = p.Description,
+                    ImagePath = p.ImagePath,
                 }).ToList(),
             },
             where: x => x.Status != Status.Passive,
@@ -115,6 +116,14 @@ namespace ECommerce.Application.Services.CategoryService
             }
         }
 
+        public async Task<CreateCategoryDto> FillCategories()
+        {
+            CreateCategoryDto model = new CreateCategoryDto()
+            {
+               
+            };
+            return model;
+        }
 
     }
 }
