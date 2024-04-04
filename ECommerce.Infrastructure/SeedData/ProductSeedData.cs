@@ -22,7 +22,7 @@ namespace ECommerce.Infrastructure.SeedData
                     Price = 100,
                     Quantity = 10,
                     Description = "Bu ürünün açıklaması 1",
-                    ImagePath = "images/cakmak1.jpg",
+                    ImagePath = "../../images/00285a53-201b-475e-b056-31b524c0354c.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 1
@@ -35,10 +35,10 @@ namespace ECommerce.Infrastructure.SeedData
                     Price = 150,
                     Quantity = 5,
                     Description = "Bu ürünün açıklaması 2",
-                    ImagePath = "images/cakmak2.jpg",
+                    ImagePath = "../../images/00ca64ae-faaa-4235-bd98-a4bb4623bfc2.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
-                    CategoryId = 2
+                    CategoryId = 1
                 },
                 new Product
                 {
@@ -51,7 +51,7 @@ namespace ECommerce.Infrastructure.SeedData
                     ImagePath = "images/cakmak3.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -77,16 +77,16 @@ namespace ECommerce.Infrastructure.SeedData
                     ImagePath = "images/cakmak5.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Product
                 {
                     Id = 6,
-                    Name = "Aksesuar 1",
+                    Name = "Cüzdan 1",
                     Color = "Mavi",
                     Price = 150,
                     Quantity = 5,
-                    Description = "Bu ürünün açıklaması 2",
+                    Description = "Bu ürünün açıklaması 1",
                     ImagePath = "images/Aksesuar1.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
@@ -95,7 +95,7 @@ namespace ECommerce.Infrastructure.SeedData
                 new Product
                 {
                     Id = 7,
-                    Name = "Aksesuar 2",
+                    Name = "Cüzdan 2",
                     Color = "Kırmızı",
                     Price = 150,
                     Quantity = 5,
@@ -104,6 +104,58 @@ namespace ECommerce.Infrastructure.SeedData
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 3
+                },
+                new Product
+                {
+                    Id = 8,
+                    Name = "Gözlük 1",
+                    Color = "Kırmızı",
+                    Price = 150,
+                    Quantity = 5,
+                    Description = "Bu ürünün açıklaması 2",
+                    ImagePath = "images/Aksesuar2.jpg",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                    CategoryId = 4
+                },
+                new Product
+                {
+                    Id = 9,
+                    Name = "Gözlük 2",
+                    Color = "Kırmızı",
+                    Price = 150,
+                    Quantity = 5,
+                    Description = "Bu ürünün açıklaması 2",
+                    ImagePath = "images/Aksesuar2.jpg",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                    CategoryId = 4
+                },
+                new Product
+                {
+                    Id = 10,
+                    Name = "Kalem 1",
+                    Color = "Kırmızı",
+                    Price = 150,
+                    Quantity = 5,
+                    Description = "Bu ürünün açıklaması 2",
+                    ImagePath = "images/Aksesuar2.jpg",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                    CategoryId = 5
+                },
+                new Product
+                {
+                    Id = 11,
+                    Name = "Kaelm 2",
+                    Color = "Kırmızı",
+                    Price = 150,
+                    Quantity = 5,
+                    Description = "Bu ürünün açıklaması 2",
+                    ImagePath = "images/Aksesuar2.jpg",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                    CategoryId = 5
                 }
             );
         }
