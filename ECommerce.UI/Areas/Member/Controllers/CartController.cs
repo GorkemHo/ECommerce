@@ -29,17 +29,11 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> AddToProduct(int productId, int quantity)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
+            var cartItem = await _cartService.CreateCartItem(productId, quantity);            
 
-            var cartItem = new CartItem
-            {
-                ProductId = productId,
-                Quantity = quantity            
-            };
+            await _cartService.AddToCart(userId,cartItem); 
 
-            await _cartService.AddToCart(userId,cartItem); //???
-
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

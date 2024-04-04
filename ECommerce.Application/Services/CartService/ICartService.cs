@@ -12,9 +12,9 @@ namespace ECommerce.Application.Services.CartService
     public interface ICartService
     {
         Task<Cart> GetCart(string userId);
-        Task AddToCart(string userId, CartItem cartItem);
+        Task AddToCart(string userId, CartItemVm cartItem);
         Task ClearToCart(string userId);
-        Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity);
+        Task<CartItemVm> CreateCartItem(int productId, int Quantity);
         Task DeleteFromCart(string userId, CartItemVm cartItem);
         Task<List<CartItemVm>> GetCartItemsByUserId(string userId);
     }

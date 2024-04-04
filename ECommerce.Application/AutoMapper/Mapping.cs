@@ -43,6 +43,8 @@ namespace ECommerce.Application.AutoMapper
 
 
             CreateMap<Cart, CartVM>().ReverseMap();
+            CreateMap<CartItem, CartItemVm>().ReverseMap();
+
         }
     }
 }

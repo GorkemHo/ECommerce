@@ -224,6 +224,7 @@
 
             <!-- Template Javascript -->
             <script src="~/js/main.js"></script>
+            
             <script>
                 // Form submit edildiğinde kontrol işlemleri yapılır
                 document.querySelector('form').addEventListener('submit', function (e) {
@@ -245,6 +246,26 @@
                             e.preventDefault(); // Form submitini engelle
                         }
                     }
+                });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    $('#addToCartButton').click(function () {
+                        var productId = $('#productId').val();
+                        var quantity = $('#quantity').val();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/Member/Cart/AddToProduct",
+                            data: { productId: productId, quantity: quantity },
+                            success: function (response) {
+                                alert("Ürün sepete eklendi!");
+                            },
+                            error: function (xhr, status, error) {
+                                alert("Ürün sepete eklenirken bir hata oluştu!");
+                            }
+                        });
+                    });
                 });
             </script>
 </body>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.VMs.CartVMs;
 using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -17,14 +18,21 @@ namespace ECommerce.Application.Services.CartService
         private readonly ICartRepo _cartRepo;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IProductService _productService;
+        private readonly IMapper _mapper;
+        private readonly ICartItemRepo _cartItemRepo;
 
-        public CartService(ICartRepo cartRepo, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+
+        public CartService(ICartRepo cartRepo, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IProductService productService, IMapper mapper, ICartItemRepo cartItemRepo)
         {
             _cartRepo = cartRepo;
             _signInManager = signInManager;
             _userManager = userManager;
+            _productService = productService;
+            _mapper = mapper;
+            _cartItemRepo = cartItemRepo;
         }
-       
+
         public async Task<Cart> GetCart(string userId)
         {
             var existingCart = await _cartRepo.GetDefault(u => u.UserId == userId);
@@ -38,7 +46,7 @@ namespace ECommerce.Application.Services.CartService
         }
 
 
-        public async Task AddToCart(string userId, CartItem cartItem)
+        public async Task AddToCart(string userId, CartItemVm cartItem)
         {
             var cart = await GetCart(userId);
 
@@ -56,12 +64,11 @@ namespace ECommerce.Application.Services.CartService
                     else
                     {
                         // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
-                        cart.CartItems.Add(cartItem);
+                        cart.CartItems.Add(_mapper.Map<CartItem>(cartItem));
                     }
-              
+                _cartItemRepo.UpdateAsync(_mapper.Map<CartItem>(cartItem));  
 
                 await _cartRepo.UpdateAsync(cart);
-
             }
         }        
 
@@ -91,15 +98,17 @@ namespace ECommerce.Application.Services.CartService
             await _cartRepo.UpdateAsync(cart);
         }
 
-        public async Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity)
+        public async Task<CartItemVm> CreateCartItem(int productId, int Quantity)
         {
+            var ProductVm = await _productService.GetById(productId);              
+
             var cartItemVM = new CartItemVm
             {
-                ProductId = productVm.Id,
+                ProductId = ProductVm.Id,
                 Quantity = Quantity,
-                Price = productVm.Price,
-                ProductName = productVm.Name,
-                Product = productVm
+                Price = ProductVm.Price,
+                ProductName = ProductVm.Name,
+                Product = ProductVm,
             };
             return cartItemVM;
         }
