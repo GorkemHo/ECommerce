@@ -251,26 +251,27 @@ namespace ECommerce.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItems",
+                name: "CartDetail",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ShoppingCartId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartItems", x => x.Id);
+                    table.PrimaryKey("PK_CartDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItems_Carts_Id",
-                        column: x => x.Id,
+                        name: "FK_CartDetail_Carts_ShoppingCartId",
+                        column: x => x.ShoppingCartId,
                         principalTable: "Carts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CartItems_Products_ProductId",
+                        name: "FK_CartDetail_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -310,30 +311,30 @@ namespace ECommerce.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 1, new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8106), null, "Çakmak", null, "Çok Amaçlı", 1, null });
+                values: new object[] { 1, new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3625), null, "Çakmak", null, "Çok Amaçlı", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 2, new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8119), null, "Çakmak", null, "Mumlar İçin", 1, null });
+                values: new object[] { 2, new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3636), null, "Çakmak", null, "Mumlar İçin", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
-                values: new object[] { 3, new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8120), null, "Aksesuar", null, "Aksesuar", 1, null });
+                values: new object[] { 3, new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3637), null, "Aksesuar", null, "Aksesuar", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "Color", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Quantity", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8194), null, "Bu ürünün açıklaması 1", "images/cakmak1.jpg", "çakmak 1", 100m, 10, 1, null },
-                    { 2, 2, "Mavi", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8197), null, "Bu ürünün açıklaması 2", "images/cakmak2.jpg", "çakmak 2", 150m, 5, 1, null },
-                    { 3, 1, "Yeşil", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8199), null, "Bu ürünün açıklaması 3", "images/cakmak3.jpg", "çakmak 3", 200m, 8, 1, null },
-                    { 4, 2, "Sarı", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8200), null, "Bu ürünün açıklaması 4", "images/cakmak4.jpg", "çakmak 4", 120m, 12, 1, null },
-                    { 5, 1, "Mor", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8201), null, "Bu ürünün açıklaması 5", "images/cakmak5.jpg", "çakmak 5", 180m, 6, 1, null },
-                    { 6, 3, "Mavi", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8202), null, "Bu ürünün açıklaması 2", "images/Aksesuar1.jpg", "Aksesuar 1", 150m, 5, 1, null },
-                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 3, 11, 45, 8, 459, DateTimeKind.Local).AddTicks(8203), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Aksesuar 2", 150m, 5, 1, null }
+                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3708), null, "Bu ürünün açıklaması 1", "images/cakmak1.jpg", "çakmak 1", 100m, 10, 1, null },
+                    { 2, 2, "Mavi", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3710), null, "Bu ürünün açıklaması 2", "images/cakmak2.jpg", "çakmak 2", 150m, 5, 1, null },
+                    { 3, 1, "Yeşil", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3712), null, "Bu ürünün açıklaması 3", "images/cakmak3.jpg", "çakmak 3", 200m, 8, 1, null },
+                    { 4, 2, "Sarı", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3713), null, "Bu ürünün açıklaması 4", "images/cakmak4.jpg", "çakmak 4", 120m, 12, 1, null },
+                    { 5, 1, "Mor", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3714), null, "Bu ürünün açıklaması 5", "images/cakmak5.jpg", "çakmak 5", 180m, 6, 1, null },
+                    { 6, 3, "Mavi", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3716), null, "Bu ürünün açıklaması 2", "images/Aksesuar1.jpg", "Aksesuar 1", 150m, 5, 1, null },
+                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 4, 13, 54, 5, 372, DateTimeKind.Local).AddTicks(3717), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Aksesuar 2", 150m, 5, 1, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -376,9 +377,14 @@ namespace ECommerce.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_ProductId",
-                table: "CartItems",
+                name: "IX_CartDetail_ProductId",
+                table: "CartDetail",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartDetail_ShoppingCartId",
+                table: "CartDetail",
+                column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
@@ -409,7 +415,7 @@ namespace ECommerce.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CartItems");
+                name: "CartDetail");
 
             migrationBuilder.DropTable(
                 name: "ProductOrders");

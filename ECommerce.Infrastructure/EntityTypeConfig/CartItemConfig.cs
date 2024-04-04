@@ -14,11 +14,11 @@ namespace ECommerce.Infrastructure.EntityTypeConfig
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x=> x.Quantity).IsRequired(true);
-            builder.HasOne(x=> x.Cart)
-                .WithMany(x=>x.CartItems)
-                .HasForeignKey(x=>x.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.Property(x=> x.Quantity).IsRequired(true);
+            //builder.HasOne(x=> x.Cart)
+            //    .WithMany(x=>x.CartItems)
+            //    .HasForeignKey(x=>x.Id)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
         }
     }
