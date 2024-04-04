@@ -35,7 +35,7 @@ namespace ECommerce.UI
                 opt.Password.RequiredLength = 3;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
-            }).AddEntityFrameworkStores<AppDbContext>()
+            }).AddRoles<IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
               .AddDefaultTokenProviders();
 
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());

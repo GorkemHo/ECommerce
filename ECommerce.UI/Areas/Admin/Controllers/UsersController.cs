@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize("Admin")]
+
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        
         private readonly IAppUserService _userService;
 
-        public UsersController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IAppUserService userService)
+        public UsersController(UserManager<AppUser> userManager,  IAppUserService userService)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
+           
             _userService = userService;
         }
         public async Task<IActionResult> Index()
@@ -94,11 +96,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             await _userService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
-        //public async Task<IActionResult> AddRoleToUser(string userId, string roleID)
-        //{
-        //    await _userManager.AddToRoleAsync(_userManager.FindByIdAsync(userId).Result, _roleManager.FindByIdAsync(roleID).Result.Name);
-        //    return RedirectToAction("Index");
-        //}
+       
     }
 
 

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize("Admin")]
+
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;

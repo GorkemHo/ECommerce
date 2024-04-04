@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+
+@model List<IdentityRole>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Başlık</th>
+            <th>Düzenle</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rol in Model)
+        {
+            <tr>
+                <td>@rol.Id</td>
+                <td>@rol.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@rol.Id">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@rol.Id">Detay</a> |
+                    <a asp-action="Delete" asp-route-id="@rol.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="" asp-asp-controller="" class="btn btn-dark">Yeni Rol Ekle</a>
+
+<a asp-area="Admin" asp-controller="Roles" asp-action="UserRoleList" class="btn btn-dark">Kullanıcı Rol Listesi</a>
+
+

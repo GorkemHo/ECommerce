@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
-    //[Authorize]
+    //[Authorize("Admin")]
+
     [Area("Admin")]
     public class BaseController : Controller
     {

@@ -128,11 +128,17 @@ namespace ECommerce.Application.Services.AppUserService
             }
         }
 
-        public async Task<bool> UserInRole(string userName, string role) //kontrol
+        public async Task<bool> UserInRole(string userName, string role) 
         {
             var user = await userManager.FindByNameAsync(userName);
             bool isInRole = await userManager.IsInRoleAsync(user, role);
             return isInRole;
+        }
+        public async Task<AppUser> AddRole(string userName, string role) 
+        {
+            var user = await userManager.FindByNameAsync(userName);
+      
+            return user;
         }
 
         public async Task<List<UpdateProfileDto>> GetAllUsers()

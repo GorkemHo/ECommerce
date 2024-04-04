@@ -11,6 +11,7 @@ using ECommerce.Application.Models.VMs.UserVMs;
 using ECommerce.Application.Models.DTOs.ProductOrderDTOs;
 using ECommerce.Application.Models.VMs.ProductOrderVMs;
 using ECommerce.Application.Models.VMs.CartVMs;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerce.Application.AutoMapper
 {
@@ -40,7 +41,6 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<ProductOrder, UpdateProductOrderDto>().ReverseMap();
             CreateMap<ProductOrder, ProductOrderVm>().ReverseMap();
             CreateMap<ProductOrder, ProductOrderDetailsVm>().ReverseMap();
-
 
             CreateMap<Cart, CartVM>().ReverseMap();
         }

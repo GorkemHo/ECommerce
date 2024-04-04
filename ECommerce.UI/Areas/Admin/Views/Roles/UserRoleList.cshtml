@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "UserRoleList";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+@model List<AppUser>
+<h1>Kullanıcıların Rol Listesi</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th>Rol Ata</th>
+          
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userRole in Model)
+        {
+            <tr>
+                <td>@userRole.UserName</td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Roles" asp-action="AssignRole" asp-route-id="@userRole.Id" class="btn btn-outline-warning">Rol Ata</a>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="" asp-asp-controller="" class="btn btn-dark">Yeni Rol Ekle</a>
+<a asp-action="Index">Rol Atama Listesine Dön</a>
+
+
+
