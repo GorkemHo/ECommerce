@@ -15,8 +15,6 @@ namespace ECommerce.Domain.Entities
         public string? ImagePath { get; set; }
         [NotMapped]
         public IFormFile? UploadPath { get; set; }
-
-
         public List<ProductOrder>? ProductOrders { get; set; }
 
         public DateTime CreateDate { get; set; }

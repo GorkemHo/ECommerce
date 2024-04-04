@@ -35,7 +35,7 @@
             <div class="row bg-secondary py-2 px-xl-5">
                 <div class="col-lg-11 text-lg-right">
                     <div class="d-flex justify-content-sm-end ">
-                        <a class="text-dark mr-3" asp-area="Member" asp-controller="User" asp-action="Index" >Profilini Görüntüle (@User.Identity.Name)</a>
+                        <a class="text-dark mr-3" asp-area="Member" asp-controller="User" asp-action="Index">Profilini Görüntüle (@User.Identity.Name)</a>
                         <a class="text-dark " asp-area="" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
                     </div>
                 </div>
@@ -62,11 +62,11 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form method="get" asp-action="SearchProduct" asp-controller="Home">
+                <form method="get" asp-action="AllProducts" asp-controller="Home">
                     <div class="input-group">
                         <input type="text"
                                class="form-control"
-                               name="searchTerm" 
+                               name="searchTerm"
                                placeholder="Ürün ara..." />
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text bg-transparent text-primary" style="border: none;">
@@ -97,7 +97,7 @@
                 {
                     <div class="col-lg-3 col-6 text-right">
                         <a asp-controller="Account" asp-action="Login" class="nav-item nav-link fas fa-sign-in-alt text-primary btn border">
-                            <i class="fas fa-sign-in-alt text-primary"></i>
+                            <i class="fas fa-shopping-cart text-primary"></i>
                             <span class="badge"></span>
                         </a>
                     </div>
@@ -128,23 +128,29 @@
                                  id="navbarCollapse">
                                 <div class="navbar-nav mr-auto py-0 ">
                                     <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Anasayfa</a>
-
-                                    <a asp-area="" asp-controller="Home" asp-action="ProductDetail" class="nav-item nav-link">Ürün Detayı</a>
-
-
-
+                                    <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="nav-item nav-link">Tüm Ürünler</a>
                                     <div class="nav-item dropdown">
                                         <a href="#"
                                            class="nav-link dropdown-toggle"
-                                           data-toggle="dropdown">Kategoriler</a>
+                                           data-toggle="dropdown">Çakmaklar</a>
                                         <div class="dropdown-menu rounded-0 m-0">
-                                            <a asp-area="" asp-controller="Home" asp-action="SearchProduct" asp-route-categoryName="Çok Amaçlı" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="SearchProduct" asp-route-categoryName="Mumlar İçin" class="dropdown-item">Mum için Çakmaklar</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="SearchProduct" asp-route-categoryName="Aksesuar" class="dropdown-item">Aksesuarlar</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="SearchProduct" asp-route-categoryName="" class="dropdown-item">Tüm Ürünler</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="LighterForGeneralPurpose" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="LighterForCandle" class="dropdown-item">Mum için Çakmaklar</a>
+                                        </div>
+                                    </div>
+                                    <div class="nav-item dropdown">
+                                        <a href="#"
+                                           class="nav-link dropdown-toggle"
+                                           data-toggle="dropdown">Aksesuarlar</a>
+                                        <div class="dropdown-menu rounded-0 m-0">
+                                            <a asp-area="" asp-controller="Home" asp-action="Wallet" class="dropdown-item">Cüzdan</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Glasses" class="dropdown-item">Gözlük</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" class="dropdown-item">Kalem</a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
                         </nav>
                     </div>
                 </div>

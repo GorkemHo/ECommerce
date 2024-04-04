@@ -88,8 +88,18 @@ namespace ECommerce.Application.Services.ProductService
 
         public async Task<List<ProductVm>> GetProducts()
         {
-            var products = await _productRepo.GetFilteredList(select: x => _mapper.Map<ProductVm>(x),
-                                                     where: x => !x.Status.Equals(Status.Passive));
+            var products = await _productRepo.GetFilteredList(select: x => new ProductVm
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Price = x.Price,
+                Color = x.Color,
+                ImagePath = x.ImagePath,
+                Description = x.Description,
+                CategoryId = x.CategoryId, 
+                CategoryName = x.Category.Name
+            },
+    where: x => !x.Status.Equals(Status.Passive));
             return products;
         }
 
@@ -134,7 +144,7 @@ namespace ECommerce.Application.Services.ProductService
                             Price = p.Price,
                             Quantity = p.Quantity,
                             Description = p.Description,
-                            ImagePath = p.ImagePath,                            
+                            ImagePath = p.ImagePath,
                         }).ToList();
 
                     return products;

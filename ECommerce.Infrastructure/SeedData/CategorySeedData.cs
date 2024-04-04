@@ -33,10 +33,26 @@ namespace ECommerce.Infrastructure.SeedData
                 new Category
                 {
                     Id = 3,
-                    Name = "Aksesuar",
+                    Name = "Cüzdan",
                     Description = "Aksesuar",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,                   
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "Gözlük",
+                    Description = "Aksesuar",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
+                },
+                new Category
+                {
+                    Id = 5,
+                    Name = "Kalem",
+                    Description = "Aksesuar",
+                    CreateDate = DateTime.Now,
+                    Status = Status.Active,
                 }
             );
         }
