@@ -12,9 +12,5 @@ namespace ECommerce.Application.Models.VMs.CartVMs
         public int Id { get; set; }
         public string UserId { get; set; }
         public List<CartItemVm> CartItems { get; set; }
-        public decimal TotalPrice()
-        {
-            return CartItems.Sum(i => i.Price * i.Quantity);
-        }
     }
 }

@@ -13,11 +13,12 @@ namespace ECommerce.Application.Models.VMs.CartVMs
         public int Id { get; set; }
         public int Quantity { get; set; }
         public int ProductId { get; set; }
-
         public string ProductName { get; set; }
-
         public decimal Price { get; set; }
-
         public ProductVm Product { get; set; }
+        public decimal TotalPrice()
+        {
+            return Price * Quantity;
+        }
     }
 }

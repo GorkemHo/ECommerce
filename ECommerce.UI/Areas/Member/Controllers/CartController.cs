@@ -20,25 +20,16 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cart = await _cartService.GetCart(userId);
-            
-            return View(cart);
+            var cartItems = await _cartService.GetCartItemsByUserId(userId);
+            return View(cartItems);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddToProduct(int productId, int quantity)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
-
-            var cartItem = new CartItem
-            {
-                ProductId = productId,
-                Quantity = quantity            
-            };
-
-            await _cartService.AddToCart(userId,cartItem); //???
-
+            var cartItem = new CartItem { ProductId = productId, Quantity = quantity };
+            await _cartService.AddToCart(userId, cartItem);
             return RedirectToAction(nameof(Index));
         }
 
@@ -46,13 +37,11 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> DeleteFromCart(int productId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             var cartItem = new CartItemVm
             {
                 ProductId = productId,
                 
             };
-
             await _cartService.DeleteFromCart(userId, cartItem);
             return RedirectToAction(nameof(Index));
         }
@@ -61,9 +50,7 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> DeleteAllFromCart(int productId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
             await _cartService.ClearToCart(userId);
-
             return RedirectToAction(nameof(Index));
         }
     }
