@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.DTOs.OrderDTOs;
 using ECommerce.Application.Models.VMs.OrderVMs;
+using ECommerce.Application.Models.VMs.ProductOrderVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Application.Models.VMs.UserVMs;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
@@ -28,11 +30,12 @@ namespace ECommerce.Application.Services.OrderService
             await _orderRepo.CreateAsync(order);
         }
 
-        public async Task<CreateOrderDto> FillOrder(AppUser appUser)
+        public async Task<CreateOrderDto> FillOrder(AppUser appUser, List<ProductOrder> productOrderVm)
         {
             CreateOrderDto models = new CreateOrderDto()
             {
-                User = appUser,                
+                User = appUser,
+                ProductOrders = productOrderVm
             };
             return models;
         }

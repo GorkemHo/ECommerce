@@ -20,17 +20,16 @@ namespace ECommerce.Application.Services.CartService
         private readonly UserManager<AppUser> _userManager;
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
-        private readonly ICartItemRepo _cartItemRepo;
 
 
-        public CartService(ICartRepo cartRepo, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IProductService productService, IMapper mapper, ICartItemRepo cartItemRepo)
+
+        public CartService(ICartRepo cartRepo, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IProductService productService, IMapper mapper)
         {
             _cartRepo = cartRepo;
             _signInManager = signInManager;
             _userManager = userManager;
             _productService = productService;
             _mapper = mapper;
-            _cartItemRepo = cartItemRepo;
         }
 
         public async Task<Cart> GetCart(string userId)
@@ -52,25 +51,24 @@ namespace ECommerce.Application.Services.CartService
 
             if (cartItem != null)
             {
-               
-                    // Kontrol edilecek ürünün daha önce sepete eklenip eklenmediğini bul
-                    var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
 
-                    if (existingCartItem != null)
-                    {
-                        // Eğer aynı ürün daha önce eklenmişse quantity'yi artır
-                        existingCartItem.Quantity += cartItem.Quantity;
-                    }
-                    else
-                    {
-                        // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
-                        cart.CartItems.Add(_mapper.Map<CartItem>(cartItem));
-                    }
-                _cartItemRepo.UpdateAsync(_mapper.Map<CartItem>(cartItem));  
+                // Kontrol edilecek ürünün daha önce sepete eklenip eklenmediğini bul
+                var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
+
+                if (existingCartItem != null)
+                {
+                    // Eğer aynı ürün daha önce eklenmişse quantity'yi artır
+                    existingCartItem.Quantity += cartItem.Quantity;
+                }
+                else
+                {
+                    // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
+                    cart.CartItems.Add(_mapper.Map<CartItem>(cartItem));
+                }               
 
                 await _cartRepo.UpdateAsync(cart);
             }
-        }        
+        }
 
         public async Task DeleteFromCart(string userId, CartItemVm cartItem)
         {
@@ -100,7 +98,7 @@ namespace ECommerce.Application.Services.CartService
 
         public async Task<CartItemVm> CreateCartItem(int productId, int Quantity)
         {
-            var ProductVm = await _productService.GetById(productId);              
+            var ProductVm = await _productService.GetById(productId);
 
             var cartItemVM = new CartItemVm
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Entities
 {
-    public class CartItem : IBaseEntity
+    public class CartItem 
     {
         public int Id { get; set; }
 
@@ -19,11 +19,6 @@ namespace ECommerce.Domain.Entities
         public Product Product { get; set; }
 
         public int CartId { get; set; }
-        public Cart Cart { get; set; }
-
-        public DateTime CreateDate { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public DateTime? DeleteDate { get; set; }
-        public Status Status { get; set; }
+        public Cart Cart { get; set; }        
     }
 }
