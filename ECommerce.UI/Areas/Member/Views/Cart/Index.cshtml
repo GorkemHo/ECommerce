@@ -1,5 +1,5 @@
 ﻿@using ECommerce.Application.Models.VMs.CartVMs
-@model List<CartItemVm>
+@model ECommerce.Domain.Entities.Cart
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
@@ -22,10 +22,12 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.ProductName</td>
-                            <td>@item.Price</td>
+                            <td>@item.Product.Name</td>
+                            <td>@item.ProductId</td>
+                            @*<td>@item.Price</td>*@
                             <td>@item.Quantity</td>
-                            <td>@(item.Price * item.Quantity)</td>
+                            <td>@item.Product.Price</td>
+                            <td>@item.UnitPrice</td>
                             <td>
                                 <form asp-action="DeleteFromCart" asp-route-productId="@item.ProductId" method="post">
                                     <button type="submit" class="btn btn-danger">Ürünü Kaldır</button>
@@ -45,16 +47,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3 pt-1">
                         <h6 class="font-weight-medium">Ara Toplam</h6>
-                        <h6 class="font-weight-medium">
-                            @{
-                                decimal totalPrice = 0;
-                                foreach (var item in Model)
-                                {
-                                    totalPrice += item.Price * item.Quantity;
-                                }
-                                @totalPrice
-                            }
-                        </h6>
+                        @*<h6 class="font-weight-medium">@Model.TotalPrice()</h6>*@
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Kargo</h6>
@@ -64,7 +57,7 @@
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
                         <h5 class="font-weight-bold">Toplam</h5>
-                        <h5 class="font-weight-bold">$(@totalPrice + 10)</h5>
+                        @*<h5 class="font-weight-bold">$(@Model.TotalPrice() + 10)</h5>*@
                     </div>
                 </div>
                 <div class="card border-secondary mb-5">

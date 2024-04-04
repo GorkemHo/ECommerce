@@ -11,7 +11,13 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Domain.Repositories
 {
-    public interface ICartRepo : IBaseRepo<Cart>
-    { 
+    public interface ICartRepo 
+    {
+        Task<int> AddItem(int bookId, int qty);
+        Task<int> RemoveItem(int bookId);
+        Task<Cart> GetUserCart();
+        Task<int> GetCartItemCount(string userId = "");
+        Task<Cart> GetCart(string userId);
+        //Task<bool> DoCheckout();
     }
 }

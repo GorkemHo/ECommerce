@@ -15,111 +15,138 @@ namespace ECommerce.Application.Services.CartService
     public class CartService : ICartService
     {
         private readonly ICartRepo _cartRepo;
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
+        
 
-        public CartService(ICartRepo cartRepo, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        public CartService(ICartRepo cartRepo)
         {
             _cartRepo = cartRepo;
-            _signInManager = signInManager;
-            _userManager = userManager;
+            
         }
-       
+
+        public async Task<int> AddItem(int bookId, int qty)
+        {
+            return await _cartRepo.AddItem(bookId, qty);
+        }
+        public async Task<int> RemoveItem(int bookId)
+        {
+            return await _cartRepo.RemoveItem(bookId);
+        }
+        public async Task<Cart> GetUserCart()
+        {
+            return await _cartRepo.GetUserCart();
+        }
+        Task<int> ICartService.GetCartItemCount(string userId)
+        {
+            return _cartRepo.GetCartItemCount(userId);
+        }
         public async Task<Cart> GetCart(string userId)
         {
-            var existingCart = await _cartRepo.GetDefault(u => u.UserId == userId);
-
-            if (existingCart == null)
-            {
-                existingCart = new Cart { UserId = userId };
-                await _cartRepo.CreateAsync(existingCart);
-            }
-            return existingCart;
+            return await _cartRepo.GetCart(userId);
         }
 
+        
+        //Task<bool> DoCheckout();
 
-        public async Task AddToCart(string userId, CartItem cartItem)
-        {
-            var cart = await GetCart(userId);
 
-            if (cartItem != null)
-            {
-               
-                    // Kontrol edilecek ürünün daha önce sepete eklenip eklenmediğini bul
-                    var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
 
-                    if (existingCartItem != null)
-                    {
-                        // Eğer aynı ürün daha önce eklenmişse quantity'yi artır
-                        existingCartItem.Quantity += cartItem.Quantity;
-                    }
-                    else
-                    {
-                        // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
-                        cart.CartItems.Add(cartItem);
-                    }
-              
 
-                await _cartRepo.UpdateAsync(cart);
 
-            }
-        }        
 
-        public async Task DeleteFromCart(string userId, CartItemVm cartItem)
-        {
-            var cart = await GetCart(userId);
+        //public async Task<Cart> GetCart(string userId)
+        //{
+        //    var existingCart = await _cartRepo.GetDefault(u => u.UserId == userId);
 
-            var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.Id == cartItem.Id);
+        //    if (existingCart == null)
+        //    {
+        //        existingCart = new Cart { UserId = userId };
+        //        await _cartRepo.CreateAsync(existingCart);
+        //    }
+        //    return existingCart;
+        //}
 
-            if (existingCartItem != null)
-            {
-                cart.CartItems.Remove(existingCartItem);
-                await _cartRepo.UpdateAsync(cart);
-            }
-            else
-            {
-                // Hata durumu: Sepette böyle bir ürün bulunamadı
-                throw new Exception("Bu ürün sepetinizde bulunamadı.");
-            }
 
-        }
+        //public async Task AddToCart(string userId, CartItem cartItem)
+        //{
+        //    var cart = await GetCart(userId);
 
-        public async Task ClearToCart(string userId)
-        {
-            var cart = await GetCart(userId);
-            cart.CartItems.Clear();
-            await _cartRepo.UpdateAsync(cart);
-        }
+        //    if (cartItem != null)
+        //    {
 
-        public async Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity)
-        {
-            var cartItemVM = new CartItemVm
-            {
-                ProductId = productVm.Id,
-                Quantity = Quantity,
-                Price = productVm.Price,
-                ProductName = productVm.Name,
-                Product = productVm
-            };
-            return cartItemVM;
-        }
+        //            // Kontrol edilecek ürünün daha önce sepete eklenip eklenmediğini bul
+        //            var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
 
-        public async Task<List<CartItemVm>> GetCartItemsByUserId(string userId)
-        {
-            var cart = await GetCart(userId);
+        //            if (existingCartItem != null)
+        //            {
+        //                // Eğer aynı ürün daha önce eklenmişse quantity'yi artır
+        //                existingCartItem.Quantity += cartItem.Quantity;
+        //            }
+        //            else
+        //            {
+        //                // Eğer ürün daha önce eklenmemişse, sepete yeni ürün olarak ekle
+        //                cart.CartItems.Add(cartItem);
+        //            }
 
-            var cartItemsVm = cart.CartItems.Select(ci => new CartItemVm
-            {
-                Id = ci.Id,
-                ProductId = ci.ProductId,
-                Quantity = ci.Quantity,
-                Price = ci.Price,
-                ProductName = ci.Product?.Name, // Varsayılan olarak ProductName'i kullanılabilir.
-                                                // İsterseniz ProductVm kullanarak diğer özellikleri de alabilirsiniz.
-            }).ToList();
 
-            return cartItemsVm;
-        }
+        //        await _cartRepo.UpdateAsync(cart);
+
+        //    }
+        //}        
+
+        //public async Task DeleteFromCart(string userId, CartItemVm cartItem)
+        //{
+        //    var cart = await GetCart(userId);
+
+        //    var existingCartItem = cart.CartItems.FirstOrDefault(ci => ci.Id == cartItem.Id);
+
+        //    if (existingCartItem != null)
+        //    {
+        //        cart.CartItems.Remove(existingCartItem);
+        //        await _cartRepo.UpdateAsync(cart);
+        //    }
+        //    else
+        //    {
+        //        // Hata durumu: Sepette böyle bir ürün bulunamadı
+        //        throw new Exception("Bu ürün sepetinizde bulunamadı.");
+        //    }
+
+        //}
+
+        //public async Task ClearToCart(string userId)
+        //{
+        //    var cart = await GetCart(userId);
+        //    cart.CartItems.Clear();
+        //    await _cartRepo.UpdateAsync(cart);
+        //}
+
+        //public async Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity)
+        //{
+        //    var cartItemVM = new CartItemVm
+        //    {
+        //        ProductId = productVm.Id,
+        //        Quantity = Quantity,
+        //        Price = productVm.Price,
+        //        ProductName = productVm.Name,
+        //        Product = productVm
+        //    };
+        //    return cartItemVM;
+        //}
+
+        //public async Task<List<CartItemVm>> GetCartItemsByUserId(string userId)
+        //{
+        //    var cart = await GetCart(userId);
+
+        //    var cartItemsVm = cart.CartItems.Select(ci => new CartItemVm
+        //    {
+        //        Id = ci.Id,
+        //        ProductId = ci.ProductId,
+        //        Quantity = ci.Quantity,
+        //        Price = ci.Price,
+        //        ProductName = ci.Product?.Name, // Varsayılan olarak ProductName'i kullanılabilir.
+        //                                        // İsterseniz ProductVm kullanarak diğer özellikleri de alabilirsiniz.
+        //    }).ToList();
+
+        //    return cartItemsVm;
+        //}
 
     }
 }
