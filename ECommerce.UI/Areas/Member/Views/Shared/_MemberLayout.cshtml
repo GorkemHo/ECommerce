@@ -35,7 +35,7 @@
             <div class="row bg-secondary py-2 px-xl-5">
                 <div class="col-lg-11 text-lg-right">
                     <div class="d-flex justify-content-sm-end ">
-                        <a class="text-dark mr-3" asp-area="Member" asp-controller="User" asp-action="Index" >Profilini Görüntüle (@User.Identity.Name)</a>
+                        <a class="text-dark mr-3" asp-area="Member" asp-controller="User" asp-action="Index">Profilini Görüntüle (@User.Identity.Name)</a>
                         <a class="text-dark " asp-area="" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
                     </div>
                 </div>
@@ -53,7 +53,6 @@
             </div>
         }
 
-
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a sp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none">
@@ -63,25 +62,25 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form method="get" asp-action="AllProducts" asp-controller="Home">
                     <div class="input-group">
                         <input type="text"
                                class="form-control"
+                               name="searchTerm"
                                placeholder="Ürün ara..." />
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" class="input-group-text bg-transparent text-primary" style="border: none;">
                                 <i class="fa fa-search"></i>
-
-                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
             @* <div class="col-lg-3 col-6 text-right">
-                <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
-                    <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
+            <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
+            <i class="fas fa-shopping-cart text-primary"></i>
+            <span class="badge">0</span>
+            </a>
             </div> *@
 
             @{
@@ -98,7 +97,7 @@
                 {
                     <div class="col-lg-3 col-6 text-right">
                         <a asp-controller="Account" asp-action="Login" class="nav-item nav-link fas fa-sign-in-alt text-primary btn border">
-                            <i class="fas fa-sign-in-alt text-primary"></i>
+                            <i class="fas fa-shopping-cart text-primary"></i>
                             <span class="badge"></span>
                         </a>
                     </div>
@@ -129,28 +128,30 @@
                                  id="navbarCollapse">
                                 <div class="navbar-nav mr-auto py-0 ">
                                     <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Anasayfa</a>
-
-                                    <a asp-area="" asp-controller="Home" asp-action="ProductDetail" class="nav-item nav-link">Ürün Detayı</a>
-
-
-
+                                    <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="nav-item nav-link">Tüm Ürünler</a>
                                     <div class="nav-item dropdown">
                                         <a href="#"
                                            class="nav-link dropdown-toggle"
-                                           data-toggle="dropdown">Kategoriler</a>
+                                           data-toggle="dropdown">Çakmaklar</a>
                                         <div class="dropdown-menu rounded-0 m-0">
                                             <a asp-area="" asp-controller="Home" asp-action="LighterForGeneralPurpose" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
                                             <a asp-area="" asp-controller="Home" asp-action="LighterForCandle" class="dropdown-item">Mum için Çakmaklar</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="Accessorize" class="dropdown-item">Aksesuarlar</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="dropdown-item">Tüm Ürünler</a>
                                         </div>
                                     </div>
-
-
+                                    <div class="nav-item dropdown">
+                                        <a href="#"
+                                           class="nav-link dropdown-toggle"
+                                           data-toggle="dropdown">Aksesuarlar</a>
+                                        <div class="dropdown-menu rounded-0 m-0">
+                                            <a asp-area="" asp-controller="Home" asp-action="Wallet" class="dropdown-item">Cüzdan</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Glasses" class="dropdown-item">Gözlük</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" class="dropdown-item">Kalem</a>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+
                         </nav>
-
-
                     </div>
                 </div>
 
@@ -229,5 +230,34 @@
 
             <!-- Template Javascript -->
             <script src="~/js/main.js"></script>
+
+            <script>
+                // Form submit edildiğinde kontrol işlemleri yapılır
+                document.querySelector('form').addEventListener('submit', function (e) {
+                    var minPriceInput = document.getElementById('minPrice');
+                    var maxPriceInput = document.getElementById('maxPrice');
+                    var minPrice = minPriceInput.value;
+                    var maxPrice = maxPriceInput.value;
+
+                    // Min ve Max fiyatları kontrol et
+                    if ((minPrice !== '' && parseFloat(minPrice) < 0) || (maxPrice !== '' && parseFloat(maxPrice) < 0)) {
+                        alert('Fiyatlar 0\'dan küçük olamaz!');
+                        e.preventDefault(); // Form submitini engelle
+                    }
+
+                    // Eğer min fiyat varsa ve max fiyat varsa kontrolü yap
+                    if (minPrice !== '' && maxPrice !== '') {
+                        if (parseFloat(minPrice) > parseFloat(maxPrice)) {
+                            alert('Minimum fiyat, maksimum fiyattan büyük olamaz!');
+                            e.preventDefault(); // Form submitini engelle
+                        }
+                    }
+                });
+            </script>
+
+
+            @await RenderSectionAsync("Scripts", required: false)
+
+
 </body>
 </html>

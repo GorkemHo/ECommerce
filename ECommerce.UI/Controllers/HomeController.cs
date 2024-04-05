@@ -34,35 +34,30 @@ namespace ECommerce.UI.Controllers
             var product = await _productService.GetById(Id);
             return View(product);
         }
-        public async Task<IActionResult> LighterForGeneralPurpose()
+        public async Task<IActionResult> LighterForGeneralPurpose(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
-            var product = await _productService.GetProducts();
-            var model = product.Where(x => x.CategoryName == "Çok Amaçlı").ToList();
-            return View(model);
+            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Çok Amaçlı");
+            return View(products);
         }
-        public async Task<IActionResult> LighterForCandle()
+        public async Task<IActionResult> LighterForCandle(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
-            var product = await _productService.GetProducts();
-            var model = product.Where(x => x.CategoryName == "Mumlar İçin").ToList();
-            return View(model);
+            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Mumlar İçin");
+            return View(products);
         }
-        public async Task<IActionResult> Glasses()
+        public async Task<IActionResult> Glasses(string searchTerm, string color, decimal? minPrice, decimal? maxPrice)
         {
-            var product = await _productService.GetProducts();
-            var model = product.Where(x => x.CategoryName == "Gözlük").ToList();
-            return View(model);
+            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Gözlük");
+            return View(products);
         }
-        public async Task<IActionResult> Wallet()
+        public async Task<IActionResult> Wallet(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
-            var product = await _productService.GetProducts();
-            var model = product.Where(x => x.CategoryName == "Cüzdan").ToList();
-            return View(model);
+            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Cüzdan");
+            return View(products);
         }
-        public async Task<IActionResult> Pen()
+        public async Task<IActionResult> Pen(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
-            var product = await _productService.GetProducts();
-            var model = product.Where(x => x.CategoryName == "Kalem").ToList();
-            return View(model);
+            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Kalem");
+            return View(products);
         }
         public async Task<IActionResult> AllProducts(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
