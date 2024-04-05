@@ -5,7 +5,7 @@
 }
 
 
-@model List<OrderVm>
+@model UserProductListDto
 
 <h2>Kategoriler</h2>
 
@@ -18,16 +18,30 @@
     <thead>
         <tr>
             <th>
-                @* @Html.DisplayNameFor(model => model.Id)  *@
+                OrderId
             </th>
             <th>
-                @* @Html.DisplayNameFor(model => model.Description)  *@
+                User Full Name
             </th>
-            <th></th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Product Price
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Order Status
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Orders)
         {
             <tr>
                 <td>
@@ -36,8 +50,28 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.UserFullName)
                 </td>
+                @foreach (var product in item.ProductOrders)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => product.Quantity)
+                    </td>
+                    <td>
+                        @{
+                            var productPrice = Model.Products.FirstOrDefault(x => x.Id == product.ProductId)?.Price;
+                            var totalPrice = product.Quantity * productPrice ?? 0;
+                        }
+                        @Html.DisplayFor(modelItem => totalPrice)
+                    </td>
+
+                }
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductOrders)
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Düzenle</a> |

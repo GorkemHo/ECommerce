@@ -13,7 +13,9 @@ namespace ECommerce.Application.Models.DTOs.OrderDTOs
         public DateTime CreateDate => DateTime.Now;
 
         public Status Status => Status.Active;
-        
+
+        public OrderStatus OrderStatus => OrderStatus.Pending;
+
         public string UserId { get; set; }
         public AppUser User { get; set; }
 

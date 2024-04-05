@@ -1,21 +1,85 @@
-﻿@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+﻿@model UserProductListDto
 
+@{
+    ViewData["Title"] = "Edit Order";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-@model UpdateOrderDto
-
-<h1>Edit Order</h1>
+<h2>Edit Order</h2>
 
 <form asp-action="Edit" method="post">
-    <input asp-for="Id" type="hidden" />
     <div class="form-group">
-        <label asp-for="UserId" class="control-label"></label>
-        <input asp-for="UserId" class="form-control" />
-        <span asp-validation-for="UserId" class="text-danger"></span>
+        <label asp-for="updateOrder" class="control-label">Order ID</label>
+        <input asp-for="updateOrder.Id" class="form-control" readonly />
     </div>
-    <!-- Diğer inputlar -->
+    <div class="form-group">        
+        <input asp-for="updateOrder.UserId" class="form-control" hidden />
+    </div>
+    <div class="form-group">
+        <label asp-for="updateOrder.User.FirstName" class="control-label">User First Name</label>
+        <input asp-for="updateOrder.User.FirstName" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="updateOrder.User.LastName" class="control-label">User Last Name</label>
+        <input asp-for="updateOrder.User.LastName" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="updateOrder.ProductOrders" class="control-label">Products</label>
+        <input asp-for="updateOrder.ProductOrders" class="form-control" hidden />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Product Price
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Total Price
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>                   
+                    @foreach (var product in @Model.updateOrder.ProductOrders)
+                    {
+                        <td>
+                            
+                            @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => product.Quantity)
+                        </td>
+                        <td>
+                            @{
+                                var productPrice = Model.Products.FirstOrDefault(x => x.Id == product.ProductId)?.Price;
+                                var totalPrice = product.Quantity * productPrice ?? 0;
+                            }
+                            @Html.DisplayFor(modelItem => totalPrice)
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <div class="form-group">
+        <label asp-for="updateOrder.OrderStatus" class="control-label">Order Status</label>
+        <select asp-for="updateOrder.OrderStatus" class="form-control">
+            <option value="@OrderStatus.Pending" selected>Pending</option>
+            <option value="@OrderStatus.Processing">Processing</option>
+            <option value="@OrderStatus.Shipped">Shipped</option>
+            <option value="@OrderStatus.Delivered">Delivered</option>
+            <option value="@OrderStatus.Cancelled">Cancelled</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Order</button>
 </form>

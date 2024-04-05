@@ -48,6 +48,7 @@ namespace ECommerce.Application.Services.OrderService
             {
                 order.DeleteDate = DateTime.Now;
                 order.Status = Status.Passive;
+                order.OrderStatus = OrderStatus.Cancelled;
                 await _orderRepo.DeleteAsync(order);
             }
         }
@@ -59,42 +60,38 @@ namespace ECommerce.Application.Services.OrderService
                 CreateDate = DateTime.Now,
                 UserFirstName = X.User.FirstName,
                 UserLastName = X.User.LastName,
-                UserImagePath = X.User.ImagePath
-
+                UserImagePath = X.User.ImagePath,
+                OrderStatus = X.OrderStatus
             }, where: x => x.Id == Id,
             orderby: x => x.OrderBy(x => x.User.FirstName),
             include: x => x.Include(x => x.User));
-
 
             return order;
         }
 
         public async Task<UpdateOrderDto> GetById(int Id)
         {
-            var order = await _orderRepo.GetFilteredList(select: x => new OrderVm
+            var order = await _orderRepo.GetFilteredFirstOrDefault(select: x => new OrderVm 
             {
-                ID = x.Id,
-                UserFirstName = x.User.FirstName,
-                UserLastName = x.User.LastName,
-                UserId = Convert.ToInt32(x.UserId),                
-                UserImagePath =x.User.ImagePath,
-                ProductOrders = x.ProductOrders,
-
-            },where: x => x.Id ==Id);
-           
+            ID = Id,
+            OrderStatus =x.OrderStatus,
+            UserId = x.UserId,
+            ProductOrders = x.ProductOrders,            
+            }
+            ,where: x => x.Id ==Id);           
             var model = _mapper.Map<UpdateOrderDto>(order);
 
-            model.User = await _appUserRepo.GetFilteredFirstOrDefault(
-                select: x => new AppUser
-                {
-                    Id = x.Id,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                    UserName = x.UserName,
-                    ImagePath = x.ImagePath,
-                }, where: x => x.Status != Status.Passive,
-            orderby: x => x.OrderBy(x => x.FirstName));
-
+            model.User = await _appUserRepo.GetFilteredFirstOrDefault(select: x=> new AppUser
+            {
+                Id= x.Id,
+                UserName = x.UserName,
+                FirstName = x.FirstName,
+                LastName = x.LastName,   
+                Email = x.Email,
+                PhoneNumber = x.PhoneNumber,
+                Address = x.Address,
+            },where: x=> x.Id == model.UserId);
+            
             return model;
         }
 
@@ -105,8 +102,8 @@ namespace ECommerce.Application.Services.OrderService
                 ID = X.Id,
                 UserFirstName = X.User.FirstName,
                 UserLastName = X.User.LastName,
-                ProductOrders = X.ProductOrders
-
+                ProductOrders = X.ProductOrders,
+                OrderStatus = X.OrderStatus
             }, where: x => x.Status != Status.Passive,
             orderby: x => x.OrderBy(x => x.Id),
             include: x => x.Include(x => x.User));

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.DTOs.OrderDTOs;
 using ECommerce.Application.Models.DTOs.UserProductListDTOs;
+using ECommerce.Application.Models.VMs.OrderVMs;
 using ECommerce.Application.Models.VMs.ProductOrderVMs;
 using ECommerce.Application.Services.AppUserService;
 using ECommerce.Application.Services.OrderService;
@@ -16,7 +17,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
     {
         public readonly IOrderService _orderService;
         public readonly IAppUserService _appUserService;
-        public readonly IMapper _mapper; 
+        public readonly IMapper _mapper;
         public readonly IProductService _productService;
 
         public OrdersController(IOrderService orderService, IAppUserService appUserService, IMapper mapper, IProductService productService)
@@ -29,8 +30,14 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var orderList = await _orderService.GetOrder();
-            return View(orderList);
+            UserProductListDto model = new UserProductListDto
+            {
+                AppUsers = await _appUserService.GetAllUsers(),
+                Products = await _productService.GetProducts(),
+                Orders = await _orderService.GetOrder(),
+                CreateOrder = new CreateOrderDto(),
+            };
+            return View(model);
         }
 
         [HttpGet]
@@ -41,7 +48,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                 AppUsers = await _appUserService.GetAllUsers(),
                 Products = await _productService.GetProducts(),
                 CreateOrder = new CreateOrderDto(),
-           };
+            };
 
             return View(model);
         }
@@ -62,31 +69,52 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             };
 
             await _orderService.Create(model);
-            
+
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var category = await _orderService.GetById(id);
-            if (category == null)
+            var order = await _orderService.GetById(id);
+            if (order == null)
             {
                 return NotFound();
             }
-            return View(category);
+            UserProductListDto model = new UserProductListDto
+            {
+                AppUsers = await _appUserService.GetAllUsers(),
+                Products = await _productService.GetProducts(),
+                Orders = await _orderService.GetOrder(),                
+                updateOrder = order
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, UpdateOrderDto model)
+        public async Task<IActionResult> Edit(int id, UserProductListDto model)
         {
-            if (ModelState.IsValid)
+            if (id != model.updateOrder.Id)
             {
-                model.Id = id;
-                await _orderService.Update(model);
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            return View(model);
+
+            if (ModelState.IsValid)
+            {                
+                await _orderService.Update(model.updateOrder);
+                return RedirectToAction(nameof(Index));
+            }            
+
+            UserProductListDto userProductListDto = new UserProductListDto
+            {
+                AppUsers = await _appUserService.GetAllUsers(),
+                Products = await _productService.GetProducts(),
+                Orders = await _orderService.GetOrder(),
+                CreateOrder = new CreateOrderDto(),
+                updateOrder = await _orderService.GetById(id)
+            };
+
+            return View(userProductListDto);
         }
 
         [HttpGet]
@@ -115,7 +143,14 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(order);
+            UserProductListDto model = new UserProductListDto
+            {
+                AppUsers = await _appUserService.GetAllUsers(),
+                Products = await _productService.GetProducts(),
+                Orders = await _orderService.GetOrder(),
+                updateOrder = order
+            };
+            return View(model);
         }
     }
 }
