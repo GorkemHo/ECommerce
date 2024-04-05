@@ -125,10 +125,17 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(order);
+            UserProductListDto model = new UserProductListDto
+            {
+                AppUsers = await _appUserService.GetAllUsers(),
+                Products = await _productService.GetProducts(),
+                Orders = await _orderService.GetOrder(),
+                updateOrder = order
+            };
+            return View(model);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _orderService.Delete(id);

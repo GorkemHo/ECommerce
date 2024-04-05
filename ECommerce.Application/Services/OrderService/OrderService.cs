@@ -49,7 +49,7 @@ namespace ECommerce.Application.Services.OrderService
                 order.DeleteDate = DateTime.Now;
                 order.Status = Status.Passive;
                 order.OrderStatus = OrderStatus.Cancelled;
-                await _orderRepo.DeleteAsync(order);
+                await _orderRepo.UpdateAsync(order);
             }
         }
 
@@ -78,7 +78,7 @@ namespace ECommerce.Application.Services.OrderService
             UserId = x.UserId,
             ProductOrders = x.ProductOrders,            
             }
-            ,where: x => x.Id ==Id);           
+            ,where: x => x.Status != Status.Passive);           
             var model = _mapper.Map<UpdateOrderDto>(order);
 
             model.User = await _appUserRepo.GetFilteredFirstOrDefault(select: x=> new AppUser
