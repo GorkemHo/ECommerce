@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "_FilterPartialView";
+}
+
+<div class="form-group">
+    <label for="searchTerm">Ürün Adı veya Açıklama</label>
+    <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Ürün adı veya açıklama">
+</div>
+
+<!-- Min Price -->
+<div class="form-group">
+    <label for="minPrice">Minimum Fiyat</label>
+    <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Minimum fiyat">
+</div>
+
+<!-- Max Price -->
+<div class="form-group">
+    <label for="maxPrice">Maksimum Fiyat</label>
+    <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Maksimum fiyat">
+</div>
+
+<!-- Color (Multiple) -->
+<div class="form-group">
+    <label for="color">Renkler</label>
+    <select class="form-control" id="color" name="color" multiple>
+        <option value="Siyah">Siyah</option>
+        <option value="Beyaz">Beyaz</option>
+        <option value="Kırmızı">Kırmızı</option>
+        <option value="Mavi">Mavi</option>
+        <option value="Yeşil">Yeşil</option>
+    </select>
+</div>
