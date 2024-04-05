@@ -29,8 +29,14 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var orderList = await _orderService.GetOrder();
-            return View(orderList);
+            UserProductListDto model = new UserProductListDto
+            {
+                AppUsers = await _appUserService.GetAllUsers(),
+                Products = await _productService.GetProducts(),
+                Orders = await _orderService.GetOrder(),                
+                CreateOrder = new CreateOrderDto(),
+            };
+            return View(model);
         }
 
         [HttpGet]
@@ -39,7 +45,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             UserProductListDto model = new UserProductListDto
             {
                 AppUsers = await _appUserService.GetAllUsers(),
-                Products = await _productService.GetProducts(),
+                Products = await _productService.GetProducts(),                
                 CreateOrder = new CreateOrderDto(),
            };
 
