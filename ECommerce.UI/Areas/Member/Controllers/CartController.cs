@@ -1,5 +1,7 @@
-﻿using ECommerce.Application.Models.VMs.CartVMs;
+﻿using ECommerce.Application.Models.DTOs.OrderDTOs;
+using ECommerce.Application.Models.VMs.CartVMs;
 using ECommerce.Application.Services.CartService;
+using ECommerce.Application.Services.OrderService;
 using ECommerce.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +15,8 @@ namespace ECommerce.UI.Areas.Member.Controllers
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
+        private readonly IOrderService _orderService;
+
 
         public CartController(ICartService cartService)
         {
@@ -32,6 +36,26 @@ namespace ECommerce.UI.Areas.Member.Controllers
             TempData["Success"]= "Ürün Sepete Eklendi";
             var cart = await _cartService.GetUserCart();
             return View("Index", cart);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OrderCreate([FromForm] string UserId, [FromForm] int productId, [FromForm] int quantity)
+        {
+            var productOrder = new ProductOrder
+            {
+                ProductId = productId,
+                Quantity = quantity
+            };
+
+            CreateOrderDto model = new CreateOrderDto
+            {
+                UserId = UserId,
+                ProductOrders = new List<ProductOrder> { productOrder }
+            };
+
+            await _orderService.Create(model);
+
+            return View();
         }
 
         public async Task<IActionResult> RemoveItem(int productId)
