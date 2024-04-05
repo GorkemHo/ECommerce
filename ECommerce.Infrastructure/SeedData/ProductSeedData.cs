@@ -48,7 +48,7 @@ namespace ECommerce.Infrastructure.SeedData
                     Price = 200,
                     Quantity = 8,
                     Description = "Bu ürünün açıklaması 3",
-                    ImagePath = "images/cakmak3.jpg",
+                    ImagePath = "~/images/Default.png",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 2
@@ -61,7 +61,7 @@ namespace ECommerce.Infrastructure.SeedData
                     Price = 120,
                     Quantity = 12,
                     Description = "Bu ürünün açıklaması 4",
-                    ImagePath = "images/cakmak4.jpg",
+                    ImagePath = "~/images/Default.png",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 2
@@ -74,7 +74,7 @@ namespace ECommerce.Infrastructure.SeedData
                     Price = 180,
                     Quantity = 6,
                     Description = "Bu ürünün açıklaması 5",
-                    ImagePath = "images/cakmak5.jpg",
+                    ImagePath = "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 2
@@ -100,7 +100,7 @@ namespace ECommerce.Infrastructure.SeedData
                     Price = 150,
                     Quantity = 5,
                     Description = "Bu ürünün açıklaması 2",
-                    ImagePath = "images/Aksesuar2.jpg",
+                    ImagePath = "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg",
                     CreateDate = DateTime.Now,
                     Status = Status.Active,
                     CategoryId = 3

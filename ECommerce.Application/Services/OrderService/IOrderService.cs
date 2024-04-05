@@ -1,5 +1,7 @@
 ﻿using ECommerce.Application.Models.DTOs.OrderDTOs;
 using ECommerce.Application.Models.VMs.OrderVMs;
+using ECommerce.Application.Models.VMs.ProductOrderVMs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Domain.Entities;
 
 namespace ECommerce.Application.Services.OrderService
@@ -18,7 +20,7 @@ namespace ECommerce.Application.Services.OrderService
 
         Task<UpdateOrderDto> GetById(int Id);        
 
-        Task<CreateOrderDto> FillOrder(AppUser appUser);               
+        Task<CreateOrderDto> FillOrder(AppUser appUser, List<ProductOrder> productOrderVm);               
                
     }
 }

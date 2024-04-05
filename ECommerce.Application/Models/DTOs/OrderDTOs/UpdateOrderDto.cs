@@ -10,6 +10,7 @@ namespace ECommerce.Application.Models.DTOs.OrderDTOs
 {
     public class UpdateOrderDto
     {
+        public int Id { get; set; }
         public DateTime UpdateDate => DateTime.Now;
 
         public Status Status => Status.Modified;

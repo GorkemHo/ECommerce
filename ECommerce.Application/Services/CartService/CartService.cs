@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.VMs.CartVMs;
 using ECommerce.Application.Models.VMs.ProductVMs;
+using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Repositories;
 using Microsoft.AspNetCore.Identity;

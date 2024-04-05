@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+
+@model List<OrderVm>
+
+<h2>Kategoriler</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark">Order Ekle</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Id)  *@
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Description)  *@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductOrders)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Detay</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -24,7 +24,7 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<AppUser, UpdateProfileDto>().ReverseMap();
             CreateMap<AppUser, AppUserVm>().ReverseMap();
 
-            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, CreateOrderDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
             CreateMap<Category, CategoryVm>().ReverseMap();
 
@@ -43,6 +43,8 @@ namespace ECommerce.Application.AutoMapper
             CreateMap<ProductOrder, ProductOrderDetailsVm>().ReverseMap();
 
             CreateMap<Cart, CartVM>().ReverseMap();
+            CreateMap<CartItem, CartItemVm>().ReverseMap();
+
         }
     }
 }
