@@ -18,7 +18,7 @@
     <thead>
         <tr>
             <th>
-               OrderId
+                OrderId
             </th>
             <th>
                 User Full Name
@@ -27,28 +27,36 @@
                 Product Name
             </th>
             <th>
+                Product Price
+            </th>
+            <th>
                 Quantity
             </th>
             <th>
                 Total Price
             </th>
-            <th></th>
+            <th>
+                Order Status
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Orders)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserFullName)
+                </td>
                 @foreach (var product in item.ProductOrders)
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => item.ID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserFullName)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Price)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => product.Quantity)
@@ -60,7 +68,11 @@
                         }
                         @Html.DisplayFor(modelItem => totalPrice)
                     </td>
+
                 }
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Düzenle</a> |
                     <a asp-action="Details" asp-route-id="@item.ID">Detay</a> |

@@ -4,18 +4,83 @@
 
 }
 
-@model UpdateOrderDto
 
-<h1>Order Details</h1>
+@model UserProductListDto
 
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">Id</dt>
-        <dd class="col-sm-10">@Model.Id</dd>
-        <!-- Diğer alanlar -->
-    </dl>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Index">Back to List</a>
+<h2>Detaylar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="updateOrder" class="control-label">Order ID</label>
+            <input asp-for="updateOrder.Id" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.FirstName" class="control-label">User First Name</label>
+            <input asp-for="updateOrder.User.FirstName" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.LastName" class="control-label">User Last Name</label>
+            <input asp-for="updateOrder.User.LastName" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.OrderStatus" class="control-label">Order Status</label>
+            <input asp-for="updateOrder.OrderStatus" class="form-control" readonly />
+        </div>        
+        <div class="form-group">
+            <label asp-for="updateOrder.User.Email" class="control-label">User Email</label>
+            <input asp-for="updateOrder.User.Email" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.PhoneNumber" class="control-label">User Phone</label>
+            <input asp-for="updateOrder.User.PhoneNumber" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.Address" class="control-label">User Adress</label>
+            <input asp-for="updateOrder.User.Address" class="form-control" readonly />
+        </div>
     </div>
 </div>
+
+<h3>Products</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Product Price
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Total Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productOrder in @Model.updateOrder.ProductOrders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == productOrder.ProductId).Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == productOrder.ProductId).Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => productOrder.Quantity)
+                </td>
+                <td>
+                    @{
+                        var productPrice = Model.Products.FirstOrDefault(x => x.Id == productOrder.ProductId)?.Price;
+                        var totalPrice = productOrder.Quantity * productPrice ?? 0;
+                    }
+                    @Html.DisplayFor(modelItem => totalPrice)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -15,6 +15,8 @@ namespace ECommerce.Application.Models.DTOs.OrderDTOs
 
         public Status Status => Status.Modified;
 
+        public OrderStatus OrderStatus { get; set; }
+
         public string UserId { get; set; }
         public AppUser User { get; set; }
 
