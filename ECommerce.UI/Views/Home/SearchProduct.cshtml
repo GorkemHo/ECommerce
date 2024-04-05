@@ -1,9 +1,10 @@
-﻿@{
+﻿@using ECommerce.Application.Models.DTOs.UserProductListDTOs
+@{
     ViewData["Title"] = "LighterForCandle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<ProductVm>;
+@model UserProductListDto;
 
 <!-- Shop Start -->
 <div class="container-fluid pt-5">
@@ -14,45 +15,8 @@
                 <h5 class="font-weight-semi-bold mb-4">Filtrele</h5>
                 <form asp-controller="Home" asp-action="SearchProduct" method="get">
                     <!-- Search Term -->
-                    <div class="form-group">
-                        <label for="searchTerm">Ürün Adı veya Açıklama</label>
-                        <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Ürün adı veya açıklama">
-                    </div>
-
-                    <!-- Min Price -->
-                    <div class="form-group">
-                        <label for="minPrice">Minimum Fiyat</label>
-                        <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Minimum fiyat">
-                    </div>
-
-                    <!-- Max Price -->
-                    <div class="form-group">
-                        <label for="maxPrice">Maksimum Fiyat</label>
-                        <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Maksimum fiyat">
-                    </div>
-
-                    <!-- Color (Multiple) -->
-                    <div class="form-group">
-                        <label for="color">Renkler</label>
-                        <select class="form-control" id="color" name="color" multiple>
-                            <option value="Siyah">Siyah</option>
-                            <option value="Beyaz">Beyaz</option>
-                            <option value="Kırmızı">Kırmızı</option>
-                            <option value="Mavi">Mavi</option>
-                            <option value="Yeşil">Yeşil</option>
-                        </select>
-                    </div>
-
-                    <!-- Category (Multiple) -->
-                    <div class="form-group">
-                        <label for="categoryName">Kategoriler</label>
-                        <select class="form-control" id="categoryName" name="categoryName" multiple>
-                            <option value="Çok Amaçlı">Çok Amaçlı</option>
-                            <option value="Mumlar İçin">Mumlar İçin</option>
-                            <option value="Aksesuar">Aksesuar</option>
-                        </select>
-                    </div>
-
+                    @await Html.PartialAsync("_FilterPartialView")
+                    @await Html.PartialAsync("_FilterCategoryView")                   <
                     <!-- Filtrele Butonu -->
                     <button type="submit" class="btn btn-primary">Filtrele</button>
                 </form>
@@ -62,7 +26,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                @foreach (var product in Model)
+                @foreach (var product in Model.Products)
                 {
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
@@ -111,19 +75,10 @@
     </div>
 </div>
 <!-- Shop End -->
-
-
-@section Scripts{
+@section Scripts {
     <script>
         async function add(productId) {
             var usernameEl = document.getElementById("username");
-            //if (usernameEl == null) {
-            //    window.location.href = "/Identity/Account/Login";
-            //    //var username=usernameEl.innerText;
-            //    //  if(username.length<1){
-            //    //      window.location.href="/Identity/Account/Login";
-            //    //  }
-            //}
             try {
                 var response = await fetch(`/Member/Cart/AddItem?bookId=${productId}`);
                 if (response.status == 200) {

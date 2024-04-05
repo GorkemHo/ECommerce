@@ -131,22 +131,13 @@ namespace ECommerce.Application.Services.ProductService
 
                 if (model != null && model.Products.Count > 0)
                 {
-                    var products = model.Products.Where(p =>
-                        (string.IsNullOrEmpty(searchTerm) || p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm)) &&
-                        (string.IsNullOrEmpty(color) || p.Color.Equals(color)) &&
-                        (!minPrice.HasValue || p.Price >= minPrice) &&
-                        (!maxPrice.HasValue || p.Price <= maxPrice))
-                        .Select(p => new ProductVm
-                        {
-                            Id = p.Id,
-                            Name = p.Name,
-                            Color = p.Color,
-                            Price = p.Price,
-                            Quantity = p.Quantity,
-                            Description = p.Description,
-                            ImagePath = p.ImagePath,
-                        }).ToList();
-
+                    var products = await _productRepo.GetFilteredList(select: x => _mapper.Map<ProductVm>(x),
+                    where: x => (!x.Status.Equals(Status.Passive)) &&
+                        (string.IsNullOrEmpty(searchTerm) || x.Name.Contains(searchTerm) || x.Description.Contains(searchTerm)) &&
+                        (string.IsNullOrEmpty(color) || x.Color.Equals(color)) &&
+                        (!minPrice.HasValue || x.Price >= minPrice) &&
+                        (!maxPrice.HasValue || x.Price <= maxPrice) &&
+                        (x.Category.Name == CategoryName));                   
                     return products;
                 }
                 else

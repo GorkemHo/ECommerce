@@ -1,4 +1,5 @@
-﻿using ECommerce.Application.Models.VMs.ProductVMs;
+﻿using ECommerce.Application.Models.DTOs.UserProductListDTOs;
+using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Application.Services.CategoryService;
 using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Entities;
@@ -56,13 +57,30 @@ namespace ECommerce.UI.Controllers
         }
         public async Task<IActionResult> Pen(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
-            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Kalem");
-            return View(products);
+            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
+            UserProductListDto userProductListDto = new UserProductListDto
+            {
+                Products = products,
+                CategoryName = CategoryName
+            };
+            return View(userProductListDto);
         }
         public async Task<IActionResult> AllProducts(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
             var product = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
             return View(product);
+        }
+
+        public async Task<IActionResult> SearchProduct(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        {
+            var product = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
+            var categorylist = await _categoryService.GetCategories();
+            UserProductListDto userProductListDto = new UserProductListDto
+            {
+                categoryVms = categorylist,
+                Products = product,
+            };
+            return View(userProductListDto);
         }
 
         public IActionResult Contact()

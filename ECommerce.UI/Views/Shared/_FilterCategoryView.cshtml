@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "_FilterCategoryView";
+}
+@model UserProductListDto
+
+<div class="form-group">
+    <label for="categoryName">Kategoriler</label>
+    <select class="form-control" id="categoryName" name="categoryName" multiple>
+        @foreach(var category in Model.categoryVms)
+        {
+            <option value="@category.Name">@category.Name</option>
+        }
+    </select>
+</div>
