@@ -1,0 +1,37 @@
+﻿@model RoleDetailsVm
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Rol Detayları</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Rol Adı</dt>
+        <dd class="col-sm-10">@Model.Role.Name</dd>
+    </dl>
+</div>
+
+<h2>Role Ait Kişiler</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.UsersInRole)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Rol Listesine Geri Dön</a>

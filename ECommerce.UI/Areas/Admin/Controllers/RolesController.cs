@@ -22,7 +22,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var roleList =_roleManager.Roles.ToList() ;
+            var roleList = _roleManager.Roles.ToList();
             return View(roleList);
         }
 
@@ -60,8 +60,8 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         {
             var userid = TempData["UserId"].ToString();
             var user = _userManager.Users.FirstOrDefault(x => x.Id == userid);
-            
-            foreach(var item in model)
+
+            foreach (var item in model)
             {
                 if (item.Exists)
                 {
@@ -73,10 +73,105 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                 }
             }
 
-           
+
             return RedirectToAction("UserRoleList");
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(IdentityRole role)
+        {
+            try
+            {
+                var newRole = new IdentityRole();
+                newRole.Name = role.Name;
+                await _roleManager.CreateAsync(newRole);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+            return View(role);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+
+            await _roleManager.DeleteAsync(role);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+
+            var usersInRole = (await _userManager.GetUsersInRoleAsync(role.Name)).ToList();
+
+            var model = new RoleDetailsVm
+            {
+                Role = role,
+                UsersInRole = usersInRole
+            };
+
+            return View(model);
+        }
+     
+        public async Task<IActionResult> Edit(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
+            return View(role);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, IdentityRole role)
+        {
+            if (id != role.Id)
+            {
+                return NotFound();
+            }
+
+            var existingRole = await _roleManager.FindByIdAsync(id);
+            if (existingRole == null)
+            {
+                return NotFound();
+            }
+
+            existingRole.Name = role.Name; 
+
+            try
+            {
+                await _roleManager.UpdateAsync(existingRole);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
     }
 }

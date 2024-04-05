@@ -212,7 +212,11 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9095),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4247),
+>>>>>>> origin/damla
                             Description = "Çakmak",
                             Name = "Çok Amaçlı",
                             Status = 1
@@ -220,7 +224,11 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9105),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4259),
+>>>>>>> origin/damla
                             Description = "Çakmak",
                             Name = "Mumlar İçin",
                             Status = 1
@@ -228,7 +236,11 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9106),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4261),
+>>>>>>> origin/damla
                             Description = "Aksesuar",
                             Name = "Cüzdan",
                             Status = 1
@@ -236,7 +248,11 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9107),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4262),
+>>>>>>> origin/damla
                             Description = "Aksesuar",
                             Name = "Gözlük",
                             Status = 1
@@ -244,7 +260,11 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9108),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4263),
+>>>>>>> origin/damla
                             Description = "Aksesuar",
                             Name = "Kalem",
                             Status = 1
@@ -338,7 +358,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Color = "Kırmızı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9184),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4394),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 1",
                             ImagePath = "../../images/00285a53-201b-475e-b056-31b524c0354c.jpg",
                             Name = "çakmak 1",
@@ -351,7 +375,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Color = "Mavi",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9186),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4397),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "../../images/00ca64ae-faaa-4235-bd98-a4bb4623bfc2.jpg",
                             Name = "çakmak 2",
@@ -364,7 +392,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 3,
                             CategoryId = 2,
                             Color = "Yeşil",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9187),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4400),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 3",
                             ImagePath = "~/images/Default.png",
                             Name = "çakmak 3",
@@ -377,7 +409,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Color = "Sarı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9189),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4402),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 4",
                             ImagePath = "~/images/Default.png",
                             Name = "çakmak 4",
@@ -390,7 +426,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 5,
                             CategoryId = 2,
                             Color = "Mor",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9190),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4404),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 5",
                             ImagePath = "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg",
                             Name = "çakmak 5",
@@ -403,7 +443,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 6,
                             CategoryId = 3,
                             Color = "Mavi",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9193),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4406),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 1",
                             ImagePath = "images/Aksesuar1.jpg",
                             Name = "Cüzdan 1",
@@ -416,7 +460,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 7,
                             CategoryId = 3,
                             Color = "Kırmızı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9194),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4407),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg",
                             Name = "Cüzdan 2",
@@ -429,7 +477,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 8,
                             CategoryId = 4,
                             Color = "Kırmızı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9195),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4409),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "images/Aksesuar2.jpg",
                             Name = "Gözlük 1",
@@ -442,7 +494,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 9,
                             CategoryId = 4,
                             Color = "Kırmızı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9196),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4411),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "images/Aksesuar2.jpg",
                             Name = "Gözlük 2",
@@ -455,7 +511,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 10,
                             CategoryId = 5,
                             Color = "Kırmızı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9197),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4413),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "images/Aksesuar2.jpg",
                             Name = "Kalem 1",
@@ -468,7 +528,11 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 11,
                             CategoryId = 5,
                             Color = "Kırmızı",
+<<<<<<< HEAD
                             CreateDate = new DateTime(2024, 4, 5, 10, 57, 19, 821, DateTimeKind.Local).AddTicks(9199),
+=======
+                            CreateDate = new DateTime(2024, 4, 5, 11, 7, 57, 971, DateTimeKind.Local).AddTicks(4415),
+>>>>>>> origin/damla
                             Description = "Bu ürünün açıklaması 2",
                             ImagePath = "images/Aksesuar2.jpg",
                             Name = "Kaelm 2",
