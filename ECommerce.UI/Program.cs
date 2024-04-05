@@ -28,7 +28,7 @@ namespace ECommerce.UI
                 opt.SignIn.RequireConfirmedEmail = false;
                 opt.SignIn.RequireConfirmedPhoneNumber = false;
                 opt.SignIn.RequireConfirmedAccount = false;
-
+                
                 opt.User.RequireUniqueEmail = false;
 
                 opt.Password.RequireUppercase = false;
