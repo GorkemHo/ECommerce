@@ -12,9 +12,8 @@
 <table class="table">
     <thead>
         <tr>
-            <th>#</th>
-            <th>Başlık</th>
-            <th>Düzenle</th>
+            <th>Rol Adı</th>
+            <th>İşlemler</th>
             
         </tr>
     </thead>
@@ -22,7 +21,6 @@
         @foreach (var rol in Model)
         {
             <tr>
-                <td>@rol.Id</td>
                 <td>@rol.Name</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@rol.Id">Düzenle</a> |
@@ -33,7 +31,7 @@
         }
     </tbody>
 </table>
-<a asp-action="" asp-asp-controller="" class="btn btn-dark">Yeni Rol Ekle</a>
+<a asp-area="Admin" asp-controller="Roles" asp-action="Create" class="btn btn-dark">Yeni Rol Ekle</a>
 
 <a asp-area="Admin" asp-controller="Roles" asp-action="UserRoleList" class="btn btn-dark">Kullanıcı Rol Listesi</a>
 
