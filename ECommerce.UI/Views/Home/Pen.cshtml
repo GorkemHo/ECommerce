@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<ProductVm>;
+@model UserProductListDto
 
 
 
@@ -15,35 +15,9 @@
             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Filtrele</h5>
                 <form asp-controller="Home" asp-action="Pen" method="get">
+                    <input type="hidden" name="CategoryName" value="@Model.CategoryName" />
                     <!-- Search Term -->
-                    <div class="form-group">
-                        <label for="searchTerm">Ürün Adı veya Açıklama</label>
-                        <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Ürün adı veya açıklama">
-                    </div>
-
-                    <!-- Min Price -->
-                    <div class="form-group">
-                        <label for="minPrice">Minimum Fiyat</label>
-                        <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Minimum fiyat">
-                    </div>
-
-                    <!-- Max Price -->
-                    <div class="form-group">
-                        <label for="maxPrice">Maksimum Fiyat</label>
-                        <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Maksimum fiyat">
-                    </div>
-
-                    <!-- Color (Multiple) -->
-                    <div class="form-group">
-                        <label for="color">Renkler</label>
-                        <select class="form-control" id="color" name="color" multiple>
-                            <option value="Siyah">Siyah</option>
-                            <option value="Beyaz">Beyaz</option>
-                            <option value="Kırmızı">Kırmızı</option>
-                            <option value="Mavi">Mavi</option>
-                            <option value="Yeşil">Yeşil</option>
-                        </select>
-                    </div>
+                    @await Html.PartialAsync("_FilterPartialView")
                     <!-- Filtrele Butonu -->
                     <button type="submit" class="btn btn-primary">Filtrele</button>
                 </form>
@@ -53,7 +27,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                @foreach (var product in Model)
+                @foreach (var product in Model.Products)
                 {
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">

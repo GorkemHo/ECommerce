@@ -128,7 +128,7 @@
                                  id="navbarCollapse">
                                 <div class="navbar-nav mr-auto py-0 ">
                                     <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Anasayfa</a>
-                                    <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="nav-item nav-link">Tüm Ürünler</a>
+                                    <a asp-area="" asp-controller="Home" asp-action="SearchProduct" class="nav-item nav-link">Tüm Ürünler</a>
                                     <div class="nav-item dropdown">
                                         <a href="#"
                                            class="nav-link dropdown-toggle"
@@ -144,13 +144,12 @@
                                            data-toggle="dropdown">Aksesuarlar</a>
                                         <div class="dropdown-menu rounded-0 m-0">
                                             <a asp-area="" asp-controller="Home" asp-action="Wallet" class="dropdown-item">Cüzdan</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="Glasses" class="dropdown-item">Gözlük</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="Pen" class="dropdown-item">Kalem</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Gözlük" class="dropdown-item">Gözlük</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Kalem" class="dropdown-item">Kalem</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </nav>
                     </div>
                 </div>
