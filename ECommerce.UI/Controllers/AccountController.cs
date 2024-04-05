@@ -17,13 +17,18 @@ namespace ECommerce.UI.Controllers
         private readonly IAppUserService _userService;
         private readonly ICartService _cartService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(IAppUserService userService, ICartService cartService, UserManager<AppUser> userManager)
+        public AccountController(IAppUserService userService, ICartService cartService, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userService = userService;
             _cartService = cartService;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
+
+
+
         [AllowAnonymous]
         public IActionResult Register()
         {
@@ -41,17 +46,33 @@ namespace ECommerce.UI.Controllers
             {
                 return View(registerDto);
             }
-
+           
             var result = await _userService.Register(registerDto);
 
+            if (registerDto.UserName == "Admin")
+            {
+                await _roleManager.CreateAsync(new IdentityRole
+                {
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                });
+                AppUser user = await _userManager.FindByNameAsync(registerDto.UserName);
+                
+               await _userManager.AddToRoleAsync(user, "Admin");
+
+                return RedirectToAction("Login", "Account");
+
+            }
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByEmailAsync(registerDto.Email);
                 _cartService.GetCart(user.Id);
+
             }
 
             return RedirectToAction("Index", "Home");
         }
+
         [AllowAnonymous]
         public ActionResult Login(string returnUrl = "/")
         {
@@ -73,7 +94,7 @@ namespace ECommerce.UI.Controllers
                 {
                     if (await _userService.UserInRole(loginDto.UserName, "Admin"))
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        return RedirectToAction("Index", "Base", new { area = "Admin" });
                     }
 
                     else if (await _userService.UserInRole(loginDto.UserName, "Member"))
