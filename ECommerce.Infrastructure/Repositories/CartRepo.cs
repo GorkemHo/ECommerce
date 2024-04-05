@@ -34,15 +34,16 @@ namespace ECommerce.Infrastructure.Repositories
                 {
                     cart = new Cart()
                     {
-                        UserId = userId
+                        UserId = userId,
+                        CreateDate = DateTime.Now
                     };
-                    cart.CreateDate = DateTime.Now;
+
                     _db.Carts.Add(cart);
                 }
                 _db.SaveChanges();
                 // cart detail section
                 var cartItem = _db.CartItems
-                                  .FirstOrDefault(a => a.Id == cart.Id && a.ProductId == productId);
+                                  .FirstOrDefault(a => a.ShoppingCartId == cart.Id && a.ProductId == productId);
                 if (cartItem is not null)
                 {
                     cartItem.Quantity += quantity;
@@ -58,7 +59,7 @@ namespace ECommerce.Infrastructure.Repositories
                         Quantity = quantity,
                         UnitPrice = product.Price  // it is a new line after update
                     };
-                    
+
                     _db.CartItems.Add(cartItem);
                 }
                 _db.SaveChanges();
@@ -85,7 +86,7 @@ namespace ECommerce.Infrastructure.Repositories
                     throw new Exception("Invalid cart");
                 // cart detail section
                 var cartItem = _db.CartItems
-                                  .FirstOrDefault(a => a.Id == cart.Id && a.ProductId == productId);
+                                  .FirstOrDefault(a => a.ShoppingCartId == cart.Id && a.ProductId == productId);
                 if (cartItem is null)
                     throw new Exception("Not items in cart");
                 else if (cartItem.Quantity == 1)
@@ -93,7 +94,7 @@ namespace ECommerce.Infrastructure.Repositories
                 else
                 {
                     cartItem.Quantity = cartItem.Quantity - 1;
-                    cart.UpdateDate = DateTime.Now;                    
+                    cart.UpdateDate = DateTime.Now;
                 }
                 _db.SaveChanges();
             }
@@ -216,6 +217,6 @@ namespace ECommerce.Infrastructure.Repositories
             return userId;
         }
 
-        
+
     }
 }

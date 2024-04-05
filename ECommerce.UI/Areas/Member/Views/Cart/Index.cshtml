@@ -5,6 +5,7 @@
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
 }
 
+
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
@@ -19,21 +20,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.CartItems)
+                    @if (Model == null)
                     {
                         <tr>
-                            <td>@item.Product.Name</td>
-                            <td>@item.ProductId</td>
-                            @*<td>@item.Price</td>*@
-                            <td>@item.Quantity</td>
-                            <td>@item.Product.Price</td>
-                            <td>@item.UnitPrice</td>
-                            <td>
-                                <form asp-action="DeleteFromCart" asp-route-productId="@item.ProductId" method="post">
-                                    <button type="submit" class="btn btn-danger">Ürünü Kaldır</button>
-                                </form>
-                            </td>
+                            <td>Sepetiniz Boş Görünüyor.</td>
                         </tr>
+
+                    }
+
+
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <tr>
+                                <td>@item.Product.Name</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@item.Quantity</td>
+                                <td>@(item.UnitPrice*item.Quantity)</td>
+
+
+<td>
+                                    <form asp-action="RemoveItem" asp-route-productId="@item.ProductId" method="post">
+                                        <button type="submit" class="btn btn-danger">Ürünü Kaldır</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>

@@ -5,7 +5,6 @@
 
 @model List<ProductVm>;
 
-
 <!-- Shop Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
@@ -124,13 +123,14 @@
         //    //  }
         //}
         try {
-            var response = await fetch(`/Member/Cart/AddItem?bookId=${productId}`);
+            var response = await fetch(`/Member/Cart/AddItem?productId=${productId}`);
+
             if (response.status == 200) {
                 var result = await response.json();
                 var cartCountEl = document.getElementById("cartCount");
                 cartCountEl.innerHTML = result;  //???
                 window.location.href = "#cartCount";    //???
-                
+                alert("Buraya gelmiyor");
             }
         }
         catch (err) {
