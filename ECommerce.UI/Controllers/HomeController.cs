@@ -35,26 +35,31 @@ namespace ECommerce.UI.Controllers
             var product = await _productService.GetById(Id);
             return View(product);
         }
-        public async Task<IActionResult> LighterForGeneralPurpose(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
-        {
-            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Çok Amaçlı");
-            return View(products);
-        }
-        public async Task<IActionResult> LighterForCandle(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
-        {
-            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Mumlar İçin");
-            return View(products);
-        }
-        public async Task<IActionResult> Glasses(string searchTerm, string color, decimal? minPrice, decimal? maxPrice)
-        {
-            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Gözlük");
-            return View(products);
-        }
-        public async Task<IActionResult> Wallet(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
-        {
-            var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Cüzdan");
-            return View(products);
-        }
+        //public async Task<IActionResult> LighterForGeneralPurpose(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        //{
+        //    var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Çok Amaçlı");
+        //    return View(products);
+        //}
+        //public async Task<IActionResult> LighterForCandle(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        //{
+        //    var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Mumlar İçin");
+        //    return View(products);
+        //}
+        //public async Task<IActionResult> Glasses(string searchTerm, string color, decimal? minPrice, decimal? maxPrice)
+        //{
+        //    var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Gözlük");
+        //    return View(products);
+        //}
+        //public async Task<IActionResult> Wallet(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        //{
+        //    var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, "Cüzdan");
+        //    return View(products);
+        //}
+        //public async Task<IActionResult> AllProducts(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        //{
+        //    var product = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
+        //    return View(product);
+        //}
         public async Task<IActionResult> Pen(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
             var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
@@ -65,11 +70,7 @@ namespace ECommerce.UI.Controllers
             };
             return View(userProductListDto);
         }
-        public async Task<IActionResult> AllProducts(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
-        {
-            var product = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
-            return View(product);
-        }
+        
 
         public async Task<IActionResult> SearchProduct(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
