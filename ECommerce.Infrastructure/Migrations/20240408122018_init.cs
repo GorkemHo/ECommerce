@@ -314,11 +314,11 @@ namespace ECommerce.Infrastructure.Migrations
                 columns: new[] { "Id", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(410), null, "Çakmak", null, "Çok Amaçlı", 1, null },
-                    { 2, new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(425), null, "Çakmak", null, "Mumlar İçin", 1, null },
-                    { 3, new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(426), null, "Aksesuar", null, "Cüzdan", 1, null },
-                    { 4, new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(427), null, "Aksesuar", null, "Gözlük", 1, null },
-                    { 5, new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(427), null, "Aksesuar", null, "Kalem", 1, null }
+                    { 1, new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6980), null, "Çakmak", null, "Çok Amaçlı", 1, null },
+                    { 2, new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6989), null, "Çakmak", null, "Mumlar İçin", 1, null },
+                    { 3, new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6990), null, "Aksesuar", null, "Cüzdan", 1, null },
+                    { 4, new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6991), null, "Aksesuar", null, "Gözlük", 1, null },
+                    { 5, new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6992), null, "Aksesuar", null, "Kalem", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -326,17 +326,17 @@ namespace ECommerce.Infrastructure.Migrations
                 columns: new[] { "Id", "CategoryId", "Color", "CreateDate", "DeleteDate", "Description", "ImagePath", "Name", "Price", "Quantity", "Status", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(512), null, "Bu ürünün açıklaması 1", "../../images/00285a53-201b-475e-b056-31b524c0354c.jpg", "çakmak 1", 100m, 10, 1, null },
-                    { 2, 1, "Mavi", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(514), null, "Bu ürünün açıklaması 2", "../../images/00ca64ae-faaa-4235-bd98-a4bb4623bfc2.jpg", "çakmak 2", 150m, 5, 1, null },
-                    { 3, 2, "Yeşil", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(516), null, "Bu ürünün açıklaması 3", "~/images/Default.png", "çakmak 3", 200m, 8, 1, null },
-                    { 4, 2, "Sarı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(517), null, "Bu ürünün açıklaması 4", "~/images/Default.png", "çakmak 4", 120m, 12, 1, null },
-                    { 5, 2, "Mor", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(518), null, "Bu ürünün açıklaması 5", "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg", "çakmak 5", 180m, 6, 1, null },
-                    { 6, 3, "Mavi", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(519), null, "Bu ürünün açıklaması 1", "images/Aksesuar1.jpg", "Cüzdan 1", 150m, 5, 1, null },
-                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(520), null, "Bu ürünün açıklaması 2", "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg", "Cüzdan 2", 150m, 5, 1, null },
-                    { 8, 4, "Kırmızı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(521), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Gözlük 1", 150m, 5, 1, null },
-                    { 9, 4, "Kırmızı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(522), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Gözlük 2", 150m, 5, 1, null },
-                    { 10, 5, "Kırmızı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(524), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Kalem 1", 150m, 5, 1, null },
-                    { 11, 5, "Kırmızı", new DateTime(2024, 4, 5, 18, 10, 29, 101, DateTimeKind.Local).AddTicks(525), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Kaelm 2", 150m, 5, 1, null }
+                    { 1, 1, "Kırmızı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7079), null, "Bu ürünün açıklaması 1", "../../images/00285a53-201b-475e-b056-31b524c0354c.jpg", "çakmak 1", 100m, 10, 1, null },
+                    { 2, 1, "Mavi", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7083), null, "Bu ürünün açıklaması 2", "../../images/00ca64ae-faaa-4235-bd98-a4bb4623bfc2.jpg", "çakmak 2", 150m, 5, 1, null },
+                    { 3, 2, "Yeşil", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7085), null, "Bu ürünün açıklaması 3", "~/images/Default.png", "çakmak 3", 200m, 8, 1, null },
+                    { 4, 2, "Sarı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7086), null, "Bu ürünün açıklaması 4", "~/images/Default.png", "çakmak 4", 120m, 12, 1, null },
+                    { 5, 2, "Mor", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7087), null, "Bu ürünün açıklaması 5", "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg", "çakmak 5", 180m, 6, 1, null },
+                    { 6, 3, "Mavi", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7089), null, "Bu ürünün açıklaması 1", "images/Aksesuar1.jpg", "Cüzdan 1", 150m, 5, 1, null },
+                    { 7, 3, "Kırmızı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7090), null, "Bu ürünün açıklaması 2", "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg", "Cüzdan 2", 150m, 5, 1, null },
+                    { 8, 4, "Kırmızı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7091), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Gözlük 1", 150m, 5, 1, null },
+                    { 9, 4, "Kırmızı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7092), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Gözlük 2", 150m, 5, 1, null },
+                    { 10, 5, "Kırmızı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7093), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Kalem 1", 150m, 5, 1, null },
+                    { 11, 5, "Kırmızı", new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7094), null, "Bu ürünün açıklaması 2", "images/Aksesuar2.jpg", "Kaelm 2", 150m, 5, 1, null }
                 });
 
             migrationBuilder.CreateIndex(
