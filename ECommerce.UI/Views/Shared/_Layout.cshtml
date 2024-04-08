@@ -257,7 +257,25 @@
             </script>
 
 
-            @await RenderSectionAsync("Scripts", required: false)
+            @*@await RenderSectionAsync("Scripts", required: false)*@
+
+            <script>
+                async function add(productId) {
+                    var usernameEl = document.getElementById("username");
+                    try {
+                        var response = await fetch(`/Member/Cart/AddItem?productId=${productId}`);
+                        if (response.status == 200) {
+                            var result = await response.json();
+                            var cartCountEl = document.getElementById("cartCount");
+                            cartCountEl.innerHTML = result;  //???
+                            window.location.href = "#cartCount";    //???
+                        }
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                }
+            </script>
 
 
 </body>
