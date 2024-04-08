@@ -55,7 +55,7 @@
 
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none">
+                <a sp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold">
                         <span class="text-primary font-weight-bold border px-3 mr-1">GADİ</span>
                     </h1>
@@ -77,11 +77,11 @@
                 </form>
             </div>
             @* <div class="col-lg-3 col-6 text-right">
-            <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
-            <i class="fas fa-shopping-cart text-primary"></i>
-            <span class="badge">0</span>
-            </a>
-            </div> *@
+                <a asp-area="Member" asp-controller="Cart" asp-action="Index" class="nav-item nav-link fas fa-shopping-cart text-primary btn border">
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <span class="badge">0</span>
+                </a>
+                </div> *@
 
             @{
                 if (User.Identity.IsAuthenticated)
@@ -128,14 +128,14 @@
                                  id="navbarCollapse">
                                 <div class="navbar-nav mr-auto py-0 ">
                                     <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Anasayfa</a>
-                                    <a asp-area="" asp-controller="Home" asp-action="AllProducts" class="nav-item nav-link">Tüm Ürünler</a>
+                                    <a asp-area="" asp-controller="Home" asp-action="SearchProduct" class="nav-item nav-link">Tüm Ürünler</a>
                                     <div class="nav-item dropdown">
                                         <a href="#"
                                            class="nav-link dropdown-toggle"
                                            data-toggle="dropdown">Çakmaklar</a>
                                         <div class="dropdown-menu rounded-0 m-0">
-                                            <a asp-area="" asp-controller="Home" asp-action="LighterForGeneralPurpose" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="LighterForCandle" class="dropdown-item">Mum için Çakmaklar</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Çok Amaçlı" class="dropdown-item">Çok Amaçlı Çakmaklar</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Mumlar İçin" class="dropdown-item">Mum için Çakmaklar</a>
                                         </div>
                                     </div>
                                     <div class="nav-item dropdown">
@@ -143,20 +143,21 @@
                                            class="nav-link dropdown-toggle"
                                            data-toggle="dropdown">Aksesuarlar</a>
                                         <div class="dropdown-menu rounded-0 m-0">
-                                            <a asp-area="" asp-controller="Home" asp-action="Wallet" class="dropdown-item">Cüzdan</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="Glasses" class="dropdown-item">Gözlük</a>
-                                            <a asp-area="" asp-controller="Home" asp-action="Pen" class="dropdown-item">Kalem</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Cüzdan" class="dropdown-item">Cüzdan</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Gözlük" class="dropdown-item">Gözlük</a>
+                                            <a asp-area="" asp-controller="Home" asp-action="Pen" asp-route-categoryName="Kalem" class="dropdown-item">Kalem</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </nav>
                     </div>
                 </div>
 
             </div>
             <!-- Navbar End -->
+
+            <partial name="_NotificationPartial" />
             @RenderBody()
 
             <!-- Footer Start -->
@@ -191,7 +192,7 @@
                                     <div class="navbar-nav">
 
                                         <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-angle-right mr-2"></i>Anasayfa</a>
-                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="AllProducts"><i class="fa fa-angle-right mr-2"></i>Tüm Ürünler</a>
+                                        <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="SearchProduct"><i class="fa fa-angle-right mr-2"></i>Tüm Ürünler</a>
                                         <a class="text-dark mb-2 nav-item " asp-area="Member" asp-controller="Cart" asp-action="Index"><i class="fa fa-angle-right mr-2"></i>Sepet</a>
                                         <a class="text-dark mb-2 nav-item " asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-angle-right mr-2"></i>İletişim</a>
                                     </div>
@@ -256,8 +257,27 @@
             </script>
 
 
-            @await RenderSectionAsync("Scripts", required: false)
+            @*@await RenderSectionAsync("Scripts", required: false)*@
 
+            <script>
+                async function add(productId) {
+                    var usernameEl = document.getElementById("username");
+                    try {
+                        var response = await fetch(`/Member/Cart/AddItem?productId=${productId}`);
+                        if (response.status == 200) {
+                            var result = await response.json();
+                            var cartCountEl = document.getElementById("cartCount");
+                            cartCountEl.innerHTML = result;  //???
+                            window.location.href = "#cartCount";    //???
+                        }
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                }
+            </script>
+        </div>
+    </div>
 
 </body>
 </html>
