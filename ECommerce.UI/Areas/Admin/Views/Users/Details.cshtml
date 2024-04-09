@@ -5,37 +5,37 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>User Details</h2>
+<h2>Kullanıcı Detayları</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserName)
+            Kullanıcı Adı
         </dt>
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Eposta
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
          <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            Ad
         </dt>
         <dd>
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            Soyad
         </dt>
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd> 
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            Adres
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Address)
@@ -45,6 +45,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
-    <a asp-action="Index">Listeye Geri Dön</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark">Düzenle</a> |
+    <a asp-action="Index" class="btn btn-warning">Listeye Geri Dön</a>
 </div>

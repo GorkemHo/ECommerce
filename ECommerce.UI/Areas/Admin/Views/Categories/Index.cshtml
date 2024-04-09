@@ -18,21 +18,19 @@
     <thead>
         <tr>
             <th>
-                @* @Html.DisplayNameFor(model => model.Id)  *@
+                 Kategori Adı 
             </th>
             <th>
-                @* @Html.DisplayNameFor(model => model.Description)  *@
+               Kategori Açıklaması
             </th>
-            <th></th>
+            <th>İşlemler</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>

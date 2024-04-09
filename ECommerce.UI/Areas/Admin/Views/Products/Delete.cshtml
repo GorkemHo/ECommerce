@@ -6,15 +6,48 @@
 
 @model ProductVm
 
-<h2>Delete Product</h2>
+<h2>Bu ürünü silmek istediğinize emin misiniz?</h2>
 
-<div>
-    <h4>Name: @Model.Name</h4>
-    <h4>Price: @Model.Price</h4>
-    <h4>Quantity: @Model.Quantity</h4>
-    <h4>Description: @Model.Description</h4>
+@* <div>
+    <h4>Ad: @Model.Name</h4>
+    <h4>Fiyat @Model.Price</h4>
+    <h4>Adet: @Model.Price</h4>
+    <h4>Açıklama: @Model.Description</h4>
 </div>
 <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
-    <input type="submit" value="Delete" class="btn btn-danger" />
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <input type="submit" value="Sil" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-warning">Ürün Listesine Geri Dön</a>
+</form>
+ *@
+
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayName("Ad")
+
+    </dt>
+    <dd>
+        @Model.Name
+    </dd>
+    <dt>
+        @Html.DisplayName("Fiyat")
+    </dt>
+    <dd>
+        @Model.Price
+    </dd>
+    <dt>
+        @Html.DisplayName("Adet")
+    </dt>
+    <dd>
+        @Model.Price
+    </dd>
+    <dt>
+        @Html.DisplayName("Açıklama")
+    </dt>
+    <dd>
+        @Model.Description
+    </dd>
+</dl>
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+    <input type="submit" value="Sil" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-warning">Ürün Listesine Geri Dön</a>
 </form>

@@ -112,10 +112,15 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                return NotFound();
+            }
 
             await _roleManager.DeleteAsync(role);
             return RedirectToAction(nameof(Index));
         }
+
 
         public async Task<IActionResult> Details(string id)
         {

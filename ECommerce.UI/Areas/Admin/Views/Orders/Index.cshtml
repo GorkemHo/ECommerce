@@ -81,4 +81,80 @@
             </tr>
         }
     </tbody>
+</table> 
+
+<h2>Siparişler</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-dark">Sipariş Ekle</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Sipariş ID
+            </th>
+            <th>
+                @* Kullanıcı adı mı kullanıcının adı soyadı almak mı mantıklı *@
+            </th>
+            <th>
+                Ürün Adı
+            </th>
+            <th>
+                Ürün Fiyatı
+            </th>
+            <th>
+                Ürün Adedi
+            </th>
+            <th>
+                Toplam Fiyat
+            </th>
+            <th>
+                Sipariş Durumu
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserFullName)
+                </td>
+                @foreach (var product in item.ProductOrders)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == product.ProductId).Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => product.Quantity)
+                    </td>
+                    <td>
+                        @{
+                            var productPrice = Model.Products.FirstOrDefault(x => x.Id == product.ProductId)?.Price;
+                            var totalPrice = product.Quantity * productPrice ?? 0;
+                        }
+                        @Html.DisplayFor(modelItem => totalPrice)
+                    </td>
+
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Detay</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
