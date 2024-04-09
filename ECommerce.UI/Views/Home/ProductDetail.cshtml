@@ -43,22 +43,65 @@
             <div class="d-flex align-items-center mb-4 pt-2">
                 <div class="input-group quantity mr-3" style="width: 130px">
                     <div class="input-group-btn">
-                        <button class="btn btn-primary btn-minus">
+                        <button class="btn btn-primary " onclick="decrementQuantity()">
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control bg-secondary text-center" value="1" />
+                    <input id="quantity" type="number" class="form-control bg-secondary text-center" value="1" />
                     <div class="input-group-btn">
-                        <button class="btn btn-primary btn-plus">
+                        <button class="btn btn-primary " onclick="incrementQuantity()">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <button class="btn btn-primary px-3">
-                    <i class="fa fa-shopping-cart mr-1"></i> Sepete Ekle
-                </button>
+
+                <button type="button" onclick="add(@Model.Id)" class="btn btn-primary">Add to cart Gorkem</button>  @*???*@
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    async function add(productId,) {
+        var usernameEl = document.getElementById("username");
+        var quantityValue = document.getElementById("quantity").value;
+        try {
+            var response = await fetch(`/Member/Cart/AddItem?productId=${productId}&quantity=${quantityValue}`);
+            if (response.status == 200) {
+                var result = await response.json();
+                var cartCountEl = document.getElementById("cartCount");
+                cartCountEl.innerHTML = result;  //???
+                window.location.href = "#cartCount";    //???
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+
+</script>
+<script>
+    function incrementQuantity() {
+        var quantityInput = document.getElementById("quantity");
+        var currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    }
+
+
+
+</script>
+
+<script>
+
+
+    function decrementQuantity() {
+        var quantityInput = document.getElementById("quantity");
+        var currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    }
+
+</script>
