@@ -21,6 +21,7 @@ namespace ECommerce.UI
             // Add services to the container.
             builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+            builder.Services.AddRazorPages();
             builder.Services.AddDbContext<AppDbContext>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
@@ -29,7 +30,7 @@ namespace ECommerce.UI
                 opt.SignIn.RequireConfirmedPhoneNumber = false;
                 opt.SignIn.RequireConfirmedAccount = false;
                 
-                opt.User.RequireUniqueEmail = false;
+                opt.User.RequireUniqueEmail = true;
 
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequiredLength = 3;
@@ -62,6 +63,7 @@ namespace ECommerce.UI
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.MapRazorPages();
 
             app.MapControllerRoute(
             name: "areas",

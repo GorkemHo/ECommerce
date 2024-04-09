@@ -5,7 +5,7 @@
 
 @model UserProductListDto
 
-<h1>Create Order</h1>
+@* <h1>Create Order</h1>
 
 <form asp-action="Create" method="post">
     <div class="form-group">
@@ -29,7 +29,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
-
+ *@
 
 <h1>Sipariş Oluştur</h1>
 
@@ -53,5 +53,7 @@
         </select>
         <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Adet" min="1" required />
     </div>
-    <button type="submit" class="btn btn-dark">Kaydet</button>
+    <button type="submit" class="btn btn-dark">Kaydet</button> |
+    <a asp-action="Index" class="btn btn-warning">Sipariş Listesine Geri Dön</a>
+
 </form>
