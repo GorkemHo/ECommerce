@@ -10,7 +10,7 @@
 <div>
     <p>Bu rolü silmek istediğinize emin misiniz "<strong>@Model.Name</strong>"?</p>
     <form asp-action="DeleteConfirmed" asp-route-id="@Model.Name" method="post">
-        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <button type="submit" class="btn btn-danger">Evet, Sil</button> |
         <a asp-action="Index" class="btn btn-secondary">İptal Et</a>
     </form>
 </div>

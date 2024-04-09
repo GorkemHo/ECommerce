@@ -26,7 +26,7 @@
         <div class="form-group">
             <label asp-for="updateOrder.OrderStatus" class="control-label">Order Status</label>
             <input asp-for="updateOrder.OrderStatus" class="form-control" readonly />
-        </div>        
+        </div>
         <div class="form-group">
             <label asp-for="updateOrder.User.Email" class="control-label">User Email</label>
             <input asp-for="updateOrder.User.Email" class="form-control" readonly />
@@ -84,3 +84,82 @@
         }
     </tbody>
 </table>
+
+<h2>Detaylar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="updateOrder" class="control-label">Order ID</label>
+            <input asp-for="updateOrder.Id" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.FirstName" class="control-label">Kullanıcı Adı</label>
+            <input asp-for="updateOrder.User.FirstName" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.LastName" class="control-label">Kullanıcı Soyadı</label>
+            <input asp-for="updateOrder.User.LastName" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.OrderStatus" class="control-label">Sipariş Durumu</label>
+            <input asp-for="updateOrder.OrderStatus" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.Email" class="control-label">Kullanıcı Email</label>
+            <input asp-for="updateOrder.User.Email" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.PhoneNumber" class="control-label">Kullanıcı Telefonu</label>
+            <input asp-for="updateOrder.User.PhoneNumber" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="updateOrder.User.Address" class="control-label">Kullanıcı Adresi</label>
+            <input asp-for="updateOrder.User.Address" class="form-control" readonly />
+        </div>
+    </div>
+</div>
+
+<h3>Ürünler</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ürün Adı
+            </th>
+            <th>
+                Ürün Fiyatı
+            </th>
+            <th>
+                Ürün Adedi
+            </th>
+            <th>
+                Toplam Fiyat
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productOrder in @Model.updateOrder.ProductOrders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == productOrder.ProductId).Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Products.FirstOrDefault(x => x.Id == productOrder.ProductId).Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => productOrder.Quantity)
+                </td>
+                <td>
+                    @{
+                        var productPrice = Model.Products.FirstOrDefault(x => x.Id == productOrder.ProductId)?.Price;
+                        var totalPrice = productOrder.Quantity * productPrice ?? 0;
+                    }
+                    @Html.DisplayFor(modelItem => totalPrice)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-warning ">Sipariş Listesine Dön</a>

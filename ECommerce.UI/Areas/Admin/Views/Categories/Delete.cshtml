@@ -37,8 +37,9 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Kategoriler Listesine Geri Dön</a>
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" method="post">
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-warning">Kategoriler Listesine Geri Dön</a>
     </form>
+
 </div>

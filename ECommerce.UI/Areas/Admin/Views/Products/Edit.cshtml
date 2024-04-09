@@ -6,27 +6,27 @@
 
 @model UpdateProductDto
 
-<h2>Edit Product</h2>
+<h2>Ürünü Düzenle</h2>
 
 <form asp-action="Edit" enctype="multipart/form-data" method="post">
     <div class="form-group">
-        <label>Name:</label>
+        <label>Ad</label>
         <input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Price:</label>
+        <label>Fiyat</label>
         <input asp-for="Price" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Color:</label>
+        <label>Renk</label>
         <input asp-for="Color" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Quantity:</label>
+        <label>Adet</label>
         <input asp-for="Quantity" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Category:</label>
+        <label>Kategori</label>
         <select asp-for="CategoryId" class="form-control">
             @foreach (var item in Model.Categories)
             {
@@ -36,16 +36,16 @@
         </select>
     </div>
     <div class="form-group">
-        <label>Description:</label>
+        <label>Açıklama</label>
         <input asp-for="Description" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Upload Image:</label>
+        <label>Görsel</label>
         <input type="file" asp-for="UploadPath" class="form-control-file" />
     </div>
   
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <button type="submit" class="btn btn-dark">Kaydet</button> |
+    <a asp-action="Index" class="btn btn-warning">Ürün Listesine Geri Dön</a>
 </form>
 
 
