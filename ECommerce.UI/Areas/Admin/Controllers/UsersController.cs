@@ -2,13 +2,14 @@
 using ECommerce.Application.Services.AppUserService;
 using ECommerce.Domain.Entities;
 using ECommerce.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize("Admin")]
+    [Authorize(Roles ="Admin")]
 
     public class UsersController : Controller
     {

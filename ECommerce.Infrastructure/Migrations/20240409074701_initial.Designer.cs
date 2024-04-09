@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240408122018_init")]
-    partial class init
+    [Migration("20240409074701_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -214,7 +214,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6980),
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7675),
                             Description = "Çakmak",
                             Name = "Çok Amaçlı",
                             Status = 1
@@ -222,7 +222,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6989),
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7683),
                             Description = "Çakmak",
                             Name = "Mumlar İçin",
                             Status = 1
@@ -230,7 +230,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6990),
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7684),
                             Description = "Aksesuar",
                             Name = "Cüzdan",
                             Status = 1
@@ -238,7 +238,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6991),
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7685),
                             Description = "Aksesuar",
                             Name = "Gözlük",
                             Status = 1
@@ -246,7 +246,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(6992),
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7686),
                             Description = "Aksesuar",
                             Name = "Kalem",
                             Status = 1
@@ -343,10 +343,10 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7079),
-                            Description = "Bu ürünün açıklaması 1",
-                            ImagePath = "../../images/00285a53-201b-475e-b056-31b524c0354c.jpg",
-                            Name = "çakmak 1",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7783),
+                            Description = "• Kaplama: Red Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
+                            ImagePath = "../../images/cakmak/cakmak-kirmizi.jpg",
+                            Name = "Çakmak",
                             Price = 100m,
                             Quantity = 10,
                             Status = 1
@@ -356,10 +356,10 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Color = "Mavi",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7083),
-                            Description = "Bu ürünün açıklaması 2",
-                            ImagePath = "../../images/00ca64ae-faaa-4235-bd98-a4bb4623bfc2.jpg",
-                            Name = "çakmak 2",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7786),
+                            Description = "• Kaplama: Indigo\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
+                            ImagePath = "../../images/cakmak/cakmak-mavi.jpg",
+                            Name = "Çakmak",
                             Price = 150m,
                             Quantity = 5,
                             Status = 1
@@ -367,12 +367,12 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            CategoryId = 2,
+                            CategoryId = 1,
                             Color = "Yeşil",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7085),
-                            Description = "Bu ürünün açıklaması 3",
-                            ImagePath = "~/images/Default.png",
-                            Name = "çakmak 3",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7788),
+                            Description = "• Kaplama: Green Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
+                            ImagePath = "../../images/cakmak/cakmak-yesil.jpg",
+                            Name = "Çakmak",
                             Price = 200m,
                             Quantity = 8,
                             Status = 1
@@ -380,12 +380,12 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            CategoryId = 2,
-                            Color = "Sarı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7086),
-                            Description = "Bu ürünün açıklaması 4",
-                            ImagePath = "~/images/Default.png",
-                            Name = "çakmak 4",
+                            CategoryId = 1,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7789),
+                            Description = "• Kaplama: Black Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
+                            ImagePath = "../../images/cakmak/cakmak-siyah.jpg",
+                            Name = "Çakmak",
                             Price = 120m,
                             Quantity = 12,
                             Status = 1
@@ -393,12 +393,12 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            CategoryId = 2,
-                            Color = "Mor",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7087),
-                            Description = "Bu ürünün açıklaması 5",
-                            ImagePath = "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg",
-                            Name = "çakmak 5",
+                            CategoryId = 1,
+                            Color = "Beyaz",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7791),
+                            Description = "• Kaplama: White Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
+                            ImagePath = "../../images/cakmak/cakmak-beyaz.jpg",
+                            Name = "Çakmak",
                             Price = 180m,
                             Quantity = 6,
                             Status = 1
@@ -406,25 +406,25 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 6,
-                            CategoryId = 3,
-                            Color = "Mavi",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7089),
-                            Description = "Bu ürünün açıklaması 1",
-                            ImagePath = "images/Aksesuar1.jpg",
-                            Name = "Cüzdan 1",
-                            Price = 150m,
-                            Quantity = 5,
+                            CategoryId = 2,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7792),
+                            Description = "Romantik bir akşam yemeği için mumlar hazır mı? Güzel bir akşam yemeğinde mumları yakmayı Zippo Mum Çakmağına bırakın. Fırçalanmış krom renkli Mum çakmağı yumuşak bir dokunmayla yanmaya hazır sistemi, ayarlanilir alev çıkışı, patentli çocuk-resistans kilidi ve baştan uca 16,5 cm uzunluğunda. Fırçalanmış krom rengine sahip mum çakmağı 3-yıl garantiye sahiptir. Optimum yanma performansı için Zippo Premium Bütan gazı kullanılması önerilir.Romantik bir akşam yemeği için mumlar hazır mı? Güzel bir akşam yemeğinde mumları yakmayı Zippo Mum Çakmağına bırakın. Fırçalanmış krom renkli Mum çakmağı yumuşak bir dokunmayla yanmaya hazır sistemi, ayarlanilir alev çıkışı, patentli çocuk-resistans kilidi ve baştan uca 16,5 cm uzunluğunda. Fırçalanmış krom rengine sahip mum çakmağı 3-yıl garantiye sahiptir. Optimum yanma performansı için Zippo Premium Bütan gazı kullanılması önerilir.",
+                            ImagePath = "../../images/cakmak/mum-icin-cakmak.jpg",
+                            Name = "Çakmak",
+                            Price = 180m,
+                            Quantity = 6,
                             Status = 1
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 3,
-                            Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7090),
-                            Description = "Bu ürünün açıklaması 2",
-                            ImagePath = "~/images/9c11630d-b841-4242-9bf1-8bd8405f507a.jpg",
-                            Name = "Cüzdan 2",
+                            Color = "Mavi",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7794),
+                            Description = "Zippo'nun yepyeni Denim serisinin bir parçası. Cebinizde tarz yaratın! Orijinal Zippo logosuna ve ihtiyacınız olan her şeye uyacak çeşitli bölmelere sahip bir deri-denim Kredi Kartı Tutucu.\r\n\r\nDeri ve Denim Kot Kumaşından Üretilmiştir\r\nKot ve Ten Rengi\r\nYatay biçimli İki Katlı Kredi Kartı Cüzdanı",
+                            ImagePath = "../../images/cuzdan/cuzdan-mavi.jpg",
+                            Name = "Cüzdan",
                             Price = 150m,
                             Quantity = 5,
                             Status = 1
@@ -432,51 +432,116 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 8,
-                            CategoryId = 4,
-                            Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7091),
-                            Description = "Bu ürünün açıklaması 2",
-                            ImagePath = "images/Aksesuar2.jpg",
-                            Name = "Gözlük 1",
-                            Price = 150m,
+                            CategoryId = 3,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7795),
+                            Description = "Zippo'nun yepyeni Saffiano serisinin bir parçası. Orijinal Zippo logosuna sahip, Saffiano kabartmalı ve çeşitli bölmelere sahip yüksek kaliteli deriden yapılmış bir deri cüzdan, ihtiyacınız olan her şeye uyacak şekilde.\r\n\r\nSafiano Deriden yapılmıştır\r\nYatay formatlı Fermuarlı Cüzdan\r\nBoyutlar: 9cm x 11cm x 2cm\r\nRFID özelliğine sahip\r\nSiyah",
+                            ImagePath = "../../images/cuzdan/cuzdan-siyah1.jpg",
+                            Name = "Cüzdan",
+                            Price = 120m,
                             Quantity = 5,
                             Status = 1
                         },
                         new
                         {
                             Id = 9,
-                            CategoryId = 4,
-                            Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7092),
-                            Description = "Bu ürünün açıklaması 2",
-                            ImagePath = "images/Aksesuar2.jpg",
-                            Name = "Gözlük 2",
-                            Price = 150m,
+                            CategoryId = 3,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7796),
+                            Description = "Zippo'nun yepyeni Saffiano serisinin bir parçası. Orijinal Zippo logosuna sahip, Saffiano kabartmalı ve çeşitli bölmelere sahip yüksek kaliteli deriden yapılmış bir deri cüzdan, ihtiyacınız olan her şeye uyacak şekilde.\r\n\r\nSafiano Deriden yapılmıştır\r\nYatay biçim Üç bölmeli Cüzdan\r\nBoyutlar: 10,5cm x 9cm x 3,5cm\r\nRFID özelliğine sahip\r\nSiyah",
+                            ImagePath = "../../images/cuzdan/cuzdan-siyah2.jpg",
+                            Name = "Cüzdan",
+                            Price = 100m,
                             Quantity = 5,
                             Status = 1
                         },
                         new
                         {
                             Id = 10,
-                            CategoryId = 5,
-                            Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7093),
-                            Description = "Bu ürünün açıklaması 2",
-                            ImagePath = "images/Aksesuar2.jpg",
-                            Name = "Kalem 1",
-                            Price = 150m,
+                            CategoryId = 3,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7797),
+                            Description = "Renk: Yeşil.\r\nBoyutlar: 10,5 x 8 x 1 cm.\r\nHakiki Deri\r\n6 Kart, 2 İç göz,1 Kimlik gözü\r\nÇevre dostu bir hediye kutusunda paketlenmiştir. Zippo kalitesine uygun olarak Hindistan'da üretilmiştir.Renk: Yeşil.\r\nBoyutlar: 10,5 x 8 x 1 cm.\r\nHakiki Deri\r\n6 Kart, 2 İç göz,1 Kimlik gözü\r\nÇevre dostu bir hediye kutusunda paketlenmiştir. Zippo kalitesine uygun olarak Hindistan'da üretilmiştir.",
+                            ImagePath = "../../images/cuzdan/cuzdan-yesil.jpg",
+                            Name = "Cüzdan",
+                            Price = 100m,
                             Quantity = 5,
                             Status = 1
                         },
                         new
                         {
                             Id = 11,
-                            CategoryId = 5,
+                            CategoryId = 4,
                             Color = "Kırmızı",
-                            CreateDate = new DateTime(2024, 4, 8, 15, 20, 18, 475, DateTimeKind.Local).AddTicks(7094),
-                            Description = "Bu ürünün açıklaması 2",
-                            ImagePath = "images/Aksesuar2.jpg",
-                            Name = "Kaelm 2",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7799),
+                            Description = "G:55mm Y:44mm K:17mm\r\nPolikarbon alaşım\r\nOptik Sınıf: 1\r\n\r\nMaksimum UV koruması\r\n\r\nMikrofiber kılıf\r\nÜcretsiz yanında: Sert karton koruma kabı ve mikrofiber bezPolikarbon alaşım\r\nOptik Sınıf: 1\r\n\r\nMaksimum UV koruması",
+                            ImagePath = "../../images/gozluk/gozluk-kirmizi.jpg",
+                            Name = "Gözlük",
+                            Price = 150m,
+                            Quantity = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 4,
+                            Color = "Mavi",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7800),
+                            Description = "G:58mm Y:50mm K:17mm\r\nMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV koruması\r\n\r\nMikrofiber kılıf\r\nÜcretsiz yanında: Sert karton koruma kabı ve mikrofiber bezMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV koruması",
+                            ImagePath = "../../images/gozluk/gozluk-mavi.jpg",
+                            Name = "Gözlük",
+                            Price = 150m,
+                            Quantity = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 4,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7801),
+                            Description = "G:58mm Y:50mm K:17mm\r\nÖn Genişlik: 138mm\r\nSap Uzunluğu: 140mm\r\nMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV korumasıMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV koruması",
+                            ImagePath = "../../images/gozluk/gozluk-siyah.jpg",
+                            Name = "Gözlük",
+                            Price = 150m,
+                            Quantity = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 5,
+                            Color = "Siyah",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7802),
+                            Description = "Zippo'nun parlak siyah tükenmez kalemi (Ballpoint) çift yönlü açılabilme, Zippo logolu metal klipsli ve orta kalınlıkta siyah uç. Zippo'nun bu kalemi hediye edilmeye uygun özel doğa dostu karton kutusunda iki yıl garanti kapsamındadır.\r\n•Çift Yönlü Açılma\r\n•Tükenmez Kalem (Ball Point)\r\n•Özel doğa dostu karton kutusunda\r\n•Garanti",
+                            ImagePath = "../../images/kalem/kalem-siyah.jpg",
+                            Name = "Kalem",
+                            Price = 150m,
+                            Quantity = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 5,
+                            Color = "Mavi",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7803),
+                            Description = "Zippo'nun gümüş rengi fırçalanmış görünümlü krom tükenmez kalemi (Ballpoint) pürüzsüz ve şık bir görünüm sunuyor. Çift yönlü açma ve kapama, Zippo logolu sabit metal klips ve orta kalınlıkta siyah uç. Zippo'nun gümüş rengi fırçalanmış krom tükenmez kalemi hediye edilmeye uygun özel doğa dostu karton kutusunda iki yıl garanti kapsamındadır.\r\n•Çift Yönlü Açılma\r\n•Tükenmez Kalem (Ball Point)\r\n•Özel doğa dostu karton kutusunda\r\n•Garanti",
+                            ImagePath = "../../images/kalem/kalem-mavi1.jpg",
+                            Name = "Kalem",
+                            Price = 150m,
+                            Quantity = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 5,
+                            Color = "Mavi",
+                            CreateDate = new DateTime(2024, 4, 9, 10, 47, 0, 817, DateTimeKind.Local).AddTicks(7805),
+                            Description = "Zippo'nun gümüş rengi fırçalanmış görünümlü krom ince tükenmez kalemi (Rollerball) pürüzsüz ve şık bir görünüm sunuyor. Aç-kapa kapak özellikli Zippo logolu metal klips ve siyah ucuyla Zippo'nun bu kalemi hediye edilmeye uygun özel doğa dostu karton kutusunda iki yıl garanti kapsamındadır.\r\n•Aç-Kapa Kapak\r\n•İnce Tükenmez Kalem (Roller Ball)\r\n•Özel doğa dostu karton kutusunda\r\n•Garanti",
+                            ImagePath = "../../images/kalem/kalem-mavi2.jpg",
+                            Name = "Kalem",
                             Price = 150m,
                             Quantity = 5,
                             Status = 1
