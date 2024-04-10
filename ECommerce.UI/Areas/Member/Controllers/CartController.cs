@@ -22,19 +22,31 @@ namespace ECommerce.UI.Areas.Member.Controllers
         {
             _cartService = cartService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Cart cart=null)
         {
-            var cart = await _cartService.GetUserCart();
+            if (cart == null)
+            { 
+                 cart = await _cartService.GetUserCart();
+            }
+
             return View(cart);
+
+
         }
 
         public async Task<IActionResult> AddItem(int productId, int quantity = 1, int redirect = 0)
         {
+
             var cartCount = await _cartService.AddItem(productId, quantity);
             
-            //TempData["Success"]= "Ürün Sepete Eklendi";
+           
             var cart = await _cartService.GetUserCart();
-            return View("Index", cart);
+
+            TempData["Success"] = "Sepete ürün eklendi.";
+
+
+
+            return RedirectToAction("Index", cart);
         }
 
         [HttpPost]

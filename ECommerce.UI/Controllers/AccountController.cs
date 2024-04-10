@@ -66,6 +66,9 @@ namespace ECommerce.UI.Controllers
                         }
 
                         await _userManager.AddToRoleAsync(user, "Admin");
+                        
+                        TempData["Success"]= "Kullanıcı Kaydı Gerçekleştirildi.";
+
                         return RedirectToAction("Login", "Account"); 
                     }
                     if (registerDto.UserName != "Admin")
@@ -76,14 +79,17 @@ namespace ECommerce.UI.Controllers
                         }
 
                         await _userManager.AddToRoleAsync(user, "Member");
+                        TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
                         return RedirectToAction("Login", "Account");
+                      
                     }
 
 
-                    _cartService.GetCart(user.Id); 
+                    //_cartService.GetCart(user.Id); 
                 }
 
                 return RedirectToAction("Index", "Home"); 
+              
             }
             else
                 return View(registerDto);
@@ -107,25 +113,31 @@ namespace ECommerce.UI.Controllers
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Login(LoginDto loginDto, string? returnUrl = "/")
         {
-            if (ModelState.IsValid)
+             if (ModelState.IsValid)
             {
                 var result = await _userService.Login(loginDto);
                 if (result.Succeeded)
                 {
                     if (await _userService.UserInRole(loginDto.UserName, "Admin"))
                     {
+                        TempData["Success"] = "Kullanıcı Girişi Gerçekleştirildi.";
                         return RedirectToAction("Index", "Base", new { area = "Admin" });
                     }
 
                     else if (await _userService.UserInRole(loginDto.UserName, "Member"))
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Member" });
+                        TempData["Success"] = "Kullanıcı Girişi Gerçekleştirildi.";
+                        return RedirectToAction("Index", "Home");
                     }
 
                     return RedirectToLocal(returnUrl);
                 }
+
                 ModelState.AddModelError("", "Hatalı Giriş İşlemi");
             }
+
+            TempData["Danger"] = "Giriş Hatalı.";
+
             return View(loginDto);
         }
         private IActionResult RedirectToLocal(string returnUrl = "/")
@@ -139,6 +151,8 @@ namespace ECommerce.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userService.LogOut();
+           // TempData["Success"] = "Kullanıcı Çıkışı Gerçekleştirildi.";
+
             return RedirectToAction("Index", "Home");
         }
     }

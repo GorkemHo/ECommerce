@@ -59,6 +59,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByEmailAsync(registerDto.Email);
+
                 if (user != null)
                 {
 
@@ -68,33 +69,39 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                         {
                             await _roleManager.CreateAsync(new IdentityRole("Admin"));
                         }
+
                         await _userManager.AddToRoleAsync(user, "Admin");
-                        return RedirectToAction("Login", "Account");
+
+                        //TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
+
+                        return RedirectToAction("Index", "Users");
                     }
-
-                    else
+                    if (registerDto.UserName != "Admin")
                     {
-
                         if (!await _roleManager.RoleExistsAsync("Member"))
                         {
                             await _roleManager.CreateAsync(new IdentityRole("Member"));
                         }
-                        await _userManager.AddToRoleAsync(user, "Member");
 
+                        await _userManager.AddToRoleAsync(user, "Member");
+                        // TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
+                        return RedirectToAction("Index", "Users");
 
                     }
 
 
-                   // _cartService.GetCart(user.Id);
+                    //  _cartService.GetCart(user.Id);
                 }
-            }
 
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Users");
+
+            }
+            else
+                return View(registerDto);
+
         }
 
-
-
-        [HttpGet]
+            [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
             var user = await _userService.GetUserById(id);
