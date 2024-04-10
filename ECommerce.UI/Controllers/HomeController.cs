@@ -1,6 +1,8 @@
-﻿using ECommerce.Application.Models.DTOs.UserProductListDTOs;
+﻿using ECommerce.Application.Models.DTOs.MessageDTOs;
+using ECommerce.Application.Models.DTOs.UserProductListDTOs;
 using ECommerce.Application.Models.VMs.ProductVMs;
 using ECommerce.Application.Services.CategoryService;
+using ECommerce.Application.Services.MessageService;
 using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Entities;
 using ECommerce.UI.Models;
@@ -14,12 +16,14 @@ namespace ECommerce.UI.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
+        private readonly IMessageService _messageService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICategoryService categoryService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, ICategoryService categoryService, IMessageService messageService)
         {
             _logger = logger;
             _productService = productService;
             _categoryService = categoryService;
+            _messageService = messageService;
         }
 
         public IActionResult Index()
@@ -84,9 +88,15 @@ namespace ECommerce.UI.Controllers
             return View(userProductListDto);
         }
 
-        public IActionResult Contact()
+        public IActionResult Contact(CreateMessageDto model= null)
         {
-            return View();
+            if(model == null)
+            {
+                model = new CreateMessageDto();
+                
+            }
+            
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -98,6 +108,23 @@ namespace ECommerce.UI.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMessage(CreateMessageDto model)
+        {
+            //await _messageService.Create(model);
+            //TempData["Success"] = "Mesajınız Başarıyla iletildi.";
+            //return RedirectToAction("Contact", "Home");
+
+            if (ModelState.IsValid)
+            {
+                await _messageService.Create(model);
+                TempData["Success"] = "Mesajınız Başarıyla iletildi.";
+                return RedirectToAction("Contact", "Home");
+            }
+            TempData["Warning"] = "Lütfen Eksik Alan Bırakmayınız.";
+            return RedirectToAction("Contact", model);
         }
     }
 }

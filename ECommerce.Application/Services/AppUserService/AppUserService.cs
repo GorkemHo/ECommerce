@@ -81,7 +81,9 @@ namespace ECommerce.Application.Services.AppUserService
             await userManager.SetUserNameAsync(user, model.UserName);
 
             user.Address = model.Address;
-
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            
             user.UpdateDate = DateTime.Now;
 
             await ImageUpload(model, user);

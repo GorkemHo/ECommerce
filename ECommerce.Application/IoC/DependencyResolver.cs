@@ -4,6 +4,7 @@ using ECommerce.Application.AutoMapper;
 using ECommerce.Application.Services.AppUserService;
 using ECommerce.Application.Services.CartService;
 using ECommerce.Application.Services.CategoryService;
+using ECommerce.Application.Services.MessageService;
 using ECommerce.Application.Services.OrderService;
 using ECommerce.Application.Services.ProductOrderService;
 using ECommerce.Application.Services.ProductService;
@@ -22,6 +23,7 @@ namespace ECommerce.Application.IoC
             builder.RegisterType<ProductOrderRepo>().As<IProductOrderRepo>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepo>().As<IProductRepo>().InstancePerLifetimeScope();
             builder.RegisterType<CartRepo>().As<ICartRepo>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageRepo>().As<IMessageRepo>().InstancePerLifetimeScope();
 
             builder.RegisterType<AppUserService>().As<IAppUserService>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
@@ -29,6 +31,7 @@ namespace ECommerce.Application.IoC
             builder.RegisterType<ProductOrderService>().As<IProductOrderService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<CartService>().As<ICartService>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageService>().As<IMessageService>().InstancePerLifetimeScope();
 
 
             // Mapper'ı da Hep IMapper olarak çağırdık bu sebeple Burada Mapper class ı ile IMapper ı resolve ediyoruz.
