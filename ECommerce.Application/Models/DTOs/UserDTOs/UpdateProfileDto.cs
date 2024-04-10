@@ -36,6 +36,8 @@ namespace ECommerce.Application.Models.DTOs.UserDto
         public string? ImagePath { get; set; }
 
         [PictureFileExtension]
+        [Required(ErrorMessage = "Fotoğraf Zorunlu")]
+        [Display(Name = "Fotoğraf")]
         public IFormFile UploadPath { get; set; }
         public DateTime UpdateDate => DateTime.Now;
         public Status Status => Status.Modified;

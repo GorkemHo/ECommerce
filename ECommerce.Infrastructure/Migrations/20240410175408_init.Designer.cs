@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-    [Migration("20240409194255_initial")]
-========
-    [Migration("20240409132603_initial")]
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
-    partial class initial
+    [Migration("20240410175408_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,11 +214,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6342),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3327),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9283),
                             Description = "Çakmak",
                             Name = "Çok Amaçlı",
                             Status = 1
@@ -230,11 +222,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6352),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3338),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9294),
                             Description = "Çakmak",
                             Name = "Mumlar İçin",
                             Status = 1
@@ -242,11 +230,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6353),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3339),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9295),
                             Description = "Aksesuar",
                             Name = "Cüzdan",
                             Status = 1
@@ -254,11 +238,7 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6354),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3340),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9296),
                             Description = "Aksesuar",
                             Name = "Gözlük",
                             Status = 1
@@ -266,15 +246,52 @@ namespace ECommerce.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6356),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3342),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9296),
                             Description = "Aksesuar",
                             Name = "Kalem",
                             Status = 1
                         });
+                });
+
+            modelBuilder.Entity("ECommerce.Domain.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("ECommerce.Domain.Entities.Order", b =>
@@ -367,11 +384,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Color = "Kırmızı",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6499),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3486),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9382),
                             Description = "• Kaplama: Red Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
                             ImagePath = "../../images/cakmak/cakmak-kirmizi.jpg",
                             Name = "Çakmak",
@@ -384,11 +397,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Color = "Mavi",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6501),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3489),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9384),
                             Description = "• Kaplama: Indigo\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
                             ImagePath = "../../images/cakmak/cakmak-mavi.jpg",
                             Name = "Çakmak",
@@ -401,11 +410,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 3,
                             CategoryId = 1,
                             Color = "Yeşil",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6503),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3492),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9386),
                             Description = "• Kaplama: Green Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
                             ImagePath = "../../images/cakmak/cakmak-yesil.jpg",
                             Name = "Çakmak",
@@ -418,11 +423,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 4,
                             CategoryId = 1,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6505),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3494),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9391),
                             Description = "• Kaplama: Black Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
                             ImagePath = "../../images/cakmak/cakmak-siyah.jpg",
                             Name = "Çakmak",
@@ -435,11 +436,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 5,
                             CategoryId = 1,
                             Color = "Beyaz",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6506),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3495),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9392),
                             Description = "• Kaplama: White Matte\r\n• Eşsiz Zippo \"klik\" sesine sahip orijinal Zippo rüzgar geçirmez çakmak.\r\n• Özel hediyelik kutusunda paketlenmiş olarak gelir.\r\n• Tamamı metalden oluşan iç aksam; neredeyse her yerde çalışan rüzgar geçirmez tasarım",
                             ImagePath = "../../images/cakmak/cakmak-beyaz.jpg",
                             Name = "Çakmak",
@@ -452,11 +449,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 6,
                             CategoryId = 2,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6509),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3499),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9393),
                             Description = "Romantik bir akşam yemeği için mumlar hazır mı? Güzel bir akşam yemeğinde mumları yakmayı Zippo Mum Çakmağına bırakın. Fırçalanmış krom renkli Mum çakmağı yumuşak bir dokunmayla yanmaya hazır sistemi, ayarlanilir alev çıkışı, patentli çocuk-resistans kilidi ve baştan uca 16,5 cm uzunluğunda. Fırçalanmış krom rengine sahip mum çakmağı 3-yıl garantiye sahiptir. Optimum yanma performansı için Zippo Premium Bütan gazı kullanılması önerilir.Romantik bir akşam yemeği için mumlar hazır mı? Güzel bir akşam yemeğinde mumları yakmayı Zippo Mum Çakmağına bırakın. Fırçalanmış krom renkli Mum çakmağı yumuşak bir dokunmayla yanmaya hazır sistemi, ayarlanilir alev çıkışı, patentli çocuk-resistans kilidi ve baştan uca 16,5 cm uzunluğunda. Fırçalanmış krom rengine sahip mum çakmağı 3-yıl garantiye sahiptir. Optimum yanma performansı için Zippo Premium Bütan gazı kullanılması önerilir.",
                             ImagePath = "../../images/cakmak/mum-icin-cakmak.jpg",
                             Name = "Çakmak",
@@ -469,11 +462,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 7,
                             CategoryId = 3,
                             Color = "Mavi",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6512),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3501),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9394),
                             Description = "Zippo'nun yepyeni Denim serisinin bir parçası. Cebinizde tarz yaratın! Orijinal Zippo logosuna ve ihtiyacınız olan her şeye uyacak çeşitli bölmelere sahip bir deri-denim Kredi Kartı Tutucu.\r\n\r\nDeri ve Denim Kot Kumaşından Üretilmiştir\r\nKot ve Ten Rengi\r\nYatay biçimli İki Katlı Kredi Kartı Cüzdanı",
                             ImagePath = "../../images/cuzdan/cuzdan-mavi.jpg",
                             Name = "Cüzdan",
@@ -486,11 +475,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 8,
                             CategoryId = 3,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6513),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3503),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9396),
                             Description = "Zippo'nun yepyeni Saffiano serisinin bir parçası. Orijinal Zippo logosuna sahip, Saffiano kabartmalı ve çeşitli bölmelere sahip yüksek kaliteli deriden yapılmış bir deri cüzdan, ihtiyacınız olan her şeye uyacak şekilde.\r\n\r\nSafiano Deriden yapılmıştır\r\nYatay formatlı Fermuarlı Cüzdan\r\nBoyutlar: 9cm x 11cm x 2cm\r\nRFID özelliğine sahip\r\nSiyah",
                             ImagePath = "../../images/cuzdan/cuzdan-siyah1.jpg",
                             Name = "Cüzdan",
@@ -503,11 +488,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 9,
                             CategoryId = 3,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6515),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3504),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9397),
                             Description = "Zippo'nun yepyeni Saffiano serisinin bir parçası. Orijinal Zippo logosuna sahip, Saffiano kabartmalı ve çeşitli bölmelere sahip yüksek kaliteli deriden yapılmış bir deri cüzdan, ihtiyacınız olan her şeye uyacak şekilde.\r\n\r\nSafiano Deriden yapılmıştır\r\nYatay biçim Üç bölmeli Cüzdan\r\nBoyutlar: 10,5cm x 9cm x 3,5cm\r\nRFID özelliğine sahip\r\nSiyah",
                             ImagePath = "../../images/cuzdan/cuzdan-siyah2.jpg",
                             Name = "Cüzdan",
@@ -520,11 +501,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 10,
                             CategoryId = 3,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6516),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3506),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9398),
                             Description = "Renk: Yeşil.\r\nBoyutlar: 10,5 x 8 x 1 cm.\r\nHakiki Deri\r\n6 Kart, 2 İç göz,1 Kimlik gözü\r\nÇevre dostu bir hediye kutusunda paketlenmiştir. Zippo kalitesine uygun olarak Hindistan'da üretilmiştir.Renk: Yeşil.\r\nBoyutlar: 10,5 x 8 x 1 cm.\r\nHakiki Deri\r\n6 Kart, 2 İç göz,1 Kimlik gözü\r\nÇevre dostu bir hediye kutusunda paketlenmiştir. Zippo kalitesine uygun olarak Hindistan'da üretilmiştir.",
                             ImagePath = "../../images/cuzdan/cuzdan-yesil.jpg",
                             Name = "Cüzdan",
@@ -537,11 +514,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 11,
                             CategoryId = 4,
                             Color = "Kırmızı",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6519),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3508),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9399),
                             Description = "G:55mm Y:44mm K:17mm\r\nPolikarbon alaşım\r\nOptik Sınıf: 1\r\n\r\nMaksimum UV koruması\r\n\r\nMikrofiber kılıf\r\nÜcretsiz yanında: Sert karton koruma kabı ve mikrofiber bezPolikarbon alaşım\r\nOptik Sınıf: 1\r\n\r\nMaksimum UV koruması",
                             ImagePath = "../../images/gozluk/gozluk-kirmizi.jpg",
                             Name = "Gözlük",
@@ -554,11 +527,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 12,
                             CategoryId = 4,
                             Color = "Mavi",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6520),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3510),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9400),
                             Description = "G:58mm Y:50mm K:17mm\r\nMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV koruması\r\n\r\nMikrofiber kılıf\r\nÜcretsiz yanında: Sert karton koruma kabı ve mikrofiber bezMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV koruması",
                             ImagePath = "../../images/gozluk/gozluk-mavi.jpg",
                             Name = "Gözlük",
@@ -571,11 +540,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 13,
                             CategoryId = 4,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6522),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3512),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9402),
                             Description = "G:58mm Y:50mm K:17mm\r\nÖn Genişlik: 138mm\r\nSap Uzunluğu: 140mm\r\nMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV korumasıMetal alaşım\r\nOptik Sınıf: 1\r\nMaksimum UV koruması",
                             ImagePath = "../../images/gozluk/gozluk-siyah.jpg",
                             Name = "Gözlük",
@@ -588,11 +553,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 14,
                             CategoryId = 5,
                             Color = "Siyah",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6523),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3514),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9452),
                             Description = "Zippo'nun parlak siyah tükenmez kalemi (Ballpoint) çift yönlü açılabilme, Zippo logolu metal klipsli ve orta kalınlıkta siyah uç. Zippo'nun bu kalemi hediye edilmeye uygun özel doğa dostu karton kutusunda iki yıl garanti kapsamındadır.\r\n•Çift Yönlü Açılma\r\n•Tükenmez Kalem (Ball Point)\r\n•Özel doğa dostu karton kutusunda\r\n•Garanti",
                             ImagePath = "../../images/kalem/kalem-siyah.jpg",
                             Name = "Kalem",
@@ -605,11 +566,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 15,
                             CategoryId = 5,
                             Color = "Mavi",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6525),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3516),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9453),
                             Description = "Zippo'nun gümüş rengi fırçalanmış görünümlü krom tükenmez kalemi (Ballpoint) pürüzsüz ve şık bir görünüm sunuyor. Çift yönlü açma ve kapama, Zippo logolu sabit metal klips ve orta kalınlıkta siyah uç. Zippo'nun gümüş rengi fırçalanmış krom tükenmez kalemi hediye edilmeye uygun özel doğa dostu karton kutusunda iki yıl garanti kapsamındadır.\r\n•Çift Yönlü Açılma\r\n•Tükenmez Kalem (Ball Point)\r\n•Özel doğa dostu karton kutusunda\r\n•Garanti",
                             ImagePath = "../../images/kalem/kalem-mavi1.jpg",
                             Name = "Kalem",
@@ -622,11 +579,7 @@ namespace ECommerce.Infrastructure.Migrations
                             Id = 16,
                             CategoryId = 5,
                             Color = "Mavi",
-<<<<<<<< HEAD:ECommerce.Infrastructure/Migrations/20240409194255_initial.Designer.cs
-                            CreateDate = new DateTime(2024, 4, 9, 22, 42, 54, 917, DateTimeKind.Local).AddTicks(6526),
-========
-                            CreateDate = new DateTime(2024, 4, 9, 16, 26, 2, 657, DateTimeKind.Local).AddTicks(3518),
->>>>>>>> origin/damla:ECommerce.Infrastructure/Migrations/20240409132603_initial.Designer.cs
+                            CreateDate = new DateTime(2024, 4, 10, 20, 54, 8, 667, DateTimeKind.Local).AddTicks(9455),
                             Description = "Zippo'nun gümüş rengi fırçalanmış görünümlü krom ince tükenmez kalemi (Rollerball) pürüzsüz ve şık bir görünüm sunuyor. Aç-kapa kapak özellikli Zippo logolu metal klips ve siyah ucuyla Zippo'nun bu kalemi hediye edilmeye uygun özel doğa dostu karton kutusunda iki yıl garanti kapsamındadır.\r\n•Aç-Kapa Kapak\r\n•İnce Tükenmez Kalem (Roller Ball)\r\n•Özel doğa dostu karton kutusunda\r\n•Garanti",
                             ImagePath = "../../images/kalem/kalem-mavi2.jpg",
                             Name = "Kalem",
