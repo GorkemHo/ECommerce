@@ -30,10 +30,15 @@ namespace ECommerce.UI.Areas.Member.Controllers
 
         public async Task<IActionResult> AddItem(int productId, int quantity = 1, int redirect = 0)
         {
+
             var cartCount = await _cartService.AddItem(productId, quantity);
             
-            //TempData["Success"]= "Ürün Sepete Eklendi";
+           // TempData["Success"]= "Ürün Sepete Eklendi";
             var cart = await _cartService.GetUserCart();
+
+          
+            
+
             return View("Index", cart);
         }
 
