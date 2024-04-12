@@ -1,8 +1,12 @@
-﻿using ECommerce.Application.Models.DTOs.OrderDTOs;
+﻿using AutoMapper;
+using ECommerce.Application.Models.DTOs.OrderDTOs;
+using ECommerce.Application.Models.DTOs.UserProductListDTOs;
 using ECommerce.Application.Models.VMs.CartVMs;
+using ECommerce.Application.Models.VMs.ProductOrderVMs;
 using ECommerce.Application.Services.CartService;
 using ECommerce.Application.Services.OrderService;
 using ECommerce.Domain.Entities;
+using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +20,14 @@ namespace ECommerce.UI.Areas.Member.Controllers
     {
         private readonly ICartService _cartService;
         private readonly IOrderService _orderService;
+        private readonly IMapper _mapper;
 
 
-        public CartController(ICartService cartService, IOrderService orderService)
+        public CartController(ICartService cartService, IOrderService orderService, IMapper mapper)
         {
             _cartService = cartService;
             _orderService = orderService;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
@@ -88,13 +94,51 @@ namespace ECommerce.UI.Areas.Member.Controllers
             return Ok(cartItem);
         }
 
-        //public async Task<IActionResult> Checkout()
-        //{
-        //    bool isCheckedOut = await _cartService.DoCheckout();
-        //    if (!isCheckedOut)
-        //        throw new Exception("Something happen in server side");
-        //    return RedirectToAction("Index", "Home");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateOrderFromCart(Payment paymentType)
+        {
+
+            Cart cart = await _cartService.GetUserCart();
+            List<ProductOrder> list = new List<ProductOrder>();
+            if (cart.CartItems.Count > 0 && cart.CartItems != null )
+            {
+
+                foreach (CartItem cartItem in cart.CartItems)
+                {
+                    ProductOrder productOrder = new ProductOrder
+                    {
+                        ProductId = cartItem.ProductId,
+                        Quantity = cartItem.Quantity,
+                        CreateDate = DateTime.Now,
+
+                    };
+                    list.Add(productOrder);
+
+
+                }
+                CreateOrderDto model = new CreateOrderDto
+                {
+                    UserId = cart.UserId,
+                    ProductOrders = list,
+                    PaymentType = paymentType
+
+                };
+
+
+                await _orderService.Create(model);
+
+                CartVm cartVm = _mapper.Map<CartVm>(cart);
+
+
+                await _cartService.ClearCart();
+
+
+                return View(cartVm);
+            }
+            TempData["Danger"] = "Sepetiniz Boş lütfen ürün ekleyiniz.";
+            return RedirectToAction("Index");
+
+        }
 
 
 

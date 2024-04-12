@@ -21,6 +21,7 @@ namespace ECommerce.Application.Models.DTOs.UserProductListDTOs
         public List<OrderVm>? Orders {  get; set; } 
         public CreateOrderDto? CreateOrder { get; set; }
         public UpdateOrderDto? updateOrder { get; set; }
-        public string CategoryName { get; set; }
+        public Cart Cart { get; set; }
+        public string? CategoryName { get; set; }
     }
 }

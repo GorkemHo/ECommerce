@@ -16,5 +16,6 @@ namespace ECommerce.Application.Models.VMs.OrderVMs
         public string UserImagePath { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public List<ProductOrder> ProductOrders { get; set; }
+        public Payment PaymentType { get; set; }
     }
 }

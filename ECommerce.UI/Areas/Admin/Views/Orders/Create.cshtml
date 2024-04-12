@@ -4,32 +4,31 @@
 }
 
 @model UserProductListDto
-
 @* <h1>Create Order</h1>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="UserId">Kullanıcılar</label>
-        <select class="form-control" id="UserId" name="UserId" multiple>
-            @foreach (var user in Model.AppUsers)
-            {
-                <option value="@user.Id">@user.UserName</option>
-            }
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="productId">Ürünler</label>
-        <select class="form-control" id="productId" name="productId">
-            @foreach (var product in Model.Products)
-            {
-                <option value="@product.Id">@product.Name</option>
-            }
-        </select>
-        <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity" min="1" required />
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
- *@
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label for="UserId">Kullanıcılar</label>
+            <select class="form-control" id="UserId" name="UserId" multiple>
+                @foreach (var user in Model.AppUsers)
+                {
+                    <option value="@user.Id">@user.UserName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="productId">Ürünler</label>
+            <select class="form-control" id="productId" name="productId">
+                @foreach (var product in Model.Products)
+                {
+                    <option value="@product.Id">@product.Name</option>
+                }
+            </select>
+            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity" min="1" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+*@
 
 <h1>Sipariş Oluştur</h1>
 
@@ -44,6 +43,14 @@
         </select>
     </div>
     <div class="form-group">
+        <select class="form-control" id="payment" name="payment">
+            <option value="@Payment.CreditCard">Kredi Kartı</option>
+            <option value="@Payment.Cash">Kapıda Ödeme</option>
+            <option value="@Payment.PayPal">PayPal</option>
+
+        </select>
+    </div>
+    <div class="form-group">
         <label for="productId">Ürünler</label>
         <select class="form-control" id="productId" name="productId">
             @foreach (var product in Model.Products)
@@ -51,6 +58,7 @@
                 <option value="@product.Id">@product.Name</option>
             }
         </select>
+
         <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Adet" min="1" required />
     </div>
     <button type="submit" class="btn btn-dark">Kaydet</button> |

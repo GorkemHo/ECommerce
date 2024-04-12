@@ -8,7 +8,7 @@ namespace ECommerce.Domain.Enums
 {
     public enum Payment
     {
-        CreditCard,
+        CreditCard=1,
         Cash,
         PayPal
     }

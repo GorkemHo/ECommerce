@@ -18,6 +18,7 @@ namespace ECommerce.Domain.Repositories
         Task<Cart> GetUserCart();
         Task<int> GetCartItemCount(string userId = "");
         Task<Cart> GetCart(string userId);
-        //Task<bool> DoCheckout();
+        Task ClearCart();
+        Task CreateCart(string userId);
     }
 }

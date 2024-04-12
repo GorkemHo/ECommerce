@@ -7,6 +7,7 @@ using ECommerce.Application.Services.AppUserService;
 using ECommerce.Application.Services.OrderService;
 using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Entities;
+using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using CreateOrderDto = ECommerce.Application.Models.DTOs.OrderDTOs.CreateOrderDto;
 
@@ -54,18 +55,20 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] string UserId, [FromForm] int productId, [FromForm] int quantity)
+        public async Task<IActionResult> Create([FromForm] string UserId, [FromForm] int productId, [FromForm] int quantity, [FromForm] Payment payment)
         {
             var productOrder = new ProductOrder
             {
                 ProductId = productId,
                 Quantity = quantity
+                
             };
 
             CreateOrderDto model = new CreateOrderDto
             {
                 UserId = UserId,
-                ProductOrders = new List<ProductOrder> { productOrder }
+                ProductOrders = new List<ProductOrder> { productOrder },
+                PaymentType = payment
             };
 
             await _orderService.Create(model);

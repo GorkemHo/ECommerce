@@ -106,19 +106,7 @@ namespace ECommerce.Infrastructure.Repositories
             return cartItemCount;
         }
 
-        //public async Task<Cart> GetUserCart()
-        //{
-        //    var userId = GetUserId();
-        //    if (userId == null)
-        //        throw new Exception("Invalid userid");
-        //    var shoppingCart = _db.Carts
-        //                          .Include(a => a.CartItems)
-        //                          .ThenInclude(a => a.Product)
-        //                          .ThenInclude(a => a.Category)
-        //                          .Where(a => a.UserId == userId).FirstOrDefaultAsync();
-        //    return shoppingCart;
-
-        //}
+       
 
         public async Task<Cart?> GetUserCart()
         {
@@ -159,57 +147,7 @@ namespace ECommerce.Infrastructure.Repositories
             return data.Count;
         }
 
-        //public async Task<bool> DoCheckout()
-        //{
-        //    using var transaction = _db.Database.BeginTransaction();
-        //    try
-        //    {
-        //        // logic
-        //        // move data from cartDetail to order and order detail then we will remove cart detail
-        //        var userId = GetUserId();
-        //        if (string.IsNullOrEmpty(userId))
-        //            throw new Exception("User is not logged-in");
-        //        var cart = await GetCart(userId);
-        //        if (cart is null)
-        //            throw new Exception("Invalid cart");
-        //        var cartDetail = _db.CartItems
-        //                            .Where(a => a.Id == cart.Id).ToList();
-        //        if (cartDetail.Count == 0)
-        //            throw new Exception("Cart is empty");
-        //        var order = new Order
-        //        {
-        //            UserId = userId,
-        //            CreateDate = DateTime.UtcNow,
-        //            OrderStatusId = 1//pending
-        //        };
-        //        _db.Orders.Add(order);
-        //        _db.SaveChanges();
-        //        foreach (var item in cartDetail)
-        //        {
-        //            var orderDetail = new OrderDetail
-        //            {
-        //                ProductId = item.ProductId,
-        //                OrderId = order.Id,
-        //                Quantity = item.Quantity,
-        //                UnitPrice = item.UnitPrice
-        //            };
-        //            _db.OrderDetails.Add(orderDetail);
-        //        }
-        //        _db.SaveChanges();
-
-        //        // removing the cartdetails
-        //        _db.CartItems.RemoveRange(cartDetail);
-        //        _db.SaveChanges();
-        //        transaction.Commit();
-        //        return true;
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        return false;
-        //    }
-        //}
-
+        
         private string GetUserId()
         {
             var principal = _httpContextAccessor.HttpContext.User;
@@ -217,6 +155,57 @@ namespace ECommerce.Infrastructure.Repositories
             return userId;
         }
 
+        public async Task ClearCart()
+        {
+            var userId = GetUserId();
+            if (userId == null)
+                throw new Exception("Invalid userid");
 
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                    throw new Exception("user is not logged-in");
+                var cart = await GetCart(userId);
+                if (cart is null)
+                    throw new Exception("Invalid cart");
+
+                if (cart.CartItems != null)
+                    cart.CartItems.Clear();
+
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public async Task CreateCart(string userId)
+        {
+            
+            using var transaction = _db.Database.BeginTransaction();
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                    throw new Exception("user is not logged-in");
+                var cart = await GetCart(userId);
+                if (cart is null)
+                {
+                    cart = new Cart()
+                    {
+                        UserId = userId,
+                        CreateDate = DateTime.Now
+                    };
+
+                    _db.Carts.Add(cart);
+                }
+                _db.SaveChanges();
+                
+            }
+            catch (Exception ex)
+            {
+            }
+            
+        }
     }
 }

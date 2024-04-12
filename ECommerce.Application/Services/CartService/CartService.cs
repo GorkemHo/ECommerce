@@ -45,7 +45,19 @@ namespace ECommerce.Application.Services.CartService
             return await _cartRepo.GetCart(userId);
         }
 
-        
+        public async Task ClearCart()
+        {
+
+             await _cartRepo.ClearCart();
+            
+        }
+
+        public async Task CreateCart(string userId)
+        {
+            await _cartRepo.CreateCart(userId);
+        }
+
+
         //Task<bool> DoCheckout();
 
 
@@ -112,12 +124,7 @@ namespace ECommerce.Application.Services.CartService
 
         //}
 
-        //public async Task ClearToCart(string userId)
-        //{
-        //    var cart = await GetCart(userId);
-        //    cart.CartItems.Clear();
-        //    await _cartRepo.UpdateAsync(cart);
-        //}
+
 
         //public async Task<CartItemVm> CreateCartItem(ProductVm productVm, int Quantity)
         //{

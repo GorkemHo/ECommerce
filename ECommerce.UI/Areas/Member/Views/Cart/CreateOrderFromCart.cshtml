@@ -1,12 +1,15 @@
 ﻿@using ECommerce.Application.Models.VMs.CartVMs
 @using ECommerce.Domain.Enums
-@model ECommerce.Domain.Entities.Cart
+@model CartVm
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Areas/Member/Views/Shared/_MemberLayout.cshtml";
     decimal total = 0;
     decimal shippingFee = 10;
 }
+
+
+<h1>Ödemeniz Tamamlandı.</h1>
 
 
 <div class="container-fluid pt-5">
@@ -19,14 +22,14 @@
                         <th>Birim Fiyat</th>
                         <th>Ürün Adedi</th>
                         <th>Toplam</th>
-                        <th>Kaldır</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model == null)
                     {
 
-                        <p>Sepetiniz Boş Görünüyor.</p>
+                        <p>Siparişiniz Boş Görünüyor.</p>
 
 
                     }
@@ -44,11 +47,6 @@
                                 <td>@item.Quantity</td>
                                 <td>@(item.UnitPrice * item.Quantity)</td>
 
-                                <td>
-                                    <form asp-action="RemoveItem" asp-route-productId="@item.ProductId" method="post">
-                                        <button type="submit" class="btn btn-danger">Ürünü Kaldır</button>
-                                    </form>
-                                </td>
                             </tr>
                             total += (item.UnitPrice * item.Quantity);
                         }
@@ -81,28 +79,11 @@
                     </div>
                 }
                 <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Ödeme Seçenekleri</h4>
-                    </div>
-                    <form asp-controller="Cart" asp-action="CreateOrderFromCart" method="post">
-                        <div class="card-body">
-
-                            <select class="form-control" id="paymentType" name="paymentType">
-                                <option value="@Payment.CreditCard">Kredi Kartı</option>
-                                <option value="@Payment.Cash">Kapıda Ödeme</option>
-                                <option value="@Payment.PayPal">PayPal</option>
-
-                            </select>
-                        </div>
-                        <div class="card-footer border-secondary bg-transparent">
-                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">
-                                Ödeme Yap
-                            </button>
-                        </div>
-                    </form>
-
+                  
+                   
                 </div>
             </div>
         </div>
     </div>
 </div>
+

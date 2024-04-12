@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Application.Models.VMs.CartVMs
 {
-    public class CartVM
+    public class CartVm
     {
         public int Id { get; set; }
         public string UserId { get; set; }
-        public List<CartItemVm> CartItems { get; set; }
+        public List<CartItem> CartItems { get; set; }
     }
 }

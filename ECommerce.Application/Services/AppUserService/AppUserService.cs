@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models.DTOs.UserDto;
+using ECommerce.Application.Services.CartService;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
 using ECommerce.Domain.Repositories;
@@ -21,15 +22,18 @@ namespace ECommerce.Application.Services.AppUserService
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IMapper mapper;
+        private readonly ICartService cartService;
         public AppUserService(IAppUserRepo repo,
                               UserManager<AppUser> userManager,
                               SignInManager<AppUser> signInManager,
-                              IMapper mapper)
+                              IMapper mapper,
+                              ICartService cartService)
         {
             this.repo = repo;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.mapper = mapper;
+            this.cartService = cartService;
         }
         public async Task<UpdateProfileDto> GetByUserName(string userName)
         {
@@ -45,6 +49,7 @@ namespace ECommerce.Application.Services.AppUserService
         public async Task<SignInResult> Login(LoginDto model)
         {
             var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
+
             return result;
         }
 
@@ -58,14 +63,15 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            
+
 
             if (result.Succeeded)
             {
                 await signInManager.SignInAsync(user, false);
             }
 
-           
+            await cartService.CreateCart(user.Id);
+
             return result;
         }
 
@@ -83,7 +89,7 @@ namespace ECommerce.Application.Services.AppUserService
             user.Address = model.Address;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
-            
+
             user.UpdateDate = DateTime.Now;
 
             await ImageUpload(model, user);
@@ -132,16 +138,16 @@ namespace ECommerce.Application.Services.AppUserService
             }
         }
 
-        public async Task<bool> UserInRole(string userName, string role) 
+        public async Task<bool> UserInRole(string userName, string role)
         {
             var user = await userManager.FindByNameAsync(userName);
             bool isInRole = await userManager.IsInRoleAsync(user, role);
             return isInRole;
         }
-        public async Task<AppUser> AddRole(string userName, string role) 
+        public async Task<AppUser> AddRole(string userName, string role)
         {
             var user = await userManager.FindByNameAsync(userName);
-      
+
             return user;
         }
 
@@ -149,7 +155,7 @@ namespace ECommerce.Application.Services.AppUserService
         {
             var users = await repo.GetFilteredList(
                 select: x => mapper.Map<UpdateProfileDto>(x),
-                where: null 
+                where: null
             );
 
             return users;

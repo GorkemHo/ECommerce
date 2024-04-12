@@ -14,6 +14,8 @@ namespace ECommerce.Domain.Entities
         public string UserId { get; set; }
         public AppUser User { get; set; }
 
+        public Payment PaymentType { get; set; }              
+
         public OrderStatus OrderStatus { get; set; }
 
         public List<ProductOrder> ProductOrders { get; set; }

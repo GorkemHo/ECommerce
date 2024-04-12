@@ -15,14 +15,14 @@ namespace ECommerce.Infrastructure.EntityTypeConfig
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Quantity).IsRequired(true);
-            builder.HasOne(x => x.Product)
-                .WithMany(x => x.ProductOrders)
-                .HasForeignKey(x => x.Id)
-                .OnDelete(DeleteBehavior.Restrict);
-            builder.HasOne(x => x.Order)
-                .WithMany(x => x.ProductOrders)
-                .HasForeignKey(x => x.Id)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(x => x.Product)
+            //    .WithMany(x => x.ProductOrders)
+            //    .HasForeignKey(x => x.Id)
+            //    .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(x => x.Order)
+            //    .WithMany(x => x.ProductOrders)
+            //    .HasForeignKey(x => x.Id)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             base.Configure(builder);
         }
