@@ -9,27 +9,15 @@
 
 <h2>Kategori Detayları</h2>
 
-<div>
-    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Kategori Adı")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayName("Kategori Açıklaması")
+<div class="container">
+    <dl class="row">
+        <dt class="col-sm-2">Kategori Adı:</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
 
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayName("Kategori Görseli")
+        <dt class="col-sm-2">Kategori Açıklaması:</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
 
-        </dt>
+        <dt class="col-sm-2">Kategori Görseli:</dt>
         <dd class="col-sm-10">
             <img src="@Model.ImagePath" alt="Author Image" class="img-fluid" width="600" />
         </dd>
@@ -39,5 +27,6 @@
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark ">Düzenle</a> |
     <a asp-action="Index" class="btn btn-warning ">Kategori Listesine Dön</a>
 </div>
+
 
 

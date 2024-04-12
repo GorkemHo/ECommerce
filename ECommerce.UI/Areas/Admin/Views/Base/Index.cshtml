@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Admin Home Page</h1>
+
 
 <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="btn btn-app bg-secondary">
     <i class="fas fa-barcode"></i> Ürün Yönetimi
@@ -18,8 +18,8 @@
 <a asp-area="Admin" asp-controller="Roles" asp-action="Index" class="btn btn-app bg-success">
     <i class="fas fa-users"></i> Rol İşlemleri
 </a>
-<a class="btn btn-app bg-danger">
-<a asp-area="" asp-controller="Orders" asp-action="Index" class="btn btn-app bg-danger">
+
+<a asp-area="Admin" asp-controller="Orders" asp-action="Index" class="btn btn-app bg-danger">
     <i class="fas fa-inbox"></i> Siparişler
 </a>
 

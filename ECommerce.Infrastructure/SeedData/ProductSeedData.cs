@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ECommerce.Infrastructure.SeedData
 {
@@ -14,7 +15,8 @@ namespace ECommerce.Infrastructure.SeedData
     {
         public static void SeedProducts(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().HasData(
+
+        modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
                     Id = 1,

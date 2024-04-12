@@ -6,27 +6,27 @@
 
 @model CreateProductDto
 
-<h2>Create Product</h2>
+<h2>Yeni Ürün Oluştur</h2>
 
 <form asp-action="Create" enctype="multipart/form-data" method="post">
     <div class="form-group">
-        <label>Name:</label>
+        <label>Ürün Adı</label>
         <input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Price:</label>
+        <label>Ürün Fiyatı</label>
         <input asp-for="Price" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Color:</label>
+        <label>Ürün Rengi</label>
         <input asp-for="Color" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Quantity:</label>
+        <label>Ürün Adedi</label>
         <input asp-for="Quantity" class="form-control" />
     </div>
     <div class="form-group">
-    <label>Category:</label>
+        <label>Ürün Kategorisi</label>
     <select asp-for="CategoryId" class="form-control">
         @foreach (var item in Model.Categories)
         {
@@ -36,15 +36,15 @@
     </select>
 </div>
     <div class="form-group">
-        <label>Description:</label>
+        <label>Ürün Açıklaması</label>
         <input asp-for="Description" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Upload Image:</label>
+        <label>Ürün Görseli</label>
         <input type="file" asp-for="UploadPath" class="form-control-file" />
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <button type="submit" class="btn btn-dark">Kaydet</button> |
+    <a asp-action="Index" class="btn btn-warning">Ürün Listesine Geri Dön</a>
 </form>
 
 

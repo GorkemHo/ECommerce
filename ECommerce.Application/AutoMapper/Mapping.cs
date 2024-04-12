@@ -12,6 +12,7 @@ using ECommerce.Application.Models.DTOs.ProductOrderDTOs;
 using ECommerce.Application.Models.VMs.ProductOrderVMs;
 using ECommerce.Application.Models.VMs.CartVMs;
 using Microsoft.AspNetCore.Identity;
+using ECommerce.Application.Models.DTOs.MessageDTOs;
 
 namespace ECommerce.Application.AutoMapper
 {
@@ -45,6 +46,8 @@ namespace ECommerce.Application.AutoMapper
 
             CreateMap<Cart, CartVM>().ReverseMap();
             CreateMap<CartItem, CartItemVm>().ReverseMap();
+
+            CreateMap<Message, CreateMessageDto>().ReverseMap();
 
         }
     }

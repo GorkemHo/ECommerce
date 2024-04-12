@@ -36,6 +36,8 @@ namespace ECommerce.Infrastructure.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductOrder> ProductOrders { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.SeedCategories();

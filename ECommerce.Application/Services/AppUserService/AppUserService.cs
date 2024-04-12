@@ -58,12 +58,14 @@ namespace ECommerce.Application.Services.AppUserService
             var user = mapper.Map<AppUser>(model);
 
             var result = await userManager.CreateAsync(user, model.Password);
-            //await userManager.AddToRoleAsync(user, "Member");
+            
 
             if (result.Succeeded)
             {
                 await signInManager.SignInAsync(user, false);
             }
+
+           
             return result;
         }
 
@@ -79,7 +81,9 @@ namespace ECommerce.Application.Services.AppUserService
             await userManager.SetUserNameAsync(user, model.UserName);
 
             user.Address = model.Address;
-
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            
             user.UpdateDate = DateTime.Now;
 
             await ImageUpload(model, user);
