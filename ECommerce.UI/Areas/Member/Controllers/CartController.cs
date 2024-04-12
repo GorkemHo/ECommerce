@@ -18,35 +18,35 @@ namespace ECommerce.UI.Areas.Member.Controllers
         private readonly IOrderService _orderService;
 
 
-        public CartController(ICartService cartService)
+        public CartController(ICartService cartService, IOrderService orderService)
         {
             _cartService = cartService;
+            _orderService = orderService;
         }
-        public async Task<IActionResult> Index(Cart cart=null)
+        public async Task<IActionResult> Index()
         {
-            if (cart == null)
-            { 
-                 cart = await _cartService.GetUserCart();
-            }
+
+            Cart cart = await _cartService.GetUserCart();
+
 
             return View(cart);
 
 
         }
 
-        public async Task<IActionResult> AddItem(int productId, int quantity = 1, int redirect = 0)
+        public async Task<IActionResult> AddItem(int productId, int quantity = 1, int redirect = 0, string returnUrl = "/")
         {
 
             var cartCount = await _cartService.AddItem(productId, quantity);
-            
-           
+
+
             var cart = await _cartService.GetUserCart();
 
             TempData["Success"] = "Sepete ürün eklendi.";
 
 
 
-            return RedirectToAction("Index", cart);
+            return Redirect(returnUrl);
         }
 
         [HttpPost]
@@ -72,11 +72,12 @@ namespace ECommerce.UI.Areas.Member.Controllers
         public async Task<IActionResult> RemoveItem(int productId)
         {
             var cartCount = await _cartService.RemoveItem(productId);
+            TempData["Success"] = "Ürün Sepetten Çıkartıldı.";
             return RedirectToAction("Index");
         }
         //public async Task<IActionResult> GetUserCart()
         //{
-            
+
         //    return RedirectToAction("Index");
         //}
 

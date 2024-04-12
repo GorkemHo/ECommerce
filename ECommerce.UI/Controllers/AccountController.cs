@@ -151,7 +151,7 @@ namespace ECommerce.UI.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userService.LogOut();
-           // TempData["Success"] = "Kullanıcı Çıkışı Gerçekleştirildi.";
+            TempData["Success"] = "Kullanıcı Çıkışı Gerçekleştirildi.";
 
             return RedirectToAction("Index", "Home");
         }
