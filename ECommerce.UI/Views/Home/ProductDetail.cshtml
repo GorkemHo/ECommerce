@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    string currentUrl = Context.Request.GetDisplayUrl();
 }
 @model ProductVm;
 
@@ -54,8 +54,8 @@
                         </button>
                     </div>
                 </div>
-
-                <button type="button" onclick="add(@Model.Id)" class="btn btn-primary">Add to cart Gorkem</button>  @*???*@
+                <a asp-area="Member" asp-controller="Cart" asp-action="AddItem" asp-route-productId="@Model.Id" asp-route-returnURL="@currentUrl"><i class="fas fa-shopping-cart text-primary mr-1"></i>Sepete Ekle</a>
+                <!--<button type="button" onclick="add(@Model.Id)" class="btn btn-primary">Add to cart Gorkem</button>-->  @*???*@
             </div>
 
         </div>
