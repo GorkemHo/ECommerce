@@ -41,7 +41,7 @@
             </div>
 
             <div class="d-flex align-items-center mb-4 pt-2">
-                <div class="input-group quantity mr-3" style="width: 130px">
+                @* <div class="input-group" style="width: 130px">
                     <div class="input-group-btn">
                         <button class="btn btn-primary " onclick="decrementQuantity()">
                             <i class="fa fa-minus"></i>
@@ -53,11 +53,9 @@
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
-                </div>
+                </div> *@
                 <a asp-area="Member" asp-controller="Cart" asp-action="AddItem" asp-route-productId="@Model.Id" asp-route-returnURL="@currentUrl"><i class="fas fa-shopping-cart text-primary mr-1"></i>Sepete Ekle</a>
-                <!--<button type="button" onclick="add(@Model.Id)" class="btn btn-primary">Add to cart Gorkem</button>-->  @*???*@
             </div>
-
         </div>
     </div>
 </div>
@@ -79,29 +77,23 @@
             console.log(err);
         }
     }
-
-
 </script>
-<script>
+
+@* <script>
     function incrementQuantity() {
         var quantityInput = document.getElementById("quantity");
         var currentValue = parseInt(quantityInput.value);
         quantityInput.value = currentValue + 1;
     }
-
-
-
 </script>
 
 <script>
-
-
     function decrementQuantity() {
         var quantityInput = document.getElementById("quantity");
         var currentValue = parseInt(quantityInput.value);
-        if (currentValue > 1) {
+        if (currentValue > 0) {
             quantityInput.value = currentValue - 1;
         }
-    }
-
+}
+    } *@
 </script>

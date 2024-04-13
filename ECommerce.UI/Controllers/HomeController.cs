@@ -64,7 +64,7 @@ namespace ECommerce.UI.Controllers
         //    var product = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
         //    return View(product);
         //}
-        public async Task<IActionResult> Pen(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
+        public async Task<IActionResult> Product(string searchTerm, string color, decimal? minPrice, decimal? maxPrice, string CategoryName)
         {
             var products = await _productService.SearchProducts(searchTerm, color, minPrice, maxPrice, CategoryName);
             UserProductListDto userProductListDto = new UserProductListDto
