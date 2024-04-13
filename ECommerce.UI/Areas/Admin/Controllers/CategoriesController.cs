@@ -25,10 +25,11 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var model = await _categoryService.FillCategories();
+            // var model = await _categoryService.Create();
             //model.Ca = await _categoryService.GetCategories();
 
-            return View(model);
+            // return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -76,7 +77,9 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             return View(category);
         }
 
-        [HttpPost, ActionName("Delete")]
+         //[HttpPost, ActionName("Delete")]
+      [HttpPost]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _categoryService.Delete(id);

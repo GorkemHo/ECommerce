@@ -23,8 +23,13 @@ namespace ECommerce.Infrastructure.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+<<<<<<< HEAD
             optionsBuilder.UseSqlServer("Server=DESKTOP-16FKK09; Database=GADIECommerceDb; Uid=sa; Pwd=123;");
             //optionsBuilder.UseSqlServer("Server=DESKTOP-VU62QDF\\SQLSERVERMS; Database=GADIECommerceDb; Uid=sa; Pwd=123;");
+=======
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-16FKK09; Database=GADIECommerceDb; Uid=sa; Pwd=123;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-VU62QDF\\SQLSERVERMS; Database=GADIECommerceDb; Uid=sa; Pwd=123;");
+>>>>>>> origin/damla
             //optionsBuilder.UseSqlServer("Server=JUBATUSX; Database=GADIECommerceDb; Uid=sa; Pwd=123;");
             //optionsBuilder.UseSqlServer("Server=G™RKEMH; Database=GADIECommerceDb; Uid=sa; Pwd=123;");
         }
