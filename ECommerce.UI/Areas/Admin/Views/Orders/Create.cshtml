@@ -4,34 +4,8 @@
 }
 
 @model UserProductListDto
-@* <h1>Create Order</h1>
-
-    <form asp-action="Create" method="post">
-        <div class="form-group">
-            <label for="UserId">Kullanıcılar</label>
-            <select class="form-control" id="UserId" name="UserId" multiple>
-                @foreach (var user in Model.AppUsers)
-                {
-                    <option value="@user.Id">@user.UserName</option>
-                }
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="productId">Ürünler</label>
-            <select class="form-control" id="productId" name="productId">
-                @foreach (var product in Model.Products)
-                {
-                    <option value="@product.Id">@product.Name</option>
-                }
-            </select>
-            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity" min="1" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-*@
 
 <h1>Sipariş Oluştur</h1>
-
 <form asp-action="Create" method="post">
     <div class="form-group">
         <label for="UserId">Kullanıcılar</label>
@@ -43,25 +17,89 @@
         </select>
     </div>
     <div class="form-group">
-        <select class="form-control" id="payment" name="payment">
-            <option value="@Payment.CreditCard">Kredi Kartı</option>
-            <option value="@Payment.Cash">Kapıda Ödeme</option>
-            <option value="@Payment.PayPal">PayPal</option>
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="productId">Ürünler</label>
+        <label for="productId">Ürün Seç</label>
         <select class="form-control" id="productId" name="productId">
             @foreach (var product in Model.Products)
             {
                 <option value="@product.Id">@product.Name</option>
             }
         </select>
-
-        <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Adet" min="1" required />
     </div>
-    <button type="submit" class="btn btn-dark">Kaydet</button> |
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" />
+    </div>
+    <label>Ürünler</label>
+    <div id="productList" class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Adedi</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Buraya eklenen ürünler listelenecek -->
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-dark" onclick="addProduct()">Ekle</button>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
     <a asp-action="Index" class="btn btn-warning">Sipariş Listesine Geri Dön</a>
-
 </form>
+
+<script>
+    function addProduct() {
+        var productId = document.getElementById("productId").value;
+        var productName = document.getElementById("productId").options[document.getElementById("productId").selectedIndex].text;
+        var quantity = document.getElementById("quantity").value;
+
+        var tableBody = document.getElementById("productList").getElementsByTagName("tbody")[0];
+        var newRow = tableBody.insertRow();
+        newRow.innerHTML = `
+                <tr>
+                    <td>${productName}</td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-primary decrement-btn" onclick="decrementQuantity('quantity_${productId}')">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input id="quantity_${productId}" name="quantity_${productId}" type="number" class="form-control bg-secondary text-center" value="${quantity}" min="1" />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary increment-btn" onclick="incrementQuantity('quantity_${productId}')">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="removeProduct(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+    }
+
+    function removeProduct(button) {
+        var row = button.closest("tr");
+        row.remove();
+    }
+
+    function decrementQuantity(quantityId) {
+        var input = document.getElementById(quantityId);
+        var value = parseInt(input.value, 10);
+        if (value > 1) {
+            input.value = value - 1;
+        }
+    }
+
+    function incrementQuantity(quantityId) {
+        var input = document.getElementById(quantityId);
+        var value = parseInt(input.value, 10);
+        input.value = value + 1;
+    }
+</script>
