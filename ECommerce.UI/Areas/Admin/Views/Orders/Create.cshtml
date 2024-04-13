@@ -29,6 +29,10 @@
         <label for="quantity">Quantity</label>
         <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" />
     </div>
+    <!-- Hidden inputs to hold selected product info -->
+    <input type="hidden" id="selectedProductId" name="selectedProductId" />
+    <input type="hidden" id="selectedProductName" name="selectedProductName" />
+
     <label>Ürünler</label>
     <div id="productList" class="table-responsive">
         <table class="table">
@@ -54,7 +58,6 @@
         var productId = document.getElementById("productId").value;
         var productName = document.getElementById("productId").options[document.getElementById("productId").selectedIndex].text;
         var quantity = document.getElementById("quantity").value;
-
         var tableBody = document.getElementById("productList").getElementsByTagName("tbody")[0];
         var newRow = tableBody.insertRow();
         newRow.innerHTML = `

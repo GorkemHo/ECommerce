@@ -78,7 +78,7 @@ namespace ECommerce.Application.Services.OrderService
             UserId = x.UserId,
             ProductOrders = x.ProductOrders,            
             }
-            ,where: x => x.Status != Status.Passive);           
+            ,where: x => x.Status != Status.Passive & x.Id ==Id );           
             var model = _mapper.Map<UpdateOrderDto>(order);
 
             model.User = await _appUserRepo.GetFilteredFirstOrDefault(select: x=> new AppUser
