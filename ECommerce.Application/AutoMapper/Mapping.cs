@@ -27,7 +27,9 @@ namespace ECommerce.Application.AutoMapper
 
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+            CreateMap<CategoryVm, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, CategoryVm>().ReverseMap();
+
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, UpdateProductDto>().ReverseMap();
