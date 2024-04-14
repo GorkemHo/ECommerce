@@ -9,19 +9,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
 
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IAppUserService _userService;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public UsersController(UserManager<AppUser> userManager, IAppUserService userService, RoleManager<IdentityRole> roleManager)
+
+        public UsersController(UserManager<AppUser> userManager, IAppUserService userService, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _userService = userService;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
         public async Task<IActionResult> Index()
         {
@@ -54,28 +57,23 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                 return View(registerDto);
             }
 
-            var result = await _userService.Register(registerDto);
+
+            var result = await _userService.CreateUserByAdmin(registerDto);
 
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByEmailAsync(registerDto.Email);
 
+
                 if (user != null)
                 {
-
                     if (registerDto.UserName == "Admin")
                     {
-                        if (!await _roleManager.RoleExistsAsync("Admin"))
-                        {
-                            await _roleManager.CreateAsync(new IdentityRole("Admin"));
-                        }
+                        TempData["Warning"] = "Admin kullanıcı adı ile kayıt olamazsınız!";
+                        return View();
 
-                        await _userManager.AddToRoleAsync(user, "Admin");
-
-                        TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
-
-                        return RedirectToAction("Index", "Users");
                     }
+
                     if (registerDto.UserName != "Admin")
                     {
                         if (!await _roleManager.RoleExistsAsync("Member"))
@@ -84,24 +82,32 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                         }
 
                         await _userManager.AddToRoleAsync(user, "Member");
+
+
+
                         TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
+
+
                         return RedirectToAction("Index", "Users");
 
                     }
 
 
-                    //  _cartService.GetCart(user.Id);
                 }
 
                 return RedirectToAction("Index", "Users");
 
             }
             else
-                return View(registerDto);
+            {
+                TempData["Warning"] = "Admin kullanıcı adı ile kayıt olamazsınız!";
+
+                return View();
+            }
 
         }
 
-            [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
             var user = await _userService.GetUserById(id);
@@ -141,7 +147,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             await _userService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
-       
+
     }
 
 
