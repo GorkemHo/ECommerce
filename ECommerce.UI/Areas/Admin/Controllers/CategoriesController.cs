@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
+
     public class CategoriesController : Controller
     {
         private readonly ICategoryService _categoryService;
