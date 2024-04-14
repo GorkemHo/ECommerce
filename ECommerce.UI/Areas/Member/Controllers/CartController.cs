@@ -100,40 +100,51 @@ namespace ECommerce.UI.Areas.Member.Controllers
 
             Cart cart = await _cartService.GetUserCart();
             List<ProductOrder> list = new List<ProductOrder>();
-            if (cart.CartItems.Count > 0 && cart.CartItems != null )
-            {
 
-                foreach (CartItem cartItem in cart.CartItems)
+            try
+            {
+                if (cart.CartItems.Count > 0 && cart.CartItems != null)
                 {
-                    ProductOrder productOrder = new ProductOrder
+
+                    foreach (CartItem cartItem in cart.CartItems)
                     {
-                        ProductId = cartItem.ProductId,
-                        Quantity = cartItem.Quantity,
-                        CreateDate = DateTime.Now,
+                        ProductOrder productOrder = new ProductOrder
+                        {
+                            ProductId = cartItem.ProductId,
+                            Quantity = cartItem.Quantity,
+                            CreateDate = DateTime.Now,
+
+                        };
+                        list.Add(productOrder);
+
+
+                    }
+                    CreateOrderDto model = new CreateOrderDto
+                    {
+                        UserId = cart.UserId,
+                        ProductOrders = list,
+                        PaymentType = paymentType
 
                     };
-                    list.Add(productOrder);
 
 
+                    await _orderService.Create(model);
+
+                    CartVm cartVm = _mapper.Map<CartVm>(cart);
+
+
+                    await _cartService.ClearCart();
+
+
+                    return View(cartVm);
                 }
-                CreateOrderDto model = new CreateOrderDto
-                {
-                    UserId = cart.UserId,
-                    ProductOrders = list,
-                    PaymentType = paymentType
+                TempData["Danger"] = "Sepetiniz Boş lütfen ürün ekleyiniz.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
 
-                };
-
-
-                await _orderService.Create(model);
-
-                CartVm cartVm = _mapper.Map<CartVm>(cart);
-
-
-                await _cartService.ClearCart();
-
-
-                return View(cartVm);
+                
             }
             TempData["Danger"] = "Sepetiniz Boş lütfen ürün ekleyiniz.";
             return RedirectToAction("Index");

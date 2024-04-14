@@ -125,7 +125,8 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             {
                 model.Id = id;
                 await _userService.UpdateUser(model);
-                return RedirectToAction(nameof(Index));
+                TempData["Success"] = "Güncelleme Başarılı";
+                return RedirectToAction("Index");
             }
             return View(model);
         }

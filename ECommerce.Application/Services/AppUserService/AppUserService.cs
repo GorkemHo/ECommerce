@@ -119,7 +119,7 @@ namespace ECommerce.Application.Services.AppUserService
                 if (isUserNameExist is not null)
                 {
                     await userManager.SetUserNameAsync(user, model.UserName);
-                    await signInManager.SignInAsync(user, false);
+                    //await signInManager.SignInAsync(user, false);
                 }
             }
         }
@@ -142,7 +142,7 @@ namespace ECommerce.Application.Services.AppUserService
         {
             if (model.Email is not null)
             {
-                var isUserEmailExist = await userManager.FindByEmailAsync(model.Email); // EMAİL GÜNCELLENMİYOR
+                var isUserEmailExist = await userManager.FindByIdAsync(model.Id); 
 
                 if (isUserEmailExist is not null)
                 {

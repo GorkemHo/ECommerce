@@ -121,6 +121,19 @@ namespace ECommerce.Infrastructure.Repositories
                 .Where(a => a.UserId == userId)
                 .FirstOrDefaultAsync();
 
+            if (shoppingCart is null)
+            {
+                shoppingCart = new Cart()
+                {
+                    UserId = userId,
+                    CreateDate = DateTime.Now
+                };
+
+                _db.Carts.Add(shoppingCart);
+                _db.SaveChanges();
+            }
+            
+
             return shoppingCart;
         }
 
