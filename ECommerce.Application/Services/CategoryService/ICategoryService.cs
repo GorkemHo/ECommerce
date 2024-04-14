@@ -13,7 +13,7 @@ namespace ECommerce.Application.Services.CategoryService
         Task<UpdateCategoryDto> GetCategoryById(int id);
 
         Task<List<CategoryVm>> GetCategoriesWithProducts();
-        Task<CreateCategoryDto> FillCategories();
+       // Task<CreateCategoryDto> FillCategories();
 
     }
 }

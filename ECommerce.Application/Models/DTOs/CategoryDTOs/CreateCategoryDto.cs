@@ -15,7 +15,7 @@ namespace ECommerce.Application.Models.DTOs.CategortyDto
         public string Name { get; set; }
         public string Description { get; set; }
         [PictureFileExtension]
-        public IFormFile UploadPath { get; set; }
+        public IFormFile? UploadPath { get; set; }
         public string? ImagePath { get; set; }
         public List<Product>? Products { get; set; }
         public DateTime CreateDate => DateTime.Now;
