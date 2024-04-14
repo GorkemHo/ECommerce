@@ -142,6 +142,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
+            <partial name="_NotificationPartial" />
             @RenderBody()
         </div>
         <!-- /.content-wrapper -->
@@ -172,5 +173,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
+    <script>
+        // Genel toplamı hesaplayan JavaScript fonksiyonu
+        function calculateTotalPrice() {
+            var totalPriceElements = document.querySelectorAll('.totalPrice');
+
+            totalPriceElements.forEach(function (element) {
+                var totalPrice = 0;
+                var productPrices = element.querySelectorAll('.productPrice');
+                var quantities = element.querySelectorAll('.quantity');
+
+                for (var i = 0; i < productPrices.length; i++) {
+                    var productPrice = parseFloat(productPrices[i].textContent.trim());
+                    var quantity = parseInt(quantities[i].textContent.trim());
+                    totalPrice += productPrice * quantity;
+                }
+
+                // Toplam fiyatı ilgili satırın totalPrice elementine yaz
+                var totalPriceElement = element.querySelector('.totalPrice');
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+            });
+        }
+        // Sayfa yüklendiğinde toplam fiyatları hesapla
+        document.addEventListener('DOMContentLoaded', function () {
+            calculateTotalPrice();
+        });
+    </script>
 </body>
 </html>

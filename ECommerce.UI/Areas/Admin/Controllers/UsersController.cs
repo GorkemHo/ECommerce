@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
 
     public class UsersController : Controller
     {
@@ -72,7 +72,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
                         await _userManager.AddToRoleAsync(user, "Admin");
 
-                        //TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
+                        TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
 
                         return RedirectToAction("Index", "Users");
                     }
@@ -84,7 +84,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
                         }
 
                         await _userManager.AddToRoleAsync(user, "Member");
-                        // TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
+                        TempData["Success"] = "Kullanıcı Kaydı Gerçekleştirildi.";
                         return RedirectToAction("Index", "Users");
 
                     }

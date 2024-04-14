@@ -8,6 +8,7 @@ using ECommerce.Application.Services.OrderService;
 using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Entities;
 using ECommerce.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using CreateOrderDto = ECommerce.Application.Models.DTOs.OrderDTOs.CreateOrderDto;
@@ -15,6 +16,7 @@ using CreateOrderDto = ECommerce.Application.Models.DTOs.OrderDTOs.CreateOrderDt
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class OrdersController : Controller
     {
         public readonly IOrderService _orderService;
@@ -58,22 +60,36 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserProductListDto model, string userId)
         {
-            var listProductOrder = new List<ProductOrder>();
+            var listProductOrder = model.ProductOrders;
 
-            foreach(var productOrder in model.ProductOrders)
+            if(listProductOrder != null && listProductOrder.Count>0)
             {
-                listProductOrder.Add(productOrder);
+                if(userId != null)
+                {
+                    CreateOrderDto order = new CreateOrderDto
+                    {
+                        UserId = userId,
+                        ProductOrders = listProductOrder
+                    };
+
+                    await _orderService.Create(order);
+
+                    TempData["Success"] = "Sipariş Oluşturuldu.";
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["Danger"] = "Kullanıcı Seçmeniz Gerekmektedir.";
+                    return RedirectToAction("Create");
+                }
+                
             }
-
-            CreateOrderDto order = new CreateOrderDto
+            else 
             {
-                UserId = userId,
-                ProductOrders = listProductOrder
-            };
-
-            await _orderService.Create(order);
-
-            return RedirectToAction(nameof(Index));
+                TempData["Danger"] = "Ürün Eklemeniz Gerekmektedir.";
+                return RedirectToAction("Create");
+            }
+            
         }
 
         [HttpGet]
