@@ -2,13 +2,14 @@
 using ECommerce.Application.Services.CategoryService;
 using ECommerce.Application.Services.ProductService;
 using ECommerce.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize("Admin")]
+    [Authorize(Roles = "Admin")]
 
     public class ProductsController : Controller
     {
