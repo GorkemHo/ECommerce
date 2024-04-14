@@ -14,27 +14,27 @@
             <input asp-for="updateOrder.Id" class="form-control" readonly />
         </div>
         <div class="form-group">
-            <label asp-for="updateOrder.User.FirstName" class="control-label">User First Name</label>
+            <label asp-for="updateOrder.User.FirstName" class="control-label">Kullanıcı Adı</label>
             <input asp-for="updateOrder.User.FirstName" class="form-control" readonly />
         </div>
         <div class="form-group">
-            <label asp-for="updateOrder.User.LastName" class="control-label">User Last Name</label>
+            <label asp-for="updateOrder.User.LastName" class="control-label">Kullanıcı Soyadı</label>
             <input asp-for="updateOrder.User.LastName" class="form-control" readonly />
         </div>
         <div class="form-group">
-            <label asp-for="updateOrder.OrderStatus" class="control-label">Order Status</label>
+            <label asp-for="updateOrder.OrderStatus" class="control-label">Sipariş Durumu</label>
             <input asp-for="updateOrder.OrderStatus" class="form-control" readonly />
         </div>
         <div class="form-group">
-            <label asp-for="updateOrder.User.Email" class="control-label">User Email</label>
+            <label asp-for="updateOrder.User.Email" class="control-label">Kullanıcı Email</label>
             <input asp-for="updateOrder.User.Email" class="form-control" readonly />
         </div>
         <div class="form-group">
-            <label asp-for="updateOrder.User.PhoneNumber" class="control-label">User Phone Number</label>
+            <label asp-for="updateOrder.User.PhoneNumber" class="control-label">Kullanıcı Telefon Numarası</label>
             <input asp-for="updateOrder.User.PhoneNumber" class="form-control" readonly />
         </div>
         <div class="form-group">
-            <label asp-for="updateOrder.User.Address" class="control-label">User Address</label>
+            <label asp-for="updateOrder.User.Address" class="control-label">Kullanıcı Adres</label>
             <input asp-for="updateOrder.User.Address" class="form-control" readonly />
         </div>
     </div>
@@ -72,5 +72,5 @@
         }
     </tbody>
 </table>
-<a asp-action="Edit" asp-route-id="@Model.updateOrder.Id" class="btn btn-primary">Edit Order</a>
-<a asp-action="Index" class="btn btn-warning">Back to Orders</a>
+<a asp-action="Edit" asp-route-id="@Model.updateOrder.Id" class="btn btn-primary">Siparişi Düzenle</a>
+<a asp-action="Index" class="btn btn-warning">Listeye Geri Dön</a>
