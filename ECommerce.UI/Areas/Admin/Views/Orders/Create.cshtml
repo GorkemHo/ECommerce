@@ -6,7 +6,8 @@
 @model UserProductListDto
 
 <h1>Sipariş Oluştur</h1>
-<form asp-action="Create" method="post">
+
+<form id="productForm" asp-action="Create" method="post">
     <div class="form-group">
         <label for="UserId">Kullanıcılar</label>
         <select class="form-control" id="UserId" name="UserId" multiple>
@@ -26,12 +27,9 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="quantity">Quantity</label>
+        <label for="quantity">Ürün Adedi</label>
         <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" />
     </div>
-    <!-- Hidden inputs to hold selected product info -->
-    <input type="hidden" id="selectedProductId" name="selectedProductId" />
-    <input type="hidden" id="selectedProductName" name="selectedProductName" />
 
     <label>Ürünler</label>
     <div id="productList" class="table-responsive">
@@ -54,25 +52,27 @@
 </form>
 
 <script>
+    var productOrderIndex = 0; // Her ürün için benzersiz bir index
+
     function addProduct() {
         var productId = document.getElementById("productId").value;
         var productName = document.getElementById("productId").options[document.getElementById("productId").selectedIndex].text;
         var quantity = document.getElementById("quantity").value;
-        var tableBody = document.getElementById("productList").getElementsByTagName("tbody")[0];
-        var newRow = tableBody.insertRow();
-        newRow.innerHTML = `
+
+        // Ürünleri listelemek için HTML oluştur
+        var newRow = `
                 <tr>
                     <td>${productName}</td>
                     <td>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <button type="button" class="btn btn-primary decrement-btn" onclick="decrementQuantity('quantity_${productId}')">
+                                <button type="button" class="btn btn-primary decrement-btn" onclick="decrementQuantity('quantity_${productOrderIndex}')">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input id="quantity_${productId}" name="quantity_${productId}" type="number" class="form-control bg-secondary text-center" value="${quantity}" min="1" />
+                            <input id="quantity_${productOrderIndex}" name="ProductOrders[${productOrderIndex}].Quantity" type="number" class="form-control bg-secondary text-center" value="${quantity}" min="1" />
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-primary increment-btn" onclick="incrementQuantity('quantity_${productId}')">
+                                <button type="button" class="btn btn-primary increment-btn" onclick="incrementQuantity('quantity_${productOrderIndex}')">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -85,6 +85,33 @@
                     </td>
                 </tr>
             `;
+
+        // Yeni ürünü listeye ekle
+        var tableBody = document.getElementById("productList").getElementsByTagName("tbody")[0];
+        tableBody.insertAdjacentHTML('beforeend', newRow);
+
+        // Form verilerini güncelle
+        var form = document.getElementById("productForm");
+        var newInput1 = document.createElement("input");
+        newInput1.setAttribute("type", "hidden");
+        newInput1.setAttribute("name", "ProductOrders[" + productOrderIndex + "].ProductId");
+        newInput1.setAttribute("value", productId);
+        form.appendChild(newInput1);
+
+        var newInput2 = document.createElement("input");
+        newInput2.setAttribute("type", "hidden");
+        newInput2.setAttribute("name", "ProductOrders[" + productOrderIndex + "].ProductName");
+        newInput2.setAttribute("value", productName);
+        form.appendChild(newInput2);
+
+        var newInput3 = document.createElement("input");
+        newInput3.setAttribute("type", "hidden");
+        newInput3.setAttribute("name", "ProductOrders[" + productOrderIndex + "].Quantity");
+        newInput3.setAttribute("value", quantity);
+        form.appendChild(newInput3);
+
+        // Indexi arttır
+        productOrderIndex++;
     }
 
     function removeProduct(button) {
