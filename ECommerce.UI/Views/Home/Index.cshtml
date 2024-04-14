@@ -10,7 +10,7 @@
 <div id="header-carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" style="height: 410px;text-align:center" ">
-            <img class="img-fluid" src="img/zippo_harley.webp" alt="Image" />
+            <img class="img" src="img/zippo_harley.webp" alt="Image" />
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                 <div class="p-3" style="max-width: 700px">
                     <h4 class="text-light text-uppercase font-weight-medium mb-3">
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="carousel-item " style="height: 410px;text-align:center">
-            <img class="img-fluid" src="img/zippo_slider1.webp" alt="Image" />
+            <img class="img" src="img/zippo_slider1.webp" alt="Image" />
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                 <div class="p-3" style="max-width: 700px">
                     <h4 class="text-light text-uppercase font-weight-medium mb-3">
@@ -84,22 +84,24 @@
 <div class="container-fluid pt-5">
     <div class="row px-xl-5 pb-3">
         <div class="col-lg-4 col-md-6 pb-1">
-            <div class="cat-item d-flex flex-column border mb-4"
+            <div class="cat-item d-flex flex-column border mb-4 justify-content-center"
                  style="padding: 30px">
-                <div class="text-center" style="width: 300px; height:300px">
+                <div class="text-center" style="width: 100%; height:300px">
 
                     <a asp-area="" asp-controller="Home" asp-action="Product" asp-route-categoryName="Çok Amaçlı" class="position-relative overflow-hidden mb-3 justify-content-center">
                         <img class="img-fluid" src="~/images/cakmak/cakmak-mavi.jpg" alt="" style="height: 300px" />
                     </a>
 
                 </div>
-                <h5 class="font-weight-semi-bold m-auto">Çok Amaçlı Çakmaklar</h5>
+                <div class="text-center">
+                    <h5 class="font-weight-semi-bold m-auto">Çok Amaçlı Çakmaklar</h5>
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 pb-1">
             <div class="cat-item d-flex flex-column border mb-4"
                  style="padding: 30px">
-                <div class="text-center" style="width: 300px; height:300px">
+                <div class="text-center" style="width: 100%; height: 300px">
                     <a asp-area="" asp-controller="Home" asp-action="Product" asp-route-categoryName="Mumlar İçin" class="position-relative overflow-hidden mb-3 justify-content-center">
                         <img class="img-fluid" src="~/images/cakmak/mum-icin-cakmak.jpg" alt="" style="height: 300px" />
                     </a>
@@ -110,12 +112,12 @@
         <div class="col-lg-4 col-md-6 pb-1">
             <div class="cat-item d-flex flex-column border mb-4"
                  style="padding: 30px">
-                <div class="text-center" style="width: 300px; height:300px">
+                <div class="text-center" style="width: 100%; height: 300px">
                     <a asp-area="" asp-controller="Home" asp-action="Product" asp-route-categoryName="Kalem" class="position-relative overflow-hidden mb-3 justify-content-center">
                         <img class="img-fluid" src="~/images/kalem/kalem-siyah.jpg" alt="" style="height: 300px" />
                     </a>
                 </div>
-                <h5 class="font-weight-semi-bold m-auto">Aksesuarlar</h5>
+                <h5 class="font-weight-semi-bold m-auto">Kalemler</h5>
             </div>
         </div>
     </div>
