@@ -60,5 +60,10 @@
 
 <div>
     <a asp-action="Edit" asp-controller="User" class="btn btn-primary">Profili Güncelle</a>
+    @if (Model.UserName == "Admin")
+    {
+        <a  class="btn btn-danger" asp-area="Admin" asp-controller="Base" asp-action="Index">ADMİN SAYFASINA GİT</a>
+
+    }
 </div>
 

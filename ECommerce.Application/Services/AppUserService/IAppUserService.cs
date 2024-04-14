@@ -20,6 +20,8 @@ namespace ECommerce.Application.Services.AppUserService
         Task<bool> UserInRole(string userName, string role);
         Task<List<UpdateProfileDto>> GetAllUsers();
         Task<UpdateProfileDto> GetUserById(string id);
+        Task<IdentityResult> CreateUserByAdmin(RegisterDto model);
+
 
 
     }

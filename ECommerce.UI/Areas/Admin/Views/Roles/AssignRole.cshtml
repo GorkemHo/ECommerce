@@ -18,14 +18,13 @@
             <label class="form-check-label" for="@Model[i].Exists">@Model[i].Name</label>
         </div>
     }
-
+        <div class="mt-5 ml-2">
+            <button type="submit" class="btn btn-dark ">Değişiklikleri Kaydet</button> |
+            <a asp-area="Admin" asp-controller="Roles" asp-action="UserRoleList" class="btn btn-dark">Kullanıcı Rol Listesi</a>
+        </div>
    
 </form>
 
 
 
-</div>
-<div class="mt-5 ml-2">
-    <button class="btn btn-dark ">Değişiklikleri Kaydet</button> |
-    <a asp-area="Admin" asp-controller="Roles" asp-action="UserRoleList" class="btn btn-dark">Kullanıcı Rol Listesi</a>
 </div>

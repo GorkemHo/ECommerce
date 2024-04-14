@@ -74,6 +74,19 @@ namespace ECommerce.Application.Services.AppUserService
 
             return result;
         }
+        public async Task<IdentityResult> CreateUserByAdmin(RegisterDto model)
+        {
+            var user = mapper.Map<AppUser>(model);
+
+            var result = await userManager.CreateAsync(user, model.Password);
+
+
+        
+
+            await cartService.CreateCart(user.Id);
+
+            return result;
+        }
 
         public async Task UpdateUser(UpdateProfileDto model)
         {
