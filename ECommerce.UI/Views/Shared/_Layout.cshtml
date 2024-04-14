@@ -30,11 +30,18 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
+        
         @if (User.Identity.IsAuthenticated)
         {
+
             <div class="row bg-secondary py-2 px-xl-5">
                 <div class="col-lg-11 text-lg-right">
                     <div class="d-flex justify-content-sm-end ">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="text-dark mr-3" asp-area="Admin" asp-controller="Base" asp-action="Index">Admin Panel</a>
+                        }
+
                         <a class="text-dark mr-3" asp-area="Member" asp-controller="User" asp-action="Index">Profilini Görüntüle (@User.Identity.Name)</a>
                         <a class="text-dark " asp-area="" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
                     </div>
@@ -160,7 +167,7 @@
             <partial name="_NotificationPartial" />
             @RenderBody()
 
-          
+
             <!-- Footer Start -->
             <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
                 <div class="row px-xl-5 pt-5">
@@ -220,61 +227,61 @@
             <a href="#" class="btn btn-primary back-to-top">
                 <i class="fa fa-angle-double-up"></i>
             </a>
+        </div>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/easing/easing.min.js"></script>
+        <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
 
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-            <script src="~/lib/easing/easing.min.js"></script>
-            <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
 
+        <!-- Template Javascript -->
+        <script src="~/js/main.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="~/js/main.js"></script>
+        <script>
+            // Form submit edildiğinde kontrol işlemleri yapılır
+            document.querySelector('form').addEventListener('submit', function (e) {
+                var minPriceInput = document.getElementById('minPrice');
+                var maxPriceInput = document.getElementById('maxPrice');
+                var minPrice = minPriceInput.value;
+                var maxPrice = maxPriceInput.value;
 
-            <script>
-                // Form submit edildiğinde kontrol işlemleri yapılır
-                document.querySelector('form').addEventListener('submit', function (e) {
-                    var minPriceInput = document.getElementById('minPrice');
-                    var maxPriceInput = document.getElementById('maxPrice');
-                    var minPrice = minPriceInput.value;
-                    var maxPrice = maxPriceInput.value;
+                // Min ve Max fiyatları kontrol et
+                if ((minPrice !== '' && parseFloat(minPrice) < 0) || (maxPrice !== '' && parseFloat(maxPrice) < 0)) {
+                    alert('Fiyatlar 0\'dan küçük olamaz!');
+                    e.preventDefault(); // Form submitini engelle
+                }
 
-                    // Min ve Max fiyatları kontrol et
-                    if ((minPrice !== '' && parseFloat(minPrice) < 0) || (maxPrice !== '' && parseFloat(maxPrice) < 0)) {
-                        alert('Fiyatlar 0\'dan küçük olamaz!');
+                // Eğer min fiyat varsa ve max fiyat varsa kontrolü yap
+                if (minPrice !== '' && maxPrice !== '') {
+                    if (parseFloat(minPrice) > parseFloat(maxPrice)) {
+                        alert('Minimum fiyat, maksimum fiyattan büyük olamaz!');
                         e.preventDefault(); // Form submitini engelle
                     }
-
-                    // Eğer min fiyat varsa ve max fiyat varsa kontrolü yap
-                    if (minPrice !== '' && maxPrice !== '') {
-                        if (parseFloat(minPrice) > parseFloat(maxPrice)) {
-                            alert('Minimum fiyat, maksimum fiyattan büyük olamaz!');
-                            e.preventDefault(); // Form submitini engelle
-                        }
-                    }
-                });
-            </script>
+                }
+            });
+        </script>
 
 
-            @*@await RenderSectionAsync("Scripts", required: false)*@
+        @*@await RenderSectionAsync("Scripts", required: false)*@
 
-            <script>
-                async function add(productId) {
-                    var usernameEl = document.getElementById("username");
-                    try {
-                        var response = await fetch(`/Member/Cart/AddItem?productId=${productId}`);
-                        if (response.status == 200) {
-                            var result = await response.json();
-                            var cartCountEl = document.getElementById("cartCount");
-                            cartCountEl.innerHTML = result;  //???
-                            window.location.href = "#cartCount";    //???
-                        }
-                    }
-                    catch (err) {
-                        console.log(err);
+        <script>
+            async function add(productId) {
+                var usernameEl = document.getElementById("username");
+                try {
+                    var response = await fetch(`/Member/Cart/AddItem?productId=${productId}`);
+                    if (response.status == 200) {
+                        var result = await response.json();
+                        var cartCountEl = document.getElementById("cartCount");
+                        cartCountEl.innerHTML = result;  //???
+                        window.location.href = "#cartCount";    //???
                     }
                 }
-            </script>
+                catch (err) {
+                    console.log(err);
+                }
+            }
+        </script>
 
 
 </body>
