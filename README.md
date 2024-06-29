@@ -8,6 +8,7 @@ C#, .Net Core MVC ,EntityFramework Core, MsSql, Repository Design Pattern, AutoM
 ![image](https://github.com/GorkemHo/ECommerce/assets/140258015/9b34bf1d-f117-4558-abf2-0e9eec655853)
 ![image](https://github.com/GorkemHo/ECommerce/assets/140258015/27531d96-6803-4713-84f7-5ef4f4ebde0f)
 ![image](https://github.com/GorkemHo/ECommerce/assets/140258015/dcc9c467-5c29-43bc-b191-1ee1ae10257a)
+![image](https://github.com/GorkemHo/ECommerce/assets/140258015/1d801c1f-aa7c-46ab-86f6-ba20ce5656c7)
 ![image](https://github.com/GorkemHo/ECommerce/assets/140258015/fbcebc2c-7e6b-47f6-947a-afde3db3e47f)
 ![image](https://github.com/GorkemHo/ECommerce/assets/140258015/a55f6fc9-b67c-42f3-bc71-596006ae7cd7)
 ![image](https://github.com/GorkemHo/ECommerce/assets/140258015/a6a4a1d6-d03f-4e6c-b950-f578d9dc45db)
